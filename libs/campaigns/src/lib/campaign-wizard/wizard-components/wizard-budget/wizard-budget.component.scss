@@ -1,0 +1,78 @@
+@import '../../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+$help-color: #808184;
+
+.daily-budget,
+.campaign-dates {
+  color: $dark-gray;
+  font-size: $thirteen;
+  font-weight: bold;
+  letter-spacing: -0.26px;
+  line-height: 15px;
+  margin-top: 20px;
+}
+
+.campaign-dates {
+  margin-top: 50px;
+}
+
+.daily-budget-help,
+.campaign-dates-help {
+  margin-top: 10px;
+  color: $help-color;
+  font-size: $eighteen;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.budget-amount {
+  margin-top: 10px;
+}
+
+.how-to-pick > a {
+  color: $light-blue;
+  font-size: $twelve;
+  font-weight: bold;
+  line-height: 15px;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.dates {
+  margin-top: 15px;
+
+  .start-end-date {
+    color: $dark-gray;
+    font-size: $eighteen;
+    font-weight: $medium;
+    margin-bottom: 16px;
+  }
+
+  .radio-buttons {
+    color: $dark-gray;
+    border-bottom: solid 1px $dark-gray;
+    padding-bottom: 8px;
+
+    mat-radio-button {
+      margin-right: 8px;
+    }
+  }
+
+  .to {
+    color: $help-color;
+    font-size: $eighteen;
+    font-weight: $medium;
+    line-height: 25px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+mat-form-field ::ng-deep {
+  color: $black;
+  .mat-form-field-prefix {
+    top: 0px;
+  }
+}

@@ -1,0 +1,39 @@
+<span mat-dialog-title>{{ 'CREDIT_CARD.CHARGE.CARD' | translate }}</span>
+<div mat-dialog-content class="charge-card">
+  <mat-form-field
+    appearance="outline"
+    appUpdateOutlineGap
+    [floatLabel]="'always'"
+    class="input"
+  >
+    <mat-label [translate]="'CREDIT_CARD.AMOUNT.TEXT'"></mat-label>
+    <input
+      matInput
+      required
+      type="text"
+      cdkFocusInitial
+      appCurrency
+      [maxDigits]="5"
+      [formControl]="chargeForm.controls['amount']"
+    />
+    <span matPrefix class="prefix">$&nbsp;</span>
+    <mat-error
+      *ngIf="chargeForm.controls['amount'].hasError('required')"
+      [innerHTML]="'CREDIT_CARD.AMOUNT.REQUIRED' | translate"
+    ></mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button (click)="close()">
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button
+    mat-raised-button
+    class="charge"
+    color="primary"
+    [disabled]="chargeForm.invalid"
+    [mat-dialog-close]="chargeForm.controls['amount'].value"
+  >
+    {{ 'CREDIT_CARD.CHARGE.CARD' | translate }}
+  </button>
+</div>

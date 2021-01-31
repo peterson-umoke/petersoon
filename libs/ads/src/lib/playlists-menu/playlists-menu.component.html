@@ -1,0 +1,34 @@
+<button
+  mat-icon-button
+  class="more"
+  [matMenuTriggerFor]="adMenu"
+  appGoogleAnalytics
+  [googleCategory]="'Playlist Menu'"
+  [googleAction]="'Click'"
+  [googleLabel]="'Open Menu'"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #adMenu="matMenu">
+  <button
+    mat-menu-item
+    (click)="edit()"
+    appGoogleAnalytics
+    [googleCategory]="'Playlist Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Edit'"
+  >
+    {{ 'EDIT' | translate }}
+  </button>
+  <button
+    mat-menu-item
+    (click)="delete()"
+    appGoogleAnalytics
+    [googleCategory]="'Playlist Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Delete'"
+  >
+    {{ 'DELETE.TEXT' | translate }}
+  </button>
+</mat-menu>

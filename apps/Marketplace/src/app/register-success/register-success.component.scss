@@ -1,0 +1,59 @@
+@import '../../styles/sizes.scss';
+@import '../../styles/colors.scss';
+
+.confirmation-holder {
+  background: $background-gray;
+  height: 100vh;
+  padding: 0px 16px 32px;
+}
+
+.logo-holder {
+  margin-bottom: 16px;
+  padding-left: 16px;
+
+  img.blip-logo {
+    width: 100px;
+  }
+}
+
+.card-text {
+  color: $dark-gray;
+  font-size: $eighteen;
+  font-weight: semi-bold;
+  margin-bottom: 8px;
+}
+
+.thanks {
+  color: $dark-gray;
+  font-size: $fourty;
+  font-weight: semi-bold;
+}
+
+.didnt-see {
+  letter-spacing: -0.36px;
+  line-height: 25px;
+  margin-top: 24px;
+}
+
+.resend {
+  margin-bottom: 8px;
+}
+
+.or {
+  font-size: $fourteen;
+  margin-right: 3px;
+}
+
+.change-email {
+  color: $light-blue;
+  cursor: pointer;
+  font-size: $fourteen;
+}
+
+.graphic-holder {
+  padding-bottom: 24px;
+
+  .blip-graphic {
+    max-width: 60%;
+  }
+}

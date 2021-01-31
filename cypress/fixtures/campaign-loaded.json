@@ -1,0 +1,177 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": {
+    "id": "rt3zsx",
+    "created": 1569860679000,
+    "modified": 1569860679000,
+    "deleted": null,
+    "editable": true,
+    "name": "New Campaign",
+    "organization": "vcgatn",
+    "sign_group": {
+      "id": "u24mn6",
+      "created": 1569860679000,
+      "modified": 1569860679000,
+      "name": null,
+      "signs": [
+        "u4pxzb",
+        "47pdqh",
+        "uu57bt",
+        "4zvsaz",
+        "m8tezp",
+        "veagqu"
+      ],
+      "auto_include": true,
+      "type": "CAMPAIGN",
+      "organization": null
+    },
+    "ad_group": {
+      "id": "3pexsr",
+      "created": 1569860679000,
+      "modified": 1569860679000,
+      "organization": "vcgatn",
+      "name": null,
+      "ads": [
+        {
+          "id": "uvga8k",
+          "thumbnail_url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-bxegej-960x540-4888a5cf-thumbnail.png",
+          "name": "Car2"
+        }
+      ],
+      "rules": []
+    },
+    "rule_group": {
+      "rules": [
+        {
+          "type": "DailyCalendar",
+          "data": [
+            {
+              "days": [
+                0,
+                6
+              ],
+              "price_times": [
+                [
+                  0,
+                  0.0
+                ],
+                [
+                  600,
+                  0.0
+                ],
+                [
+                  600,
+                  0.5
+                ],
+                [
+                  1200,
+                  0.5
+                ],
+                [
+                  1200,
+                  0.25
+                ],
+                [
+                  1320,
+                  0.25
+                ],
+                [
+                  1320,
+                  0.0
+                ],
+                [
+                  1440,
+                  0.0
+                ]
+              ]
+            },
+            {
+              "days": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "price_times": [
+                [
+                  0,
+                  0.0
+                ],
+                [
+                  360,
+                  0.0
+                ],
+                [
+                  360,
+                  0.1
+                ],
+                [
+                  420,
+                  0.1
+                ],
+                [
+                  420,
+                  0.5
+                ],
+                [
+                  660,
+                  0.5
+                ],
+                [
+                  660,
+                  0.25
+                ],
+                [
+                  900,
+                  0.25
+                ],
+                [
+                  900,
+                  0.5
+                ],
+                [
+                  1200,
+                  0.5
+                ],
+                [
+                  1200,
+                  0.25
+                ],
+                [
+                  1320,
+                  0.25
+                ],
+                [
+                  1320,
+                  0.0
+                ],
+                [
+                  1440,
+                  0.0
+                ]
+              ]
+            }
+          ],
+          "prices": {
+            "low": "0.10",
+            "medium": "0.25",
+            "high": "0.50"
+          }
+        }
+      ]
+    },
+    "max_price": null,
+    "daily_budget": 20.0,
+    "start_date": null,
+    "end_date": null,
+    "enabled": true,
+    "campaign_type": "STANDARD",
+    "timezone": "America/Denver",
+    "description": "",
+    "first_display": null,
+    "hidden": null
+  }
+}

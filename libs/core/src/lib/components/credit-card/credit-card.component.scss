@@ -1,0 +1,42 @@
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.card-container {
+  height: 100%;
+  width: 100%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.cc-num {
+  height: 16px;
+  width: 100%;
+}
+
+.blue-filled-button {
+  color: $white;
+}
+
+.red-highlight ::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: $red;
+  }
+  mat-label {
+    color: $red;
+  }
+}
+
+.address-fields {
+  margin-top: 16px;
+}
+
+.save-button {
+  background: $light-blue;
+  color: $white;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-size: $sixteen;
+  font-weight: 600;
+}

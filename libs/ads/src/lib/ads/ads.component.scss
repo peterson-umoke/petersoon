@@ -1,0 +1,33 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+@media only screen and (min-width: 600px) {
+  .ads-container {
+    margin-top: 30px;
+  }
+
+  .container {
+    margin-top: 32px;
+  }
+
+  .content {
+    padding-bottom: 40px;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .container {
+    margin-top: 10px;
+  }
+
+  .content {
+    padding-bottom: 64px;
+  }
+}
+
+.no-ads {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: 600;
+  line-height: 18px;
+}

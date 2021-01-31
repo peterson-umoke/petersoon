@@ -1,0 +1,68 @@
+<div
+  class="container"
+  *ngIf="playlistService.$playlistAddCreative | async"
+  ngClass.gt-xs="min-width"
+>
+  <div fxLayout="row" fxLayoutAlign="start center" class="close">
+    <button mat-raised-button (click)="close()">
+      {{ 'CLOSE' | translate }}
+    </button>
+  </div>
+
+  <span class="text">{{ 'ADS.CHOOSE' | translate }}</span>
+
+  <div fxLayout="row" class="search-container">
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      class="search-form-field"
+    >
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="search"
+        placeholder="{{ 'SEARCH' | translate }}"
+        [(ngModel)]="search"
+        (ngModelChange)="searchChange()"
+      />
+    </mat-form-field>
+  </div>
+
+  <mat-list *ngIf="filteredAds.length">
+    <div *ngFor="let ad of filteredAds" class="ad">
+      <mat-list-item (click)="addAd(ad)">
+        <div class="art">
+          <img
+            [src]="
+              ad.thumbnail_url ||
+              (ad.images && ad.images[0]?.thumbnail_url) ||
+              'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+            "
+            [alt]="ad.name"
+          />
+        </div>
+
+        <div class="info" fxLayout="column" fxLayoutAlign="start start">
+          <span class="name">{{ ad.name }}</span>
+          <!-- TODO: ADD THE NUMBER OF IMAGES AND WHEN IT WAS CREATED TO AD GROUP SERIALIZER -->
+          <!-- <span class="sizes" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon>collections</mat-icon>
+            <span>2 Ad Sizes</span>
+          </span>
+          <span class="created">{{ '8/12/2018' | date:'MM/d/yyyy' }}</span> -->
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+
+  <!-- Search text does not match any ads -->
+  <div
+    class="no-ads"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    *ngIf="!filteredAds.length"
+  >
+    {{ 'ADS.NONE_SEARCH' | translate }}
+  </div>
+</div>

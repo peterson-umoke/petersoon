@@ -1,0 +1,66 @@
+<button
+  mat-icon-button
+  class="more"
+  [matMenuTriggerFor]="adMenu"
+  appGoogleAnalytics
+  [googleCategory]="'Ad Menu'"
+  [googleAction]="'Click'"
+  [googleLabel]="'Open'"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<input
+  #fileSelect
+  type="file"
+  accept="image/*"
+  multiple
+  (click)="fileSelect.value = null"
+  (change)="onFilesAdded($event)"
+  style="display: none;"
+/>
+
+<mat-menu #adMenu="matMenu">
+  <button
+    mat-menu-item
+    (click)="edit()"
+    *ngIf="!creatingCampaign"
+    appGoogleAnalytics
+    [googleCategory]="'Ad Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Edit'"
+  >
+    {{ 'EDIT' | translate }}
+  </button>
+  <button
+    mat-menu-item
+    (click)="fileSelect.click()"
+    appGoogleAnalytics
+    [googleCategory]="'Ad Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Add Sizes'"
+  >
+    {{ 'ADD_SIZES' | translate }}
+  </button>
+  <!-- <button
+    mat-menu-item
+    *ngIf="!creatingCampaign"
+    (click)="addToPlaylist()"
+    appGoogleAnalytics
+    [googleCategory]="'Ad Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Add to Playlist'"
+  >
+    {{ 'PLAYLISTS.ADD_TO' | translate }}
+  </button> -->
+  <button
+    mat-menu-item
+    (click)="delete()"
+    appGoogleAnalytics
+    [googleCategory]="'Ad Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Delete'"
+  >
+    {{ 'DELETE.TEXT' | translate }}
+  </button>
+</mat-menu>

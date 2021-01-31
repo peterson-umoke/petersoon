@@ -1,0 +1,71 @@
+<div *ngIf="ad$ | async as ad" ngStyle.lt-lg="padding: '0 12px'">
+  <form (submit)="saveAdName(ad)">
+    <mat-form-field ngStyle.xs="width: 100%" style="width: 500px">
+      <input
+        id="adName"
+        maxlength="100"
+        class="ad-name"
+        matInput
+        [(ngModel)]="ad.adInput"
+        [ngModelOptions]="{ standalone: true }"
+        (blur)="saveAdName(ad)"
+      />
+    </mat-form-field>
+  </form>
+  <ng-container *ngIf="matchStatistics$ | async as stats">
+    <h2 class="design-fit">
+      {{
+        'CAMPAIGN.CREATION.UPLOADER.FITTING_LOCATIONS'
+          | translate: { fit: stats.numMatched, total: stats.total }
+      }}
+    </h2>
+    <h3 *ngIf="stats.numMissing > 0" class="missing">
+      {{ 'CAMPAIGN.CREATION.UPLOADER.MISSING_SIZES' | translate }}
+    </h3>
+  </ng-container>
+  <campaigns-wizard-uploader-row
+    *ngFor="let matchingImage of missingMatches$ | async; let first = first"
+    [showHeader]="first"
+    [size]="matchingImage.image"
+    [signs]="matchingImage.matches"
+    [ad]="ad"
+  >
+  </campaigns-wizard-uploader-row>
+
+  <ng-container *ngIf="goodMatches$ | async as goodMatches">
+    <div class="good-sizes" *ngIf="goodMatches.length">
+      <div class="header">
+        <span class="done">{{
+          'CAMPAIGN.CREATION.UPLOADER.DONE' | translate
+        }}</span>
+        {{ 'CAMPAIGN.CREATION.UPLOADER.CORRECT_SIZES' | translate }}
+      </div>
+      <campaigns-wizard-uploader-row
+        *ngFor="let match of goodMatches; let first = first"
+        [showHeader]="first"
+        [ad]="ad"
+        [image]="match.image"
+        [size]="match.image"
+        [signs]="match.matches"
+      >
+      </campaigns-wizard-uploader-row>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="unmatchedImages$ | async as goodMatches">
+    <div class="good-sizes" *ngIf="goodMatches.length">
+      <div class="header">
+        {{ 'CAMPAIGN.CREATION.UPLOADER.IRRELEVANT_SIZES' | translate }}
+      </div>
+      <campaigns-wizard-uploader-row
+        *ngFor="let match of goodMatches; let first = first"
+        [showHeader]="first"
+        [ad]="ad"
+        [image]="match.image"
+        [size]="match.image"
+        [signs]="match.matches"
+      >
+      </campaigns-wizard-uploader-row>
+    </div>
+  </ng-container>
+</div>

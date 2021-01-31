@@ -1,0 +1,38 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.xs,
+.sm {
+  padding-top: 15px;
+}
+.md {
+  margin-top: 32px;
+}
+.gt-md {
+  margin-top: 32px;
+}
+
+.back-to-cards {
+  a {
+    text-decoration: none;
+  }
+
+  mat-icon {
+    color: $dark-gray;
+  }
+
+  span {
+    color: $light-blue;
+    font-size: $twelve;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+}
+
+.no-payments {
+  color: $dark-gray;
+  font-size: $fifteen;
+  line-height: 18px;
+  font-weight: 600;
+  margin-top: 40px;
+}

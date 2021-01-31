@@ -1,0 +1,175 @@
+<div class="container" *ngIf="ad">
+  <div fxLayout="row" fxLayoutAlign="space-between start">
+    <mat-form-field class="name">
+      <textarea
+        matInput
+        #adName
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="2"
+        [formControl]="adForm.controls['name']"
+        [maxlength]="adNameMax"
+        no-outline
+      ></textarea>
+      <mat-hint *ngIf="editing" align="end"
+        >{{ adForm.controls['name'].value.length }} / {{ adNameMax }}</mat-hint
+      >
+      <mat-error
+        *ngIf="adForm.controls['name'].hasError('required')"
+        [innerHTML]="'NAME.REQUIRED' | translate"
+      >
+      </mat-error>
+    </mat-form-field>
+
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-between center"
+      class="name-buttons"
+    >
+      <button mat-button class="edit" *ngIf="!editing" (click)="editName()">
+        {{ 'EDIT' | translate }}
+      </button>
+      <button mat-button class="cancel" *ngIf="editing" (click)="cancelName()">
+        {{ 'CANCEL' | translate }}
+      </button>
+      <button
+        mat-button
+        class="save"
+        *ngIf="editing"
+        [disabled]="!adForm.controls['name'].value"
+        (click)="saveName()"
+      >
+        {{ 'SAVE' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="uploaded">
+    {{ 'UPLOADED' | translate }} {{ ad.created | date: 'MMM d, yyyy' }}
+  </div>
+
+  <mat-divider class="divider"></mat-divider>
+
+  <div class="image-viewer">
+    <div *ngIf="ad.images.length <= maxImages" class="gallery">
+      <span class="sizes"
+        >{{ ad.images.length }}
+        {{ (ad.images.length === 1 ? 'SIZE' : 'SIZES') | translate }}</span
+      >
+      <div class="size-list" fxLayout="row" fxLayoutAlign="start center">
+        <span
+          class="size"
+          [ngClass]="{
+            'size-selected': i === imageIndex,
+            'size-not-selected': i !== imageIndex
+          }"
+          *ngFor="let size of ad.images; let i = index"
+          (click)="imageIndex = i"
+        >
+          {{ size.width }} x {{ size.height }}
+        </span>
+      </div>
+    </div>
+
+    <div
+      *ngIf="ad.images.length > maxImages"
+      class="select"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <mat-form-field class="form-field">
+        <mat-select [(ngModel)]="imageIndex">
+          <mat-select-trigger
+            class="trigger"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+          >
+            <mat-icon>photo</mat-icon>
+            ({{ ad.images.length }}) {{ 'VIEWING_SIZE' | translate }}
+            {{ ad.images[imageIndex].width }} x
+            {{ ad.images[imageIndex].height }}
+          </mat-select-trigger>
+          <mat-option *ngFor="let size of ad.images; let i = index" [value]="i">
+            <span>{{ size.width }} x {{ size.height }}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        class="blue-filled-button"
+        (click)="multipleFileSelect.click()"
+      >
+        {{ 'ADD_SIZES' | translate }}
+      </button>
+    </div>
+
+    <div class="image">
+      <img
+        *ngIf="ad.images.length"
+        [src]="
+          ad.images[imageIndex]?.url ||
+          'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+        "
+        alt="ad.name"
+      />
+    </div>
+
+    <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <button
+          *ngIf="ad.images.length <= maxImages"
+          mat-raised-button
+          class="blue-filled-button"
+          (click)="multipleFileSelect.click()"
+        >
+          {{ 'ADD_SIZES' | translate }}
+        </button>
+        <input
+          #multipleFileSelect
+          type="file"
+          accept="image/*"
+          multiple
+          (click)="multipleFileSelect.value = null"
+          (change)="addSizes($event.target.files)"
+          style="display: none;"
+        />
+      </div>
+
+      <div
+        *ngIf="ad.images.length"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        fxLayoutGap="12px"
+      >
+        <button
+          mat-raised-button
+          class="blue-outlined-button"
+          (click)="fileSelect.click()"
+        >
+          {{ 'REPLACE' | translate }}
+        </button>
+        <input
+          #fileSelect
+          type="file"
+          accept="image/*"
+          (click)="fileSelect.value = null"
+          (change)="replaceImage($event.target.files)"
+          style="display: none;"
+        />
+        <button
+          mat-raised-button
+          class="blue-outlined-button"
+          (click)="deleteImage()"
+        >
+          {{ 'DELETE.TEXT' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="close">
+    <button mat-raised-button (click)="close()">
+      {{ 'CLOSE' | translate }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+@import '../../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.xs-container {
+  padding: 0 12px;
+}
+
+.container {
+  padding-left: 36px;
+}
+
+.mat-tab-link {
+  font-size: 18px;
+}
+
+.ad-name {
+  font-size: 18px;
+}
+
+// #tab icons
+.tab-img-span {
+  margin-right: 5px;
+}
+.artwork-link {
+  opacity: inherit;
+}
+::ng-deep .mat-tab-header-pagination-disabled {
+  display: none !important;
+}

@@ -1,0 +1,166 @@
+<div fxLayout="column" ngStyle.lt-lg="padding: '0 12px'">
+  <div class="daily-budget">
+    <span>{{ 'CAMPAIGN.CREATION.BUDGET.DAILY' | translate }}</span>
+  </div>
+  <div class="daily-budget-help">
+    <span>{{ 'CAMPAIGN.CREATION.BUDGET.DAILY_HELP' | translate }}</span>
+  </div>
+
+  <div fxLayout="row">
+    <div
+      class="budget-amount"
+      fxFlex.xs="100"
+      fxFlex.sm="50"
+      fxFlex.md="40"
+      fxFlex.gt-md="30"
+    >
+      <mat-form-field appearance="outline" fxFlexFill id="ic-budget-field">
+        <input
+          matInput
+          [formControl]="campaignForm.get('budget')"
+          type="text"
+          appCurrency
+          [commas]="false"
+        />
+        <span matPrefix class="prefix">$&nbsp;</span>
+        <mat-error
+          *ngIf="campaignForm.get('budget').hasError('min')"
+          [innerHTML]="
+            'CAMPAIGN.CREATION.BUDGET.DAILY_MIN'
+              | translate
+                : {
+                    minSpend: minBudget$ | async,
+                    signCount: selectedSignsCount
+                  }
+          "
+        ></mat-error>
+        <mat-error
+          *ngIf="campaignForm.get('budget').hasError('required')"
+          [innerHTML]="'CAMPAIGN.CREATION.BUDGET.DAILY_REQUIRED' | translate"
+        ></mat-error>
+        <mat-error
+          *ngIf="campaignForm.get('budget').hasError('max')"
+          [innerHTML]="
+            'CAMPAIGN.CREATION.BUDGET.DAILY_MAX' | translate: { max: maxBudget }
+          "
+        ></mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div *ngIf="(profile$ | async)?.user?.preferences as preferences">
+    <span *ngIf="preferences.currency && preferences.currency !== 'USD'">
+      <app-currency-conversion
+        [currencyCode]="preferences.currency"
+        [dollarAmount]="campaignForm.get('budget').value"
+      >
+      </app-currency-conversion>
+    </span>
+  </div>
+
+  <div class="how-to-pick">
+    <a
+      target="_blank"
+      rel="noopener"
+      href="https://www.blipbillboards.com/cost/"
+    >
+      {{ 'CAMPAIGN.CREATION.BUDGET.HOW_TO_PICK' | translate }}
+    </a>
+  </div>
+
+  <div class="campaign-dates">
+    <span>{{ 'CAMPAIGN.CREATION.BUDGET.CAMPAIGN_DURATION' | translate }}</span>
+  </div>
+
+  <div class="campaign-dates-help">
+    <span id="ic-duration-headline">{{
+      'CAMPAIGN.CREATION.BUDGET.CAMPAIGN_DURATION_HELP' | translate
+    }}</span>
+  </div>
+
+  <div
+    class="dates"
+    fxLayout.xs="column"
+    fxLayoutAlign.xs="center stretch"
+    fxLayout="row"
+    fxLayoutAlign.gt-xs="start center"
+    fxLayoutGap.gt-xs="24px"
+  >
+    <!-- Start Date Calendar -->
+    <div fxLayout="column">
+      <span class="start-end-date">{{ 'START_DATE' | translate }} </span>
+      <mat-radio-group
+        [(ngModel)]="startOption"
+        name="startOptions"
+        (change)="radioChange($event, 'startDate')"
+        class="radio-buttons"
+        aria-label="Select an option"
+      >
+        <mat-radio-button [value]="null">{{
+          'ASAP' | translate
+        }}</mat-radio-button>
+        <mat-radio-button value="date" (click)="startPicker.open()">{{
+          'DATE' | translate
+        }}</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field floatLabel="never">
+        <input
+          matInput
+          [min]="today"
+          [matDatepicker]="startPicker"
+          (focus)="startPicker.open()"
+          [placeholder]="('START' | translate) + ' ' + ('DATE' | translate)"
+          [formControl]="campaignForm.get('startDate')"
+          (dateChange)="checkValidDates()"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker
+          #startPicker
+          disabled="false"
+          (closed)="datePickerClosed('start')"
+        ></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <!-- End Date Calendar -->
+    <div fxLayout="column">
+      <span class="start-end-date">{{ 'END_DATE' | translate }} </span>
+      <mat-radio-group
+        [(ngModel)]="endOption"
+        name="endOptions"
+        (change)="radioChange($event, 'endDate')"
+        class="radio-buttons"
+        aria-label="Select an option"
+      >
+        <mat-radio-button [value]="null">{{
+          'ONGOING' | translate
+        }}</mat-radio-button>
+        <mat-radio-button value="date" (click)="endPicker.open()">{{
+          'DATE' | translate
+        }}</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field floatLabel="never">
+        <input
+          matInput
+          [min]="today"
+          [matDatepicker]="endPicker"
+          (focus)="endPicker.open()"
+          [placeholder]="('END' | translate) + ' ' + ('DATE' | translate)"
+          [formControl]="campaignForm.get('endDate')"
+          (dateChange)="checkValidDates()"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker
+          #endPicker
+          disabled="false"
+          (closed)="datePickerClosed('end')"
+        ></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

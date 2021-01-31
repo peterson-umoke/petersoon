@@ -1,0 +1,24 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.additional-selection {
+  color: $dark-gray;
+  font-size: $thirteen;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  margin-bottom: 20px;
+}
+
+.detailed {
+  position: relative;
+  top: -9px;
+
+  span {
+    margin-right: 8px;
+  }
+}
+
+.open-button {
+  position: relative;
+  top: -9px;
+}

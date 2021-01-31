@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="invoiceDatepicker"
+      [placeholder]="'REPORTS.INVOICE.MONTH_YEAR' | translate"
+      [formControl]="date"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="invoiceDatepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker
+      #invoiceDatepicker
+      startView="year"
+      (yearSelected)="chosenYearHandler($event)"
+      (monthSelected)="chosenMonthHandler($event, invoiceDatepicker)"
+    >
+    </mat-datepicker>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="open-button"
+    (click)="openInvoice()"
+  >
+    {{ 'OPEN' | translate }}
+  </button>
+</div>

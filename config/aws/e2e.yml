@@ -1,0 +1,43 @@
+version: 0.2
+
+env:
+  parameter-store:
+    CYPRESS_TOKEN: '/codebuild/cypress'
+    FIREBASE_TOKEN: '/codebuild/firebase'
+    GH_TOKEN: '/codebuild/github'
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      # Setup Cypress environment variables
+      - COMMIT_INFO_SHA=$(git log -1 --pretty=format:"%H")
+      - COMMIT_INFO_BRANCH=$(git branch --contains $COMMIT_INFO_SHA | grep -v "HEAD")
+      - COMMIT_INFO_MESSAGE=$(git log -1 --pretty=format:"%B")
+      - COMMIT_INFO_EMAIL=$(git log -1 --pretty=format:"%ae")
+      - COMMIT_INFO_AUTHOR=$(git log -1 --pretty=format:"%an")
+      - COMMIT_INFO_TIMESTAMP=$(git log -1 --pretty=format:"%ct")
+      - COMMIT_INFO_REMOTE=$(git config --get remote.origin.url)
+
+      - apt-get -y update
+      # Installation of all required packages.
+      - apt-get install -yq gconf-service xvfb libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget libgtk2.0-0 libnotify-dev libgconf-2-4
+      - npm install -g yarn
+      - yarn install
+  build:
+    commands:
+      - yarn build:netlify
+      - yarn ci:cy-run-record
+  post_build:
+    commands:
+      - if [ -z "$CODEBUILD_BUILD_SUCCEEDING" ]; then echo "Build failing, no need to create placeholder image"; else touch cypress/0.png; fi
+
+artifacts:
+  discard-paths: no
+  name: $(date +%Y-%m-%d)
+  type: zip
+  files:
+    - dist/apps/Marketplace/**
+    - cypress/screenshots/**/*.png
+    - cypress/videos/**/*.mp4

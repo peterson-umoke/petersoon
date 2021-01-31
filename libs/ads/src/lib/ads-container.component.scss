@@ -1,0 +1,18 @@
+.width {
+  width: 100% !important;
+}
+
+.sidenav {
+  background-color: inherit;
+  height: 100%;
+
+  .mat-drawer {
+    box-shadow: 0 3px 6px 0 rgba(19, 72, 84, 0.12);
+    height: calc(100% + 16px);
+  }
+}
+
+mat-sidenav-content {
+  // Header (50px) + Footer (76px) = 126px
+  min-height: calc(100vh - (126px));
+}

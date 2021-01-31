@@ -1,0 +1,18 @@
+@import '../../../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.size {
+  margin-top: 16px;
+}
+
+.title {
+  font-size: 18px;
+  color: $dark-gray;
+  margin-bottom: -35px;
+}
+
+.no-signs {
+  font-size: 16px;
+  color: $black;
+  margin-top: 16px;
+}

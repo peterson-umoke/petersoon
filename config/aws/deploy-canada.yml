@@ -1,0 +1,32 @@
+version: 0.2
+
+env:
+  parameter-store:
+    CYPRESS_TOKEN: '/codebuild/cypress'
+    FIREBASE_TOKEN: '/codebuild/firebase'
+    GH_TOKEN: '/codebuild/github'
+    NPM_TOKEN: '/codebuild/npm'
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - apt-get -y update
+      - git clone --quiet https://$GH_TOKEN@github.com/Acme-Intergalactic/marketplace-v2.git v2
+      - cd v2
+      - npm install -g firebase-tools yarn
+      - yarn
+  build:
+    commands:
+      - VERSION="$(npm run version --silent)"
+      - yarn build:production-ca
+
+      # Check if there are changes in translation files
+      ## ENGLISH CANADA
+      - if CHANGES=$(git diff HEAD~2 HEAD apps/Marketplace/src/i18n/en-CA.json) && [ -n "$CHANGES" ]; then echo "YES EN-CA" && aws s3 cp apps/Marketplace/src/i18n/en-CA.json s3://blipbillboards-marketplace/i18n/en-CA.json --acl public-read --cache-control max-age=300; else echo "NO EN-CA"; fi
+
+      # Deploy to Firebase
+      - firebase use --token $FIREBASE_TOKEN blip-marketplace
+      - firebase target:apply hosting production-ca blip-marketplace-ca
+      - firebase deploy --only hosting:production-ca --message $VERSION

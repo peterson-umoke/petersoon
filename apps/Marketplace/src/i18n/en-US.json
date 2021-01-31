@@ -1,0 +1,1408 @@
+{
+  "ABOVE": "Above",
+  "ACCEPT": "Accept",
+  "ACCOUNT": {
+    "CHOOSE_PREFERENCES": "Choose your account preferences"
+  },
+  "ACTIONS": "Actions",
+  "ACTIVE": "Active",
+  "AD": "Ad",
+  "ADD": "Add",
+  "ADDED_TO_PLAYLIST": "Ad was added to your playlist",
+  "ADDRESS": {
+    "1": "Blip",
+    "2": "1371 W 1250 S",
+    "3": "Orem, UT 84058",
+    "4": "contact@blipbillboards.com"
+  },
+  "AD_IMAGE": "Ad Image",
+  "ADD_SIZE": "Add Size",
+  "ADD_SIZES": "Add Sizes",
+  "ADD_SIZES_NOTE": "Note: All sizes should be for the same ad.",
+  "ADS": {
+    "CHOOSE": "Choose the ads you would like added to your playlist",
+    "CREATE_AD": "create your ad for only $75",
+    "LET_OUR": "Let our",
+    "NO_ADS": "No Ads",
+    "NO_ARTWORK": "Don't have artwork?",
+    "NONE": "There are no ads right now. Get started by uploading some artwork!",
+    "NONE_SEARCH": "There are no ads within your search criteria",
+    "NUM_OF": "# of Ads",
+    "TEMPLATES": {
+      "ADD_TEXT": "Add Text To All Templates",
+      "COLORS": {
+        "BACKGROUND": "Set All Background Colors",
+        "SET_OBJECT": "Set Object Color on template #{{number}}",
+        "SUBMIT": "Change Color",
+        "USED_COLORS": "Used Colors"
+      },
+      "DOWNLOAD_PREVIEW": "Download Preview",
+      "FONT_FAMILY": "Font Family",
+      "FONT_SIZE": "Font Size (px)",
+      "LINES": {
+        "HEADLINE": "Headline",
+        "SUBHEAD": "Subhead",
+        "TEXT": "Lines"
+      },
+      "NEW": "New Template",
+      "NEW_SIZE": "New Template Size",
+      "OPACITY": "Opacity",
+      "SAVE": "Save Template",
+      "SEND_BACK": "Send to Back",
+      "SEND_BACKWARD": "Send Backward",
+      "SEND_FORWARD": "Send Forward",
+      "SEND_FRONT": "Send to Front",
+      "SIZES": "Template Sizes",
+      "TEMPLATE_NUMBER": "Template #{{number}}",
+      "TEXT": "Ad Templates",
+      "TEXT_ALIGN": "Text Alignment",
+      "TEXT_STYLES": "Text Styles",
+      "VARS": {
+        "CITY": "City",
+        "EMOJI": "Emoji",
+        "ORG": "Org",
+        "TEXT": "Vars",
+        "TYPE": "Type"
+      }
+    },
+    "TEXT": "Ads"
+  },
+  "AGENCY": {
+    "ARE_YOU": "Are you a marketing agency?"
+  },
+  "ALL": "All",
+  "ANALYTICS": "Analytics",
+  "APPROXIMATELY": "approximately",
+  "APPROVE": "Approve",
+  "ARCHIVE": "Archive",
+  "ARCHIVED": "Archived",
+  "ART": "Art",
+  "ARTWORK": "Artwork",
+  "ARTWORK_UPLOAD_FAILURE": "Please upload individual artwork files. Accepted file types are .png and .jpg",
+  "ARTWORK_UPLOAD_RESOLUTION_FAILURE": "Resolution of uploaded file needs to match {{resolution}}",
+  "ASAP": "ASAP",
+  "AUDIENCE": "Audience",
+  "AUTH": {
+    "ACCOUNT_EXISTS": "Your profile is linked with {{provider}}. Please login with {{provider}} to continue.",
+    "ACCOUNT_NOT_FOUND": "There is no user record corresponding to this email. Please create an account to continue.",
+    "CREATE_ACCOUNT": "Create your account",
+    "DISABLED_ACCOUNT": "Your account has been disabled. Please contact the Blip team for more information",
+    "EMAIL_IN_USE": "The email is already in use. If it is yours, please login to continue",
+    "ERROR_SENDING_EMAIL": "There was an error sending the verification email",
+    "FORGOT_PASSWORD": {
+      "EMAIL_SENT": "An email was sent to reset your password",
+      "ENTER_EMAIL": "Please enter your email to continue"
+    },
+    "HAS_ACCOUNT": "Already have an account?",
+    "INVALID_CREDENTIALS": "Please enter a valid username and password",
+    "LOG_IN_HERE": "Log in here",
+    "WEAK_PASSWORD": "Your password is too weak"
+  },
+  "BACK": "Back",
+  "BACK_TO_LOGIN": "Back to Login",
+  "BILLBOARD": "Billboard",
+  "BILLING": "Billing",
+  "BLIP": "Blip",
+  "BLIPS": {
+    "ALL_TIME": "All-Time",
+    "AVG_COST": "Avg. Cost Per Blip",
+    "AVG_DAILY_SPEND": "Avg. Daily Spend",
+    "DAILY": "Daily Blips",
+    "DAILY_TOTALS": "Daily Totals",
+    "HOURLY": "Hourly Blips",
+    "IMPRESSIONS": "Total Impressions (estimated)",
+    "MONTHLY": "Monthly Blips",
+    "MONTHLY_TOTALS": "Monthly Totals",
+    "PER_BOARD": "Avg Blips per board across {{signs}} boards",
+    "PER_DOLLAR": "Impressions per Dollar (estimated)",
+    "TEXT": "Blips",
+    "TO_DATE": "Blips to Date"
+  },
+  "BUDGET": "Budget",
+  "CAMPAIGN": {
+    "ANALYTICS": "Campaign Analytics",
+    "CREATION": {
+      "ADD_VISIBLE": "Add Visible",
+      "ADD_VISIBLE_SIGNS": "Add Visible Signs",
+      "ADD_SIGN": "Add Sign",
+      "ARTWORK": {
+        "SIZES_NEEDED": "For this campaign, attach your completed ad designs that match the sign sizes you have selected"
+      },
+      "AV_DAILY_VIEWS": "Av. Daily Views",
+      "BUDGET": {
+        "CAMPAIGN_DURATION": "Campaign Duration",
+        "CAMPAIGN_DURATION_HELP": "When would you like your campaign to run?",
+        "DAILY": "Daily Budget",
+        "DAILY_HELP": "How much would you like your maximum daily budget to be?",
+        "DAILY_MAX": "For daily budgets over ${{max}}.00 please call 1-801-692-3217",
+        "DAILY_MIN": "With {{signCount}} locations selected, the minimum daily budget is ${{minSpend}}.00",
+        "DAILY_REQUIRED": "Daily Budget is <strong>required</strong>",
+        "HOW_TO_PICK": "How do I pick my budget?",
+        "TO": "- to -",
+        "VERY_LOW": "(Budget Very Low)"
+      },
+      "GENERATOR": {
+        "ADDED_TO_CAMPAIGN": "{{adName}} added to campaign!",
+        "ADD_IMAGE": "Add Logo/Image",
+        "BACKGROUND_COLOR": "Background color",
+        "BILLBOARD_PREVIEW": "Blip Billboard Preview",
+        "FAILED_TO_GENERATE": "Failed to generate size {{width}}x{{height}}",
+        "FONT_AND_COLOR": "3. Choose font and color",
+        "COLOR": "Primary Color",
+        "SUBHEAD": "Subhead",
+        "CHOOSE_TEMPLATE": "1. Choose a template",
+        "DOWNLOAD_PREVIEW": "Download Preview",
+        "FONTS": "Fonts",
+        "HEADLINE": "Headline",
+        "HEX_COLOR": "Hex color",
+        "THIRD": "Text area or logo",
+        "MAX_IMAGE_SIZE": "Image file size cannot exceed {{limit}}.",
+        "MISSING_THIRD": "Missing Third field!",
+        "MISSING_HEADLINE": "Missing Headline!",
+        "NOT_IMAGE": "Must be an image file type!",
+        "OR": "or",
+        "REMOVE_IMAGE": "Remove Logo/Image",
+        "RENDERING_MESSAGE": "Rendering all necessary sizes for billboards",
+        "SAVE_AD": "Save Ad",
+        "SAVE_AND_CONTINUE": "Save and Continue",
+        "WRITE_MESSAGE": "2. Write your message"
+      },
+      "NO_ARTWORK": "You have not uploaded any artwork for your campaign.",
+      "NO_NAME": "You have not set a name for your campaign.",
+      "NO_SIGNS_SELECTED": "You have not chosen any signs for this campaign.",
+      "SCHEDULE": {
+        "CHOOSE_TEMPLATE": "Choose Template"
+      },
+      "MY_BOARDS": "My Boards",
+      "PAGES": [
+        {
+          "TITLE": "Locations",
+          "DETAILS": "Choose billboards that reach your potential customers"
+        },
+        {
+          "TITLE": "Budget",
+          "DETAILS": "Set a daily budget that gives your potential customers frequent opportunities to see your ad"
+        },
+        {
+          "TITLE": "Schedule",
+          "DETAILS": "Select the hours that your potential customers will see your ads"
+        },
+        {
+          "TITLE": "Artwork",
+          "DETAILS": "Create and/or upload ads that effectively showcase your unique brand"
+        },
+        {
+          "TITLE": "Review",
+          "DETAILS": "Request Approval once you have ensured that your campaign is optimized for success"
+        }
+      ],
+      "ADS_DETAILS": "Upload ads that effectively showcase your unique brand",
+      "GENERATOR_DETAILS": "Create ads that effectively showcase your unique brand",
+      "REMOVE_ALL": "Remove All",
+      "REMOVE_SIGN": "Remove Sign",
+      "REVIEW": {
+        "BUDGET_AND_START": "Budget & Start Date",
+        "NAME": "Campaign Name",
+        "LOCATIONS": {
+          "PLURAL": "{{count}} Boards Selected",
+          "SINGULAR": "{{count}} Board Selected"
+        },
+        "ARTWORK": {
+          "PLURAL": "{{count}} Ads Selected",
+          "SINGULAR": "{{count}} Ad Selected"
+        },
+        "SCHEDULE_SET": "Daily schedule set",
+        "NO_SCHEDULE_SET": "No schedule set"
+      },
+      "SAVE": "Save",
+      "CLOSE": "Close",
+      "SAVE_AND_CLOSE": "Save & Close",
+      "SAVE_TO_DRAFTS": "Save To Drafts",
+      "SAVE_AND_CONTINUE": "Save & Continue",
+      "SIGN_FILTER": {
+        "ALL": "Show All",
+        "SELECTED": "Show My Added Boards",
+        "AVAILABLE": "Show Only Available"
+      },
+      "SIGN_LIST": {
+        "NAME": "Name",
+        "ADDRESS": "Address",
+        "CITY": "City",
+        "STATE": "State",
+        "AVERAGE_DAILY_VIEWS": "{{dailyImpressions}} Average daily views",
+        "AVERAGE_COST_PER_BLIP": "{{averageBlipPrice}} Average cost per blip",
+        "BLIP_SECONDS": "{{blipDuration}} Seconds",
+        "ROAD_PLACEMENT": "{{read}} side of road placement",
+        "TRAFFIC_DIRECTION": "{{direction}}-bound traffic",
+        "DIMENSIONS": "{{width}} wide x {{height}} high pixel ratio",
+        "R": "Right",
+        "L": "Left",
+        "DIRECTIONS": {
+          "N": "North",
+          "NE": "Northeast",
+          "NW": "Northwest",
+          "S": "South",
+          "SE": "Southeast",
+          "SW": "Southwest",
+          "E": "East",
+          "W": "West"
+        },
+        "NO_SIGNS": "Blip hasn't made it here... yet!",
+        "EXPAND_SEARCH": "Try expanding your search"
+      },
+      "REQUEST_APPROVAL": "Request Approval",
+      "TEMP_UNAVAILABLE": "Temp. Unavailable",
+      "TEMPORARILY_UNAVAILABLE": "*Temporarily Unavailable",
+      "UPLOADER": {
+        "FITTING_LOCATIONS": "Your design fits {{fit}} of {{total}} locations",
+        "MISSING_SIZES": "Missing Sizes",
+        "MISSING_SIZE": "Missing Size",
+        "DONE": "Done!",
+        "CORRECT_SIZES": "Correct Sizes Uploaded",
+        "IRRELEVANT_SIZES": "These sizes are not relevant to your campaign",
+        "DIMENSIONS": "Dimensions",
+        "LOCATIONS_DIMENSIONS_USED": "Locations that use these dimensions",
+        "UNUSED_DIMENSIONS": "No selected locations use these dimensions",
+        "SHOW_ALL_LOCATIONS": "Show all locations",
+        "HIDE_ALL_LOCATIONS": "Hide all locations"
+      },
+      "USE_WHEN_POSSIBLE": "Use When Possible",
+      "VIEW_MORE_DETAILS": "View More Details",
+      "VIEW_LESS_DETAILS": "View Less Details",
+      "VIEW_DETAILS": "Details"
+    },
+    "DETAILS": "Campaign Details",
+    "NAME": "Campaign Name",
+    "NOTIFICATIONS": {
+      "ALL_SIGNS_DISABLED": "All previously selected billboards are unavailable.",
+      "ALL_SIGNS_UNAVAILABLE": "All previously selected billboards are currently unavailable. Please select different signs or wait for the signs to become available.",
+      "ENDED": "This campaign ended on {{date}}.",
+      "MODERATION": {
+        "SOME_APPROVED": "Your ad(s) have been approved for some signs but are still awaiting approval for others. This process generally takes 1-2 business days.",
+        "SOME_REJECTED": "Your ad(s) have been disapproved for some signs but are still awaiting approval for others. This process generally takes 1-2 business days.",
+        "SOME_APPROVED_SOME_REJECTED": "Your ad(s) have been approved for some signs, disapproved for some signs and are still awaiting approval for others. This process generally takes 1-2 business days."
+      },
+      "NO_ADS": "The artwork uploaded does not fit the sizes of the selected billboards.",
+      "NO_CARD": "Please update payment information to launch this campaign.",
+      "NOT_ENABLED": "This campaign is currently paused.",
+      "SIGNS_WITHOUT_IMAGES": "You have not uploaded artwork to match the following sign sizes: {{sizes}}.",
+      "VERIFICATIONS": "Some artwork needs to be verified before we can request approval."
+    },
+    "TEXT": "Campaign",
+    "TYPE": {
+      "ENDING": "Ending Today",
+      "ENDED": "Ended",
+      "STARTING": "Started Today",
+      "PENDING": "Pending Start",
+      "PAUSED": "Not Enabled",
+      "LIVE": "Running"
+    },
+    "VALIDATION": {
+      "LOOKS_LIKE": "Looks like a",
+      "PHONE": "phone",
+      "PHONE_NUMBER": "Phone number",
+      "PHONE_NUMBER_DIFFICULT": "Phone numbers are difficult to remember. Try using a simple url instead",
+      "WEBSITE": "Looks like a Website",
+      "TRY_USING": "Try using",
+      "BY_REMOVING": "By removing the",
+      "YOUR_AUDIENCE": "your audience will read your message faster.",
+      "TRY_SAYING": "Try saying it a different way!",
+      "KEEP_LANGUAGE": "Keep the language clean and family friendly."
+    }
+  },
+  "CAMPAIGNS": {
+    "COMPLETE_CAMPAIGN": "Complete Campaign",
+    "ERROR_LOADING_STATS": "There was an error loading the stats for Campaign: {{campaignName}} ({{campaignId}})",
+    "NO_RESULTS": "No `{{type}}` campaigns exist",
+    "SEARCH_NO_RESULTS": "There are no `{{type}}` campaigns within your search criteria",
+    "SEE_ANALYTICS": "See all analytics",
+    "TEXT": "Campaigns",
+    "THIS_WEEK": "This Week",
+    "TOTAL_BLIPS": "Total Blips",
+    "TOTAL_SPEND": "Total Spend:"
+  },
+  "CANCEL": "Cancel",
+  "CARD_VIEW": "Card View",
+  "CHANGE": {
+    "DELETE_AD": "Are you sure you want to delete this ad?",
+    "DELETE_CARD": "Are you sure you want to delete this card?",
+    "DELETE_CAMPAIGN": "Are you sure you want to delete this campaign?",
+    "DELETE_ORGANIZATION": "Are you sure you want to delete this organization?",
+    "DELETE_PLAYLIST": "Are you sure you want to delete this playlist?",
+    "DELETE_TEMPLATE": "Are you sure you want to delete this template?",
+    "DELETE_USER": "Are you sure you want to delete this user?",
+    "TRANSFER_OWNERSHIP": "Are you sure you want to transfer ownership?"
+  },
+  "CHANGE_DATE": "Change Date",
+  "CHANGE_SCHEDULE": "Change Schedule",
+  "CHANGE_SIGNS": "Select Different Locations",
+  "CHECKING_CREDENTIALS": "Checking login status. Please wait",
+  "CLEAR_ALL": "Clear All",
+  "CLICK_HERE": "Click here",
+  "CLOSE": "Close",
+  "CONTAINS": "Contains",
+  "CONTINUE": "Continue",
+  "CREATE": "Create",
+  "CREATED": "Created",
+  "CREATIVE": "Creative",
+  "CREDIT_CARD": {
+    "ADD": "Add Card",
+    "ADDRESS1": {
+      "REQUIRED": "Address 1 is <strong>required</strong>",
+      "TEXT": "Address 1"
+    },
+    "ADDRESS2": {
+      "TEXT": "Address 2"
+    },
+    "AMOUNT": {
+      "REQUIRED": "Amount is <strong>required</strong>",
+      "TEXT": "Amount"
+    },
+    "CARD": "Card",
+    "CARDS": "Cards",
+    "CHARGE": {
+      "CARD": "Charge card",
+      "SUCCESS": "Successfully charged your card",
+      "ERROR": "There was an error charging your card"
+    },
+    "CITY": {
+      "REQUIRED": "City is <strong>required</strong>",
+      "TEXT": "City"
+    },
+    "CREDITS": "Credits",
+    "CVV": {
+      "INVALID": "CVV is <strong>invalid</strong",
+      "REQUIRED": "CVV is <strong>required</strong>",
+      "TEXT": "CVV/CVC"
+    },
+    "EXPIRATION": {
+      "PATTERN": "Expiration Date must be in the format mm/yyyy",
+      "REQUIRED": "Expiration Date is <strong>required</strong>",
+      "TEXT": "Exp. Date (mm/yyyy)"
+    },
+    "LIMIT_REACHED": "You have reached or exceeded your credit card limit of {{limit}}. Contact your CSR if you need this changed.",
+    "NAME_ON_CARD": {
+      "REQUIRED": "Name on Card is <strong>required</strong>",
+      "TEXT": "Name on Card"
+    },
+    "NONE": "There are no cards saved to your organization. Get started by adding one!",
+    "NUMBER": {
+      "INVALID": "Card Number is <strong>invalid</strong",
+      "REQUIRED": "Card Number is <strong>required</strong>",
+      "TEXT": "Card Number"
+    },
+    "POSTAL_CODE": {
+      "INVALID": "Postal Code is <strong>invalid</strong",
+      "REQUIRED": "Postal Code is <strong>required</strong>",
+      "TEXT": "Postal Code"
+    },
+    "REQUIRED": "Credit Card is <strong>required</strong>",
+    "STATE": {
+      "REQUIRED": "State is <strong>required</strong>",
+      "TEXT": "State/Province"
+    }
+  },
+  "CUSTOM_SCHEDULE": "Custom Schedule",
+  "DATE": "Date",
+  "DELETE": {
+    "CONFIRM": "Are you sure you want to delete this {{type}}?",
+    "TEXT": "Delete"
+  },
+  "DESCRIPTION": "Description",
+  "DESIGN": {
+    "FREE_DESIGN": "Get a FREE design from",
+    "FIFTEEN_MINUTES": "Blip in 15 minutes.",
+    "NEED_DESIGN": "Need a Billboard Design?",
+    "TEAM": "Design Team",
+    "TOTALLY_FAST": "Totally fast.",
+    "TOTALLY_FREE": "Yes, totally free."
+  },
+  "DESIGN_SIZES": "Design sizes",
+  "DETAILS": "Details",
+  "DIMENSION_HEIGHT": "{{height}} high",
+  "DIMENSION_WIDTH": "{{width}} wide",
+  "PIXEL_RATIO": "pixel ratio",
+  "DIRECTION": "Direction",
+  "DISABLE": "Disable",
+  "DRAFT": "Draft",
+  "DRAFTS": "Drafts",
+  "DRAG_DROP": {
+    "AD_UPLOAD": "Upload a billboard design",
+    "TYPES": "(JPG & PNG)"
+  },
+  "DUPLICATE_CAMPAIGN": "Duplicate Campaign",
+  "DUPLICATE_SIZE_DETECTED": "Duplicate size detected",
+  "DURATION": "Duration",
+  "EDIT": "Edit",
+  "EDITED": "Edited",
+  "EMAIL": {
+    "ADDRESS": {
+      "INVALID": "Please enter a valid email address",
+      "REQUIRED": "Email address is required",
+      "TEXT": "Email address"
+    },
+    "TEXT": "Email"
+  },
+  "ENABLE": "Enable",
+  "END": "End",
+  "END_DATE": "End Date",
+  "END_DATE_OPTIONAL": "End Date (optional)",
+  "ERROR": {
+    "ARCHIVING": "There was an error archiving your {{type}}. Please try again.",
+    "DELETING": "There was an error deleting your {{type}}. Please try again.",
+    "LOADING": "There was an error loading your {{type}}. Please try again.",
+    "SAVING": "There was an error saving your {{type}}. Please try again.",
+    "UPDATING": "There was an error updating your {{type}}. Please try again.",
+    "UNARCHIVING": "There was an error unarchiving your {{type}}. Please try again."
+  },
+  "EST_IMPR": "Est Impr.",
+  "EST_IMPR_DOLLAR": "Impr / $",
+  "FACING": "Facing",
+  "FILTER": "Filter",
+  "FIND_YOUR_NUMBER": "Find Your Number",
+  "FINISH": "Finish",
+  "FOOTER": {
+    "COPYRIGHT": "© Copyright 2020. Blip Billboards. All rights reserved.",
+    "PRIVACY_POLICY": "Privacy Policy",
+    "TERMS_OF_USE": "Terms of Use",
+    "V1": "Blip V1"
+  },
+  "GENERATOR": {
+    "CREATE": "Create a billboard design in minutes",
+    "CREATE_WITH": "with Instant Designs (beta)",
+    "CREATE_BILLBOARD_DESIGN": "Create billboard design",
+    "FASTEST_WAY": "The fastest way to create a billboard design and test your message",
+    "FITS_SIGNS": "Upload a design that fits the sizes shown above",
+    "GET_STARTED": "Get started",
+    "GET_WORD_OUT": "Get the word out!",
+    "USE": "Use Instant Designs (beta)"
+  },
+  "HEIGHT": "Height",
+  "HIDE_SIZES": "Hide sizes",
+  "IMAGE": "Image",
+  "LANGUAGES": {
+    "EN": "English (US)",
+    "ES": "Español"
+  },
+  "LAST": "Last",
+  "LEFT": "Left",
+  "LIST_VIEW": "List View",
+  "LOCATION": {
+    "CITY_OR_STATE": "City or State",
+    "REQUIRED": "Location is <strong>required</strong>",
+    "SEARCH_TEXT": "Search City, State, or Zip",
+    "TEXT": "Location",
+    "QUESTION": "Where would you like to promote your organization?"
+  },
+  "LOCATIONS": "Locations",
+  "LOGGING_IN": "Logging in to Blip",
+  "LOGIN": {
+    "SUCCESS": "Successfully logged in!",
+    "TO_BLIP": "Login to Blip",
+    "RELOGIN": "Already logged in, redirecting to site.",
+    "TO_CONTINUE": "Please login to continue",
+    "TEXT": "Login",
+    "WITH_FACEBOOK": "Continue with Facebook",
+    "WITH_GOOGLE": "Continue with Google"
+  },
+  "LOGOUT": "Logout",
+  "MAX_PER_BLIP": "Max Per Blip",
+  "MESSAGE": "Message",
+  "MENU": {
+    "HELP": "Help"
+  },
+  "MODIFIED": "Modified",
+  "MONEY": {
+    "MXN": "$ Mexican Peso",
+    "USD": "$ US Dollar"
+  },
+  "MY_ADS": "My ads",
+  "MY_BILLBOARD_DESIGNS": "My billboard designs",
+  "N/A": "N/A",
+  "NAME": {
+    "FIRST": "First Name",
+    "FIRST_REQUIRED": "First Name is <strong>required</strong>",
+    "LAST": "Last Name",
+    "LAST_REQUIRED": "Last Name is <strong>required</strong>",
+    "REQUIRED": "Name is <strong>required</strong>",
+    "TEXT": "Name"
+  },
+  "NEW": "New",
+  "NEW_CAMPAIGN": "New Campaign",
+  "NEW_TO_BLIP": "New to Blip",
+  "NEXT": "Next",
+  "NO": "No",
+  "NO_BOARDS_SELECTED": "No boards selected",
+  "NOTIFICATION": "Notification",
+  "NOTIFICATIONS": {
+    "FREQUENCY": "Notification Frequencies",
+    "TYPES": {
+      "Campaign Debuts": {
+        "DESCRIPTION": "How often would you like to receive a celebratory notification when your campaign goes live?",
+        "TITLE": "Campaign Debuts"
+      },
+      "Campaign Reports": {
+        "DESCRIPTION": "How often would you like to receive analytics about the recent performance of your campaign?",
+        "TITLE": "Campaign Reports"
+      },
+      "Expiring Slot Assignments": {
+        "DESCRIPTION": "Notifies you of any expiring slot assignments within the week.",
+        "TITLE": "Expiring Slot Assignments"
+      },
+      "Image Moderation Updates": {
+        "DESCRIPTION": "How often would you like to know whether your artwork was approved or rejected?",
+        "TITLE": "Image Approval Updates"
+      },
+      "Limited Availability": {
+        "DESCRIPTION": "Billboard owners occasionally take their boards out of inventory. How often do you want to hear about this?",
+        "TITLE": "Temporarily Sold Out"
+      },
+      "Staff Image Moderation Alerts": {
+        "DESCRIPTION": "Conveys feedback from the sign company's image moderators and tells you if your images are approved for the marketplace.",
+        "TITLE": "Staff Image Moderation Alerts"
+      },
+      "T1 Moderation ToDos [Blip Only]": {
+        "DESCRIPTION": "Alerts you when there are images to moderate (For T1 or Blip mods).",
+        "TITLE": "T1 Moderation ToDos [Blip Only]"
+      }
+    },
+    "FREQUENCIES": {
+      "NEVER": "Never",
+      "ONCE": "Once",
+      "ON_CHANGE": "On Change",
+      "DAILY": "Daily",
+      "WEEKLY": "Weekly",
+      "MONTHLY": "Monthly"
+    },
+    "SELECT_FREQUENCY": "Select Frequency",
+    "TEXT": "Notifications"
+  },
+  "OFF": "Off",
+  "ON": "On",
+  "ONLY_IMAGES": "Please only upload images. Accepted file types are .png and .jpg",
+  "ONGOING": "Ongoing",
+  "OPEN": "Open",
+  "OR": "Or",
+  "ORGANIZATION": {
+    "CATEGORY": {
+      "TEXT": "Organization Category",
+      "REQUIRED": "Organization Category is <strong>required</strong>",
+      "QUESTION": "What does your organization do well?"
+    },
+    "IMAGE_DESCRIPTION": "We want to help you grow! Knowing your industry helps us customize your  campaigns to get you more business!",
+    "CREATE": "Create an organization",
+    "LOCATION": {
+      "QUESTION": "Where would you like to promote your organization?"
+    },
+    "NAME": {
+      "NO_OPTION": "Organization Name",
+      "OPTIONAL": "Organization Name (optional)",
+      "REQUIRED": "Organization Name is <strong>required</strong>",
+      "QUESTION": "What is your organization called?"
+    },
+    "NEW": "New Organization",
+    "TEXT": "Organization",
+    "PLURAL": "Organizations",
+    "WORK_PHONE": "Work Phone"
+  },
+  "OTHER": "Other",
+  "OTHERS": "Others",
+  "OPTIONAL": "Optional",
+  "OPTIONAL_SIZES": "Optional Sizes",
+  "PASSWORD": {
+    "CHANGE": "Change Password",
+    "CHANGED": "Your password was changed successfully",
+    "CONFIRM": "Confirm Password",
+    "CREATE": "Create a Password",
+    "FORGOT": "Forgot My Password",
+    "MISMATCH": "Your passwords do not match",
+    "REQUIRED": "Password is required",
+    "TEXT": "Password"
+  },
+  "PAYMENT": {
+    "ADD": "Add payment",
+    "CREDIT": "Credit",
+    "INFORMATION": "payment information",
+    "METHODS": "Payment Methods",
+    "NONE": "There are no payments for this organization",
+    "NONE_CARD": "There are no payments for this card",
+    "NOTE": {
+      "REQUIRED": "Payment Note is <strong>required</strong>",
+      "TEXT": "Payment Note"
+    },
+    "PAYMENT_LIMIT": "You cannot exceed 2 payments within a 24 hour period. Contact your CSR for additional details.",
+    "PLURAL": "Payments",
+    "PROBLEMS": {
+      "NO_CARDS": "To run your campaigns, payment information is needed.",
+      "PREPAY_DAYS_LEFT": "Based on your daily budget, you will want to add another payment within approximately {{days}} days.",
+      "POLITICAL_PREPAY_REQUIRED": "Political ads require prepayment."
+    },
+    "PROCESSING_CODE": {
+      "SUCCESS": "Succeeded!",
+      "BLIP_CREDIT": "Blip Advertising Credit",
+      "ACCOUNT_DOES_NOT_EXIST": "Processing failure: Account does not exist. Please check the details and try again or contact your bank for assistance",
+      "AUTHORIZATION_DECLINED": "Processing failure: Authorization declined. Try a different card or contact your bank for assistance",
+      "CREDIT_CARD_EXPIRED": "Processing failure: The stated credit card expiration date has already passed",
+      "INSUFFICIENT_FUNDS": "Processing failure: Insufficient funds. Please use another card or contact your bank for assistance",
+      "TRANSACTION_FAILED": "Processing failure: This transaction has failed. Please contact your credit card provider for assistance or try another card",
+      "SERVER_ERROR": "Processing failure: Server error. Please contact support",
+      "CARD_LOST_STOLEN": "Processing failure: This card has been reported lost or stolen. Please contact your bank for assistance",
+      "TRANSACTION_DECLINED": "Processing failure: This transaction has been declined. Please check card details and try again, or contact your credit card provider for assistance",
+      "BANK_RESTRICTION": "Processing failure: This transaction is not authorized due to restrictions by your bank. Please use a different card or contact your bank for assistance",
+      "FAILED_AUTHENTICATION": "Processing failure: Unable to authenticate.  Please check your credentials",
+      "PAYMENT_METHOD_REDACTED": "Processing failure: Unable to process the transaction because the payment method has been redacted",
+      "UNKNOWN_SUCCESS": "Success!",
+      "UNKNOWN_FAILURE": "Processing failure: Cause unknown. Please contact support"
+    },
+    "TEXT": "Payment",
+    "TYPE": {
+      "REQUIRED": "Payment Type is <strong>required</strong>",
+      "TEXT": "Payment Type"
+    },
+    "TYPES": {
+      "STANDARD": "Standard",
+      "PREPAY": "Prepay",
+      "PROMOTIONAL_CREDIT": "Promotional Credit",
+      "REFUND_CREDIT": "Refund Credit",
+      "REFUND_DEBIT": "Refund Debit"
+    },
+    "UPDATE_HERE": "Update here"
+  },
+  "PHONE_NUMBER": {
+    "HINT": "Ex: (801) 692 - 3217",
+    "REQUIRED": "Phone Number is <strong>required</strong>",
+    "TEXT": "Phone Number"
+  },
+  "PLACEMENT": "Placement",
+  "PLAYLIST": "Playlist",
+  "PLAYLISTS": {
+    "ADD_TO": "Add to Playlist",
+    "NEW": "New Playlist",
+    "NO_ADS": "There are no ads in this playlist. Get started by adding some!",
+    "NONE": "There are no playlists right now. Get started by creating a new one!",
+    "REMOVE_FROM": "Remove Ad From Playlist",
+    "SELECT_TO_ADD": "Select the playlists to add your ad to",
+    "SEARCH_NO_RESULTS": "There are no playlists within your search criteria",
+    "TEXT": "Playlists"
+  },
+  "POLITICAL": {
+    "WILL_RUN_QUESTION": "Will you run political ads?"
+  },
+  "PREFERENCES": {
+    "CHOOSE_LANGUAGE": "Choose Language",
+    "UNIT": "Monetary Unit",
+    "UPDATE": {
+      "ERROR": "There was an error updating your preferences",
+      "SUCCESS": "Successfully updated your preferences"
+    }
+  },
+  "PREVIEW": "Preview",
+  "PREVIEWING_AD": "Viewing size {{image}}/{{total}}",
+  "PREVIOUS": "Previous",
+  "PRICES": {
+    "TOO_HIGH": "The value entered is too high",
+    "TOO_LOW": "The value entered is too low"
+  },
+  "PRIORITY": "Priority",
+  "PROFILE": {
+    "INFORMATION": "Profile Information",
+    "TEXT": "Profile"
+  },
+  "PROFILE_PREFERENCES": "Profile / Preferences",
+  "PROGRESS": "Progress",
+  "PX": "px",
+  "RANGE": "Range",
+  "REWARDS": {
+    "COPY_LINK_SUCCESS": "Copied link to clipboard!",
+    "TEXT": "Rewards"
+  },
+  "REFERRALS": {
+    "BLIP_REFERALL": "Blip Referral Program",
+    "SEVENTY-FIVE": "For every referral that spends $25 with Blip, you both get $75 in credit.",
+    "COPY_LINK": "Copy your personalized link below, and share it on your Facebook, Twitter, and everywhere you can think, to help people grow their business in a new way with Blip!",
+    "HOW_IT_WORKS": "How It Works",
+    "STEPS": {
+      "YOU_SHARE": "You share your referral code",
+      "SHARE_IT": "Share it on facebook, twitter, your website and everywhere you can think to help people grow their business.",
+      "FRIENDS_SIGN_UP": "Your friend signs up",
+      "SOMEONE_USES": "Whenever someone uses your link to sign up we’ll support them as they spend and publicize their organization.",
+      "THEY_SPEND": "They spend $25",
+      "TAKE_CARE": "As your friend spends $25 with us we’ll take good care of them.",
+      "YOU_GET": "You get $75 and your friend gets $75",
+      "ENJOY": "You get to enjoy and extra $75 to promote your business and so does your referral. It’s a Win-Win!"
+    },
+    "QUICK_TOOLS": "Quick Tools",
+    "SHARE_LINK": "Share this link",
+    "SHARE_IT": "Share it on facebook, twitter and everywhere you can think to help people grow their business.",
+    "EMBED": "Embed on your site (HTML)",
+    "EMBED_SHARE": "Share this on your website to help people grow their business."
+  },
+  "REGISTER": {
+    "FOR_BLIP": "Register for Blip",
+    "NOW": "Register Now",
+    "SUCCESS": "Successfully registered!"
+  },
+  "REGISTER_SUCCESS": {
+    "ALMOST_DONE": "Almost Done!",
+    "CHECK_EMAIL": "Please check {{email}} to verify your account.",
+    "CHANGE_EMAIL": "use a different email address.",
+    "DIDNT_SEE_EMAIL": "Didn't see our email?",
+    "RESEND_LINK": "Resend the link",
+    "RESENT": "Email resent to {{email}}. Please verify your email.",
+    "THANKS": "Thanks!"
+  },
+  "REGISTRATION_EASY": "Registration is easy.",
+  "REMOVE": "Remove",
+  "REPLACE": "Replace",
+  "REPLACING_MISMATCH": "Dimensions do not match and will not replace the selected image",
+  "REPORTS": {
+    "CAMPAIGN_SPEND": {
+      "SELECT": {
+        "REQUIRED": "Campaign is <strong>required</strong>",
+        "TEXT": "Select a Campaign"
+      },
+      "TEXT": "Campaign Spend Report"
+    },
+    "CSV": "CSV",
+    "DAILY_PLAY": {
+      "TEXT": "Daily Play by Sign"
+    },
+    "ERROR": {
+      "CREATING": "There was an error creating your report. Please try again later.",
+      "DELETING": "There was an error deleting your report. Please try again later."
+    },
+    "EXPECTED": "Expected",
+    "FILES": "Files",
+    "FOR": "for {{recipient}}",
+    "INVOICE": {
+      "MONTH_YEAR": "Month and Year",
+      "TEXT": "Invoice"
+    },
+    "LOADING": "Generating Report",
+    "PDF": "PDF",
+    "POP": {
+      "DETAILED": "Detailed",
+      "SELECT": {
+        "REQUIRED": "Ads are <strong>required</strong>",
+        "TEXT": "Select Ads"
+      },
+      "SUMMARY": "Summary",
+      "TEXT": "Proof of Performance"
+    },
+    "SELECT": "Please select a report",
+    "SUCCESS": {
+      "CREATING": "Successfully created your report",
+      "DELETING": "Successfully deleted your report"
+    },
+    "TEXT": "Reports"
+  },
+  "REQUIRED": "Required",
+  "REQUIRED_SIZES": "Required Sizes",
+  "RESET_CUSTOM_SCHEDULE": "Reset custom schedule",
+  "RESOLVE": "Resolve",
+  "REJECT": "Reject",
+  "REQUEST_APPROVAL": "Request Approval",
+  "REVIEW": "Review",
+  "RIGHT": "Right",
+  "ROAD": "Road",
+  "SAVE": "Save",
+  "SAVE_CHANGES": {
+    "HEADER": "Save Changes",
+    "TEXT": "Would you like to save your changes before you continue?"
+  },
+  "SCHEDULE": "Schedule",
+  "SEARCH": "Search",
+  "SEC": "sec",
+  "SEC_DISPLAY_DURATION": "sec display duration",
+  "SEE_DETAILS": "See Details",
+  "SELECT_ALL": "Select All",
+  "SETUP_YOUR_ACCOUNT": "Let's setup your account!",
+  "SET_SCHEDULE": "Set Schedule",
+  "SHOW_MORE_SIZES": "Show more sizes",
+  "SIDE": "Side",
+  "SIDE_ROAD_PLACEMENT": "side road placement",
+  "SIGN": "Sign",
+  "SIGNS": "Signs",
+  "SIGNUP": "Sign Up",
+  "SIZE": "Ad Size",
+  "SIZES": "Sizes",
+  "SPEND": "Spend",
+  "SPENT": "Spent",
+  "START": "Start",
+  "START_DATE": "Start Date",
+  "STATUS": "Status",
+  "SUCCESS": {
+    "ARCHIVING": "Successfully archived your {{type}}",
+    "DELETING": "Successfully deleted your {{type}}",
+    "SAVING": "Successfully saved your {{type}}",
+    "UPDATING": "Successfully updated your {{type}}",
+    "UNARCHIVING": "Successfully unarchived your {{type}}"
+  },
+  "TEMPLATES": {
+    "DAILY_COMMUTE": "Daily Commute",
+    "MAX_AUDIENCE": "Max Audience",
+    "MEAL_TIMES": "Meal Times",
+    "OFF_PEAK_HOUR": "Off-Peak Hour",
+    "SINGLE_HOUR": "Single Hour",
+    "CUSTOM_SCHEDULE": "Custom Schedule"
+  },
+  "TIME": "Time",
+  "TIMEZONE": "Timezone",
+  "TITLES": {
+    "CAMPAIGNS": "Active Campaigns",
+    "CAMPAIGNS.ARCHIVED": "Archived Campaigns",
+    "CAMPAIGNS.DRAFTS": "Draft Campaigns",
+    "CARDS": "Cards",
+    "DAS": "Ads",
+    "DAS.PLAYLISTS": "Playlists",
+    "DAS.VERIFICATIONS": "Ad Verifications",
+    "LOGIN": "Login to Blip",
+    "ORGANIZATIONS": "Organizations",
+    "REGISTER": "Register for Blip"
+  },
+  "TODAY": "Today",
+  "UNARCHIVE": "Unarchive",
+  "UNIQUE": {
+    "OTHER_BOARD_SELECTED": "The {{signName}} board requires its own campaign. In order to advertise on additional billboards, you will need to create a separate campaign or remove the {{signName}} board.",
+    "REMOVE_PREVIOUS_BOARDS": "The {{signName}} board requires its own campaign. If you continue, your previous billboards will be removed from this campaign.",
+    "REQUIRES_DIFFERENT_CAMPAIGN": "The {{signName}} board requires its own campaign. In order to advertise here, you will need to create a new campaign.",
+    "REQUIRES_INDEPENDENT_CAMPAIGN": "Requires Independent Campaign"
+  },
+  "BLIP_TEMPLATES": "Instant Designs (beta)",
+  "UPLOADS": "Uploads",
+  "UNKNOWN": "Unknown",
+  "UNKNOWN_ROAD_PLACEMENT": "Unknown road Placement",
+  "UNTIL": "Until",
+  "UNPAUSE": "Unpause",
+  "UPDATE": "Update",
+  "UPDATE_PAYMENTS": "Update Payments",
+  "UPLOAD": "Upload",
+  "CHOOSE_FILE": "Choose file",
+  "UPLOAD_ADS": "Upload Ads",
+  "UPLOAD_ARTWORK": "Upload Artwork",
+  "UPLOAD_ARTWORK_FAILURE": "There was an error uploading your artwork. Please try again.",
+  "UPLOAD_BILLBOARD_DESIGN": "Upload a billboard design",
+  "UPLOAD_IMAGE": "Upload Image",
+  "UPLOADED": "Uploaded",
+  "USE_MY_BILLBOARD_DESIGNS": "Use My billboard designs",
+  "USER": "User",
+  "USERS": {
+    "ERROR_UPDATING": "There was an error updating this user. Please try again.",
+    "NEW": "New User",
+    "MAKE_OWNER": "Make Owner",
+    "OWNERSHIP": "ownership",
+    "ROLES": {
+      "ADMIN": {
+        "TEXT": "Administrator",
+        "DESCRIPTION": "Has full access to the account"
+      },
+      "ADVERTISER_REP": {
+        "TEXT": "Advertiser Rep",
+        "DESCRIPTION": "Advertiser Rep description"
+      },
+      "ANALYST": {
+        "TEXT": "Analyst",
+        "DESCRIPTION": "Analyst description"
+      },
+      "BIDDER": {
+        "TEXT": "Bidder",
+        "DESCRIPTION": "Bidder description"
+      },
+      "DESCRIPTION": "Please select one or more roles.",
+      "MEMBER": {
+        "TEXT": "Member",
+        "DESCRIPTION": "Member description"
+      },
+      "MODERATOR": {
+        "TEXT": "Moderator",
+        "DESCRIPTION": "Moderator description"
+      },
+      "OWNER": {
+        "TEXT": "Owner",
+        "DESCRIPTION": "Able to create/delete owners, has full access to the account"
+      },
+      "SALES_MGR": {
+        "TEXT": "Sales Manager",
+        "DESCRIPTION": "Sales Manager description"
+      },
+      "SALES_STAFF": {
+        "TEXT": "Sales Staff",
+        "DESCRIPTION": "Sales Staff description"
+      },
+      "TEXT": "Roles"
+    },
+    "SUCCESS_UPDATING": "User was successfully updated.",
+    "TRANSFER": "transfer",
+    "TEXT": "Users"
+  },
+  "VERIFY_IMAGES": "Verify Images",
+  "VIEW_ADS": "View Ads",
+  "VIEW_EXAMPLE": "View Example",
+  "VIEWING_CLUSTER": "Viewing sign {{sign}}/{{total}}",
+  "VERIFICATIONS": {
+    "ADJUSTMENTS": {
+      "MADE": "Blip designers made the following adjustments:",
+      "BRIGHTNESS": "White values were darkened slightly to comply with sign owners",
+      "FORMAT": "Photo's format was changed to a PNG",
+      "MODE": "Photo's color mode was changed to RGB",
+      "RESIZED": "Photo was cropped slightly to fit the billboard space",
+      "TRANSPARENCY": "Photo contained transparencies which were changed"
+    },
+    "APPROVE": {
+      "XS": "Approve All",
+      "GT_XS": "Approve All Remaining"
+    },
+    "APPROVE_OR_REJECT": "Please review and APPROVE or REJECT the following artwork files.",
+    "IMAGES_WAITING": "{{count}} images awaiting review",
+    "NONE": "All images have been verified",
+    "REJECT": {
+      "XS": "Reject All",
+      "GT_XS": "Reject All Remaining"
+    },
+    "TEXT": "Verifications"
+  },
+  "VIEWING_SIZE": "Viewing Size:",
+  "WAITING_TO_LAUNCH": {
+    "WAITING": "Waiting to Launch",
+    "USER_STEPS": "Your steps to launch this campaign",
+    "DONE": "Done!",
+    "CREATE_CAMPAIGN": "Create Campaign",
+    "VIEW": "View",
+    "VERIFY": "Verify ads",
+    "PAYMENT_INFO": "Enter Payment Information",
+    "ARTWORK": "Artwork",
+    "SUBMITTED": "Submitted",
+    "BLIP_IS": "Blip is",
+    "REVIEWING": "Reviewing",
+    "APPROVED": "Approved",
+    "APPROVAL_STATUS": "Ad Approval Status:",
+    "REPLACE": "Replace",
+    "REPLACE_REJECTED": "Replace Rejected Artwork",
+    "BUSINESS_DAYS": "(Generally 1-2 business days)"
+  },
+  "WEB_TRIGGERS": {
+    "CLEAR_VALUES": "Clear remote control values",
+    "CURRENT_VALUE": {
+      "PLACEHOLDER": "e.g. 40",
+      "TEXT": "Current Value"
+    },
+    "EXPIRATION": {
+      "MIN": "Expiration must be greater than 0",
+      "PLACEHOLDER": "e.g. 60",
+      "REQUIRED": "Expiration is <strong>required</strong>",
+      "TEXT": "Expiration"
+    },
+    "ON_BY_DEFAULT": "On by default",
+    "OFF_BY_DEFAULT": "Off by default",
+    "TEXT": "Web Triggers",
+    "THRESHOLD": "Threshold",
+    "URL": {
+      "PLACEHOLDER": "e.g. https://website.com",
+      "REQUIRED": "Website URL is <strong>required</strong>",
+      "TEXT": "Website URL"
+    },
+    "VALUE_FOUND": "Found {{value}} successfully",
+    "VALUE_NOT_FOUND": "Could not find {{value}}. Please enter a specific XPath or try a different url.",
+    "XPATH": {
+      "PLACEHOLDER": "e.g. //*[@id=\"wob_...",
+      "SELECT": "Please select an XPath",
+      "TEXT": "XPath"
+    }
+  },
+  "WEEKLY_DAILY": "Weekly/Daily",
+  "WELCOME_TO_BLIP": {
+    "CLICK_BLUE_1": "Click the blue",
+    "CLICK_BLUE_2": "button to set up your first campaign!",
+    "SET_UP": "This is where you will monitor and manage all of your future campaigns. It looks like you're all set and ready to get started.",
+    "TEXT": "Welcome to Blip!"
+  },
+  "WIDTH": "Width",
+  "WORK": {
+    "EMAIL": "Work Email",
+    "PHONE": "Work Phone"
+  },
+  "YES": "Yes",
+  "YESTERDAY": "Yesterday",
+  "TERMS": {
+    "AGREE": "I Agree to the",
+    "TEXT": "Terms & Conditions",
+    "SECTIONS": {
+      "TOP": "These terms and conditions (“Terms”) are between Acme Intergalactic, LLC, DBA Blip (“Blip,” “us,” or “we”) and the person or entity (“you” or “Customer”) using Blip’s applications, websites, software, and services (the “Platform”).  By using the Platform, you agree to be bound by these Terms. If you do not agree to the Terms, do not use the Platform. These Terms are subject to change at any time; we therefore encourage you to periodically review the Terms to ensure that you are aware of any changes. By continuing to use the Platform after the Terms are updated, you agree to be bound by the most current version of the Terms.",
+      "1": {
+        "HEAD": "1. ELIGIBILITY",
+        "1": {
+          "NUM": "1.1",
+          "SUBHEAD": "Eligibility",
+          "TEXT": "You must be at least 18 years old to use the Platform and assume the obligations set forth in these Terms."
+        },
+        "2": {
+          "NUM": "1.2",
+          "SUBHEAD": "Registration as a Condition to Use",
+          "TEXT": "Only registered users (each, a “User”) may use the Platform. By using the Platform, you warrant that you are a User. As a User, you shall not allow third parties to access the Platform using your account, and you are personally responsible for any use of the Platform through your account, whether by you or a third party."
+        },
+        "3": {
+          "NUM": "1.3",
+          "SUBHEAD": "Acting on Behalf of Third Parties",
+          "TEXT": "If you are using the Platform on behalf of a corporation or entity that you represent, you warrant that such person has agreed to be bound by these Terms. You agree that if you fail to properly obtain such person’s consent to be bound by these Terms, you will bear all responsibilities and liabilities of such person."
+        }
+      },
+      "2": {
+        "HEAD": "2. THE PLATFORM",
+        "1": {
+          "NUM": "2.1",
+          "SUBHEAD": "Description",
+          "TEXT": "The Platform is an advertising platform through which you authorize us to use automated tools to format and display multimedia content, including text, data, photographs, graphics, or other information (“Content”) on digital signs and billboards (“Signs”). We may make certain tools available to assist you in using the Platform. We and/or our affiliates may participate in or make use of the Platform."
+        },
+        "2": {
+          "NUM": "2.2",
+          "SUBHEAD": "Target and Budget",
+          "TEXT": "The Platform allows you to establish budgetary settings (“Budgets”) and specify where, when, and under what conditions your Content may be displayed (“Targets”). You are solely responsible for your Targets and Budgets."
+        },
+        "3": {
+          "NUM": "2.3",
+          "SUBHEAD": "Alternative Channels",
+          "TEXT": "You agree that Blip may display your Content in alternative channels, such as websites or applications allowing people to see when and where your Content was displayed."
+        }
+      },
+      "3": {
+        "HEAD": "3. INTELLECTUAL PROPERTY",
+        "1": {
+          "NUM": "3.1",
+          "SUBHEAD": "License",
+          "TEXT": "We hereby grant you a worldwide, non-exclusive, revocable, limited, personal, non-sublicenseable and non-transferable license to use the Platform in accordance with these Terms; provided, however, that you do not (and do not permit anyone else to) copy, modify, create a derivative work of, reverse engineer, decompile, or otherwise attempt to discover the source code (unless expressly permitted or required by law), sell, lease, sublicense, assign, grant a security interest in or otherwise transfer any right in such Platform."
+        },
+        "2": {
+          "NUM": "3.2",
+          "SUBHEAD": "Publicity",
+          "TEXT": "You (a) authorize us to identify you by name and/or logo as a customer of the Platform in any format and for marketing purposes or any other purpose that we deem useful, and (b) grant us a limited license to use and display your trademarks and logos for such purpose. You may opt out of this section by submitting a written request to us using the contact information provided in Section 6.9 of these Terms."
+        },
+        "3": {
+          "NUM": "3.3",
+          "SUBHEAD": "Customer Data",
+          "TEXT": "You authorize us to retrieve and analyze any and all information about your use of the Platform. In so doing, you are deemed to grant Blip a non-exclusive, transferable, sub-licensable, irrevocable, royalty-free, perpetual, worldwide license to index, catalog, transcribe, and/or perform other meta-analysis of your Content, and to use or make publicly or privately available such information as we deem appropriate without any payment or restriction. You also agree that Blip has the right to monitor and review your use of the Platform from time to time, and to use \"cookies\", \"log files\" and your \"browsing data\" in accordance with Blip’s Cookie Policy."
+        }
+      },
+      "4": {
+        "HEAD": "4. USE OF PLATFORM",
+        "1": {
+          "NUM": "4.1",
+          "SUBHEAD": "Personal Account",
+          "TEXT": "As a User, you will be required to create an account, which will be associated with a username and a password. Your Blip account is for your exclusive personal use. You may not authorize others to use your account, nor may you assign or transfer your account to any other person or entity.",
+          "TERMS": {
+            "A": "Your account is associated with a username and a password, and you are responsible for protecting both. If you believe the security of your username, your password, and/or your account has been compromised, you must contact us immediately using the contact information provided in Section 6.9 of these Terms.",
+            "B": "When creating an account, you may be asked to provide information such as contact information and billing information. You warrant that all such information you provide is complete, accurate, and current and that we may rely on such information."
+          }
+        },
+        "2": {
+          "NUM": "4.2",
+          "SUBHEAD": "Content",
+          "TEXT": "You retain all rights, title and interest in and to your Content. By submitting Content for display on the Platform, you agree to the following:",
+          "TERMS": {
+            "A": "You are solely responsible for and assume all liability for your Content and bear all risks and liability associated with using the Platform to display the Content.",
+            "B": "You warrant that the Content does not contain misleading, false, illegal, or inappropriate information or otherwise violate our design guidelines (the “Design Guidelines,” available at http://www.blipbillboards.com/billboard-design-guidelines/).",
+            "C": "You warrant that you own or otherwise control all rights (including but not limited to copyright and trademark rights) necessary to use the Content and that our display and use of such Content will not infringe or violate the rights of any third party."
+          }
+        },
+        "3": {
+          "NUM": "4.3",
+          "SUBHEAD": "Payment and Collections",
+          "TEXT": "You will only be charged for the presentation of your Content on a Sign. In addition to our fees, you are responsible for all taxes and other government charges associated with the display of your Content. Late payments will accrue interest at the lesser of one and one-half percent (1½%) per month or the maximum rate permitted by law. You agree to pay reasonable fees, including attorney fees, that we incur collecting late payments. Payment of fees due hereunder shall not be subject to set off, counterclaim, adjustment, reduction or otherwise by virtue of any actual or potential claim against Blip."
+        },
+        "4": {
+          "NUM": "4.4",
+          "SUBHEAD": "External Destinations",
+          "TEXT": "You are solely responsible for all external destinations to which your Content may direct viewers (each, a “Destination”), including but not limited to physical locations, websites, and phone numbers. You are solely responsible for any products or services offered at such Destinations. By posting Content that directs viewers to a Destination, Blip does not endorse or become affiliated with such Destination."
+        },
+        "5": {
+          "NUM": "4.5",
+          "SUBHEAD": "Other Policies and Guidelines",
+          "TEXT": "Your use of the Platform is subject to the Design Guidelines and any other policies and guidelines that we may put in place. We reserve the right to augment or modify such policies and guidelines at any time. We also reserve the right to call and/or text users."
+        },
+        "6": {
+          "NUM": "4.6",
+          "SUBHEAD": "Removal of Content",
+          "TEXT": "We may remove Content at any time if we, in our sole discretion, determine that such content violates the Design Guidelines, is illegal or is otherwise offensive to the moral standards of the community.  We believe that our medium is an outlet for free speech; however we balance that role with a strong commitment to adhere to community standards and to ensure that the messages placed on our inventory are not offensive towards any business, group or individual. We carefully evaluate all requests for advertising placement on a case-by-case basis and make the best decision for our clients, our company and the communities in which we operate."
+        },
+        "BREAK": "DISPLAYED CONTENT; OUTAGES AND INTERRUPTIONS",
+        "7": {
+          "NUM": "4.7",
+          "SUBHEAD": "No Guarantee of Display",
+          "TEXT": "We do not guarantee that your Content will be presented on any Signs. If your Content is not presented on a Sign, you will not be charged."
+        },
+        "8": {
+          "NUM": "4.8",
+          "SUBHEAD": "Outages",
+          "TEXT": "Signs are subject to various outages which may restrict our ability to display, edit, or remove Content. If such outages occur, you will only be billed for presentations of your Content on a Sign, consistent with your Targets and Budgets. You acknowledge that during an outage, the ability to edit, delete, or otherwise change any Content that is already in a Sign’s schedule may be delayed for an undefined period of time, and you agree that the unmodified Content may continue to be displayed on the Sign until the outage is resolved."
+        },
+        "9": {
+          "NUM": "4.9",
+          "SUBHEAD": "Partial Display Failures",
+          "TEXT": "Signs are subject to various software, hardware, and environmental conditions which may cause Content to be only partially displayed or partially visible on the Sign (a “Partial Display Failure”). At our sole discretion, we may determine that a Partial Display Failure has reduced the value of the presentation of your Content and may, at our sole discretion, reduce the fees associated with such presentation or waive them entirely."
+        }
+      },
+      "5": {
+        "HEAD": "5. WARRANTIES, DISCLAIMERS, AND LIABILITY",
+        "1": {
+          "NUM": "5.1",
+          "SUBHEAD": "General Disclaimers",
+          "TEXT": "We have no fiduciary duty to you. You alone are responsible for your use of the Platform and the consequences thereof.",
+          "SUBTEXT": "BLIP PROVIDES THE PLATFORM “AS IS” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, BLIP HEREBY DISCLAIMS ALL REPRESENTATIONS AND WARRANTIES, AND CONDITIONS, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, WHETHER ORAL OR WRITTEN, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY WARRANTIES OR CONDITIONS IMPLIED BY ANY COURSE OF PERFORMANCE OR USAGE OF TRADE, ALL OF WHICH ARE EXPRESSLY DISCLAIMED. WITHOUT LIMITING THE FOREGOING, BLIP AND ITS DIRECTORS, EMPLOYEES, AGENTS, SUPPLIERS, PARTNERS AND CONTENT PROVIDERS DO NOT WARRANT THAT: (A) THE PLATFORM WILL BE SECURE OR AVAILABLE AT ANY PARTICULAR TIME OR LOCATION; (B) ANY DEFECTS OR ERRORS CAN OR WILL BE CORRECTED; (C) ANY INFORMATION OR SOFTWARE AVAILABLE AT OR THROUGH THE PLATFORM IS FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS; OR (D) THE RESULTS OF USING THE PLATFORM WILL MEET YOUR REQUIREMENTS. YOU USE THE PLATFORM SOLELY AT YOUR OWN RISK."
+        },
+        "2": {
+          "NUM": "5.2",
+          "SUBHEAD": "Indemnification",
+          "TEXT": "You agree to indemnify, defend and hold harmless Blip, its subsidiary and parent companies, and each of their officers, directors, employees, agents and related third parties, for any losses, costs, liabilities and expenses (including reasonable attorneys’ fees) relating to or arising out of any third-party claim related to (a) your use of or inability to use the Platform; (b) your Content; (c) your violation of these Terms or your violation of any rights of a third party; (d) your violation of any applicable laws, rules or regulations; or (e) the unauthorized or unlawful use of the Platform by any person using your account. Blip reserves the right, at its own cost, to assume the exclusive defense and control of any matter otherwise subject to indemnification by you, in which event you will fully cooperate with Blip in asserting any available defenses."
+        },
+        "3": {
+          "NUM": "5.3",
+          "SUBHEAD": "Limitation of Liability",
+          "SUBTEXT": {
+            "1": "",
+            "2": "IN NO EVENT WHATSOEVER SHALL ANY OF BLIP, ITS DIRECTORS, OFFICERS, EMPLOYEES, SHAREHOLDERS, AFFILIATES, AGENTS AND THIRD-PARTY CONTRACTORS, SUPPLIERS AND LICENSORS (COLLECTIVELY THE “BLIP PARTIES”) BE LIABLE FOR ANY SPECIAL, EXEMPLARY, PUNITIVE, CONSEQUENTIAL, INCIDENTAL OR INDIRECT DAMAGES OF ANY KIND OR NATURE WHATSOEVER THAT ARE SUFFERED OR INCURRED IN ANY CONNECTION WITH THE USE OF PLATFORM OR ANY INABILITY TO USE THE PLATFORM (INCLUDING IN ANY CONNECTION WITH THE TRANSMISSION OR DOWNLOADING OR STORAGE OF ANY DATA OR SUBMISSIONS TO OR FROM THE PLATFORM, OR LOSS OF OR DAMAGE TO FILES OR DATA OR ANY COSTS OF RECOVERING OR REPRODUCING ANY FILES OR DATA OR LOSS OF USE OR LACK OF AVAILABILITY OF SERVICES OR ANY BUSINESS INTERRUPTION OR LOSS OF REVENUE OR PROFIT OR ANY OTHER CONSEQUENTIAL ECONOMIC LOSS WHATSOEVER) HOWEVER CAUSED AND REGARDLESS OF THE FORM OR CAUSE OF ACTION AND WHETHER OR NOT FORESEEABLE, EVEN IF THE BLIP PARTIES OR ANY OF THEM HAS BEEN INFORMED IN ADVANCE OR OUGHT REASONABLY TO HAVE KNOWN OF THE POTENTIAL FOR SUCH DAMAGES.",
+            "3": "If, notwithstanding the other provisions of these Terms, the Blip Parties should have any liability to you or any third party for any loss, harm or damage, you and Blip agree that such liability shall under no circumstances exceed $50.00. The terms and conditions of these Terms that limit liability reflect an agreed allocation of risk between you and Blip. Some jurisdictions may not allow the exclusion or limitation of certain damages, or limits on the duration or voiding of implied warranties or conditions; as it relates to consumer purchasers and in such jurisdictions, the limits and exclusions herein may not apply to the extent provided by applicable law."
+          }
+        }
+      },
+      "6": {
+        "HEAD": "6. MISCELLANEOUS PROVISIONS",
+        "1": {
+          "NUM": "6.1",
+          "SUBHEAD": "Term and Termination",
+          "TEXT": "These Terms will become effective upon your acceptance thereof, as indicated by your use of the Platform and will remain in effect in perpetuity unless terminated hereunder. You or we may terminate your account at any time, for any reason or no reason, without explanation, by sending written notice to the other party. You agree that if we terminate your access to the Platform, you will immediately stop using the Platform."
+        },
+        "2": {
+          "NUM": "6.2",
+          "SUBHEAD": "Notice",
+          "TEXT": "We may give any notice required or permitted to be given in writing hereunder via email. Such notice will be effective immediately."
+        },
+        "3": {
+          "NUM": "6.3",
+          "SUBHEAD": "Entire Agreement; Amendment",
+          "TEXT": "These Terms and any documents incorporated herein constitute the entire agreement between you and us with respect to the subject matter hereof. We reserve the right to amend the provisions of these Terms at any time."
+        },
+        "4": {
+          "NUM": "6.4",
+          "SUBHEAD": "Governing Law; Venue",
+          "SUBTEXT": {
+            "1": "",
+            "2": "These Terms will be governed and construed under the laws of the State of Utah, without regard to its conflict of laws provisions or the United Nations Convention on the International Sale of Goods. The parties irrevocably consent to the exclusive jurisdiction of the state and federal courts located in Salt Lake County, Utah. All disputes and/or legal proceedings related to these Terms will be maintained in courts located in Salt Lake County, Utah."
+          }
+        },
+        "5": {
+          "NUM": "6.5",
+          "SUBHEAD": "Waiver/Severability",
+          "TEXT": "Our waiver or failure to exercise any right in any respect provided for herein shall not be deemed a waiver of any further right hereunder. If any provision of these Terms is determined to be invalid or unenforceable under any applicable statute or rule of law, it is to that extent to be deemed omitted, and the balance of these Terms shall remain enforceable."
+        },
+        "6": {
+          "NUM": "6.6",
+          "SUBHEAD": "Assignment",
+          "TEXT": "We may assign these Terms, in whole or in part, in our sole discretion. You may not assign your rights under these Terms without our prior written permission. Any attempt to assign your rights under these Terms without our permission shall be void."
+        },
+        "7": {
+          "NUM": "6.7",
+          "SUBHEAD": "Force Majeure",
+          "TEXT": "We shall not be liable for any failure or unavailability of the Platform or our failure to provide the Platform as a result of strikes, lockouts, calamities, acts of God, unavailability of suppliers, the loss or destruction of data, the deletion or corruption of storage media, power failures, natural phenomena, riots, acts of vandalism, acts or omissions of civil or military authority, war, terrorism or any other event beyond our control."
+        },
+        "8": {
+          "NUM": "6.8",
+          "SUBHEAD": "Headings",
+          "TEXT": "The headings of articles and sections contained in these Terms are for reference purposes only and shall not affect in any way the meaning or interpretation of these Terms."
+        },
+        "9": {
+          "NUM": "6.9",
+          "SUBHEAD": "Electronic Documents",
+          "TEXT": "This electronic document, and all other electronic documents referred to or incorporated herein, will be: (a) deemed for all purposes to be a “writing” or “in writing”, and to comply with all statutory, contractual, and other legal requirements for a writing; and (b) legally enforceable as a signed agreement. A printed version of these Terms and any notice given in electronic form shall be admissible in judicial proceedings or administrative proceedings based upon or relating to these Terms to the same extent and subject to the same conditions as other business documents and records originally generated and maintained in printed form."
+        },
+        "10": {
+          "NUM": "6.10",
+          "SUBHEAD": "Questions and Complaints",
+          "TEXT": "Please direct all questions, complaints, or claims with respect to the Platform to the following:"
+        }
+      }
+    },
+    "UPDATED": "Last Updated: August 22, 2019"
+  },
+  "PRIVACY": {
+    "SECTIONS": {
+      "TOP": {
+        "1": "Blip (“us”, “we”, or “our”) operates the https://www.blipbillboards.com/ website (hereinafter referred to as the “Service”).",
+        "2": "This page informs you of our policies regarding the collection, use and disclosure of personal data when you use our Service and the choices you have associated with that data.",
+        "3": "We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, the terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible from https://www.blipbillboards.com/"
+      },
+      "1": {
+        "HEAD": "Definitions",
+        "1": {
+          "TEXT": "Service is the https://www.blipbillboards.com/ website operated by Blip",
+          "WORD": "Service"
+        },
+        "2": {
+          "TEXT": "Personal Data means data about a living individual who can be identified from those data (or from those and other information either in our possession or likely to come into our possession).",
+          "WORD": "Personal Data"
+        },
+        "3": {
+          "TEXT": "Usage Data is data collected automatically either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).",
+          "WORD": "Usage Data"
+        },
+        "4": {
+          "TEXT": "Cookies are small files stored on your device (computer or mobile device).",
+          "WORD": "Cookies"
+        }
+      },
+      "2": {
+        "HEAD": "Information Collection and Use",
+        "TEXT": "We collect several different types of information for various purposes to provide and improve our Service to you.",
+        "1": {
+          "HEAD": "Types of Data Collected",
+          "SUBHEAD": "Personal Data",
+          "TEXT": "While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (“Personal Data”). Personally identifiable information may include, but is not limited to:",
+          "SUBTEXT": "We may use your Personal Data to contact you with newsletters, marketing or promotional materials and other information that may be of interest to you. You may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or the instructions provided in any email we send.",
+          "1": "Email address",
+          "2": "First name and last name",
+          "3": "Phone number",
+          "4": "Address, State, Province, ZIP/Postal code, City",
+          "5": "Cookies and Usage Data"
+        }
+      },
+      "3": {
+        "HEAD": "Usage Data",
+        "TEXT": "We may also collect information on how the Service is accessed and used (“Usage Data”). This Usage Data may include information such as your computer’s Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data."
+      },
+      "4": {
+        "EXAMPLES": {
+          "1": {
+            "TITLE": "Session Cookies",
+            "TEXT": "We use Session Cookies to operate our Service."
+          },
+          "2": {
+            "TITLE": "Preference Cookies",
+            "TEXT": "We use Preference Cookies to remember your preferences and various settings."
+          },
+          "3": {
+            "TITLE": "Security Cookies",
+            "TEXT": "We use Security Cookies for security purposes."
+          },
+          "TEXT": "Examples of Cookies we use:"
+        },
+        "HEAD": "Tracking & Cookies Data",
+        "1": "We use cookies and similar tracking technologies to track the activity on our Service and we hold certain information.",
+        "2": "Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Other tracking technologies are also used such as beacons, tags and scripts to collect and track information and to improve and analyse our Service.",
+        "3": "You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service."
+      },
+      "5": {
+        "HEAD": "Use of Data",
+        "TEXT": "Blip uses the collected data for various purposes:",
+        "1": "To provide and maintain our Service",
+        "2": "To notify you about changes to our Service",
+        "3": "To allow you to participate in interactive features of our Service when you choose to do so",
+        "4": "To provide customer support",
+        "5": "To gather analysis or valuable information so that we can improve our Service",
+        "6": "To monitor the usage of our Service",
+        "7": "To detect, prevent and address technical issues",
+        "8": "To provide you with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless you have opted not to receive such information"
+      },
+      "6": {
+        "HEAD": "Transfer of Data",
+        "1": "Your information, including Personal Data, may be transferred to – and maintained on – computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.",
+        "2": "If you are located outside United States and choose to provide information to us, please note that we transfer the data, including Personal Data, to United States and process it there.",
+        "3": "Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.",
+        "4": "Blip will take all the steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organisation or a country unless there are adequate controls in place including the security of your data and other personal information."
+      },
+      "7": {
+        "HEAD": "Disclosure of Data",
+        "SUBHEAD": "Legal Requirements",
+        "TEXT": "Blip may disclose your Personal Data in the good faith belief that such action is necessary to:",
+        "1": "To comply with a legal obligation",
+        "2": "To protect and defend the rights or property of Blip",
+        "3": "To prevent or investigate possible wrongdoing in connection with the Service",
+        "4": "To protect the personal safety of users of the Service or the public",
+        "5": "To protect against legal liability"
+      },
+      "8": {
+        "HEAD": "Security of Data",
+        "TEXT": "The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security."
+      },
+      "9": {
+        "HEAD": "Our Policy on “Do Not Track” Signals under the California Online Protection Act (CalOPPA)",
+        "1": "We do not support Do Not Track (“DNT”). Do Not Track is a preference you can set in your web browser to inform websites that you do not want to be tracked.",
+        "2": "You can enable or disable Do Not Track by visiting the Preferences or Settings page of your web browser."
+      },
+      "10": {
+        "HEAD": "Service Providers",
+        "SUBHEAD": {
+          "1": "We may employ third party companies and individuals to facilitate our Service (“Service Providers”), provide the Service on our behalf, perform Service-related services or assist us in analysing how our Service is used.",
+          "2": "These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose."
+        },
+        "1": {
+          "HEAD": "Analytics",
+          "SUBHEAD": "We may use third-party Service Providers to monitor and analyse the use of our Service.",
+          "1": {
+            "TITLE": "Google Analytics",
+            "TEXT": "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualise and personalise the ads of its own advertising network.You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js and dc.js) from sharing information with Google Analytics about visits activity.For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy?hl=en"
+          }
+        },
+        "2": {
+          "HEAD": "Behavioral Remarketing",
+          "SUBHEAD": "Blip uses remarketing services to advertise on third party websites to you after you visited our Service. We and our third-party vendors use cookies to inform, optimise and serve ads based on your past visits to our Service.",
+          "1": {
+            "TITLE": "Facebook",
+            "TEXT": "Facebook remarketing service is provided by Facebook Inc.You can learn more about interest-based advertising from Facebook by visiting this page: https://www.facebook.com/help/164968693837950. To opt-out from Facebook’s interest-based ads, follow these instructions from Facebook: https://www.facebook.com/help/568137493302217. Facebook adheres to the Self-Regulatory Principles for Online Behavioural Advertising established by the Digital Advertising Alliance. You can also opt-out from Facebook and other participating companies through the Digital Advertising Alliance in the USA http: //www.aboutads.info/choices/, the Digital Advertising Alliance of Canada in Canada http://youradchoices.ca/ or the European Interactive Digital Advertising Alliance in Europe http://www.youronlinechoices.eu/, or opt-out using your mobile device settings. For more information on the privacy practices of Facebook, please visit Facebook’s Data Policy: https://www.facebook.com/privacy/explanation"
+          }
+        },
+        "3": {
+          "HEAD": "Payments",
+          "SUBHEAD": {
+            "1": "We may provide paid products and/or services within the Service. In that case, we use third-party services for payment processing (e.g. payment processors).",
+            "2": "We will not store or collect your payment card details. That information is provided directly to our third-party payment processors whose use of your personal information is governed by their Privacy Policy. These payment processors adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, MasterCard, American Express and Discover. PCI-DSS requirements help ensure the secure handling of payment information.",
+            "3": {
+              "TEXT": "The payment processors we work with are:",
+              "1": {
+                "TITLE": "Stripe",
+                "TEXT": "Their Privacy Policy can be viewed at https://stripe.com/us/privacy"
+              },
+              "2": {
+                "TITLE": "BlueSnap",
+                "TEXT": "Their Privacy Policy can be viewed at https://home.bluesnap.com/privacy-policy/"
+              },
+              "3": {
+                "TITLE": "PayEasy",
+                "TEXT": "Their Privacy Policy can be viewed at http://payeasy.solutions/privacy/"
+              }
+            }
+          }
+        }
+      },
+      "11": {
+        "HEAD": "Links to Other Sites",
+        "SUBHEAD": {
+          "1": "Our Service may contain links to other sites that are not operated by us. If you click a third party link, you will be directed to that third party’s site. We strongly advise you to review the Privacy Policy of every site you visit.",
+          "2": "We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services."
+        }
+      },
+      "12": {
+        "HEAD": "Children’s Privacy",
+        "SUBHEAD": {
+          "1": "Our Service does not address anyone under the age of 18 (“Children”).",
+          "2": "We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Child has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers."
+        }
+      },
+      "13": {
+        "HEAD": "Changes to This Privacy Policy",
+        "SUBHEAD": {
+          "1": "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.",
+          "2": "We will let you know via email and/or a prominent notice on our Service, prior to the change becoming effective and update the “effective date” at the top of this Privacy Policy.",
+          "3": "You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page."
+        }
+      },
+      "14": {
+        "HEAD": "Contact Us",
+        "SUBHEAD": "If you have any questions about this Privacy Policy, please contact us:",
+        "1": "By email:",
+        "2": "By visiting this page on our website: https://www.blipbillboards.com/contact/",
+        "3": "By phone number: (801) 692-3217",
+        "4": "By mail:"
+      }
+    },
+    "TEXT": "Privacy Policy",
+    "UPDATED": "Last Updated: January 28, 2019"
+  }
+}

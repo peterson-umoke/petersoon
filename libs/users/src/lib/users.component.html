@@ -1,0 +1,27 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="users-container"
+>
+  <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="users">{{ 'USERS.TEXT' | translate }}</span>
+
+    <button
+      mat-button
+      class="blue-filled-button"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      (click)="newUser(); $event.stopPropagation()"
+    >
+      <mat-icon>add</mat-icon>
+      <span class="text">{{ 'USERS.NEW' | translate }}</span>
+    </button>
+  </div>
+
+  <app-user-list
+    *ngIf="users?.result?.length"
+    [users]="users.result"
+  ></app-user-list>
+</div>

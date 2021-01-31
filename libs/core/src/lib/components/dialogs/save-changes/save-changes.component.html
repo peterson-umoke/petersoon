@@ -1,0 +1,12 @@
+<span mat-dialog-title>{{ 'SAVE_CHANGES.HEADER' | translate }}</span>
+<div mat-dialog-content>
+  <span>{{ 'SAVE_CHANGES.TEXT' | translate }}</span>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button [mat-dialog-close]="false" cdkFocusInitial>
+    {{ 'NO' | translate }}
+  </button>
+  <button mat-raised-button class="delete" [mat-dialog-close]="true">
+    {{ 'YES' | translate }}
+  </button>
+</div>

@@ -1,0 +1,42 @@
+{
+  "npmScope": "marketplace",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "Marketplace": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    },
+    "ads": {
+      "tags": []
+    },
+    "campaigns": {
+      "tags": []
+    },
+    "cards": {
+      "tags": []
+    },
+    "preferences": {
+      "tags": []
+    },
+    "organizations": {
+      "tags": []
+    },
+    "payments": {
+      "tags": []
+    },
+    "reports": {
+      "tags": []
+    },
+    "users": {
+      "tags": []
+    }
+  }
+}

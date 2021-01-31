@@ -1,0 +1,102 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="card-holder"
+>
+  <div
+    class="payment-problem"
+    ngStyle.xs="height: '90px'"
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutAlign="start center"
+    *ngIf="showPaymentProblem && hasCampaigns"
+  >
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      ngStyle.xs="'margin-top': '12px'"
+    >
+      <mat-icon>warning</mat-icon>
+      <div>
+        <span>{{ paymentProblemInformation.errorText }}</span>
+      </div>
+    </div>
+    <a
+      fxLayoutAlign="center center"
+      mat-raised-button
+      [routerLink]="paymentProblemInformation.resolveUrl"
+      class="blue-outlined-button"
+      ngStyle.xs="'margin-top': '10px'"
+    >
+      {{ paymentProblemInformation.buttonText | translate }}
+    </a>
+  </div>
+
+  <div
+    *ngIf="loaded && campaigns.length && type === 'card'"
+    fxLayout.xs="column"
+    fxLayoutAlign.xs="start center"
+    fxLayout.gt-xs="row wrap"
+    fxLayoutGap.xs="16px"
+    fxLayoutGap.gt-xs="36px"
+  >
+    <app-campaign-card
+      *ngFor="let campaign of campaigns"
+      [campaign]="campaign"
+    ></app-campaign-card>
+  </div>
+  <app-campaign-list
+    [campaigns]="allCampaigns"
+    *ngIf="loaded && campaigns.length && type === 'list'"
+  >
+  </app-campaign-list>
+
+  <!-- Search text does not match any campaigns -->
+  <div
+    *ngIf="loaded && !campaigns.length && allCampaigns.length"
+    fxLayoutAlign="center center"
+    class="text"
+  >
+    {{
+      'CAMPAIGNS.SEARCH_NO_RESULTS'
+        | translate: { type: pageTranslations[currentPage] }
+    }}
+  </div>
+
+  <!-- Current view (active, archived, drafts) does not have any campaigns -->
+  <div
+    *ngIf="loaded && !allCampaigns.length && hasCampaigns"
+    fxLayoutAlign="center center"
+    class="text"
+  >
+    {{
+      'CAMPAIGNS.NO_RESULTS'
+        | translate: { type: pageTranslations[currentPage] }
+    }}
+  </div>
+
+  <!-- User with no campaigns -->
+  <div *ngIf="loaded && !hasCampaigns" class="new-user" fxLayout="column">
+    <span class="welcome-to-blip">{{
+      'WELCOME_TO_BLIP.TEXT' | translate
+    }}</span>
+
+    <span class="first-text" fxLayout="row">
+      <span fxFlex.xs="100" fxFlex.sm="75" fxFlex.gt-sm="50">{{
+        'WELCOME_TO_BLIP.SET_UP' | translate
+      }}</span>
+    </span>
+
+    <span class="second-text" fxLayout="row">
+      <span fxFlex.xs="100" fxFlex.sm="75" fxFlex.gt-sm="50">
+        {{ 'WELCOME_TO_BLIP.CLICK_BLUE_1' | translate }}
+        <a class="button" [routerLink]="newCampaignRoute">{{
+          'NEW_CAMPAIGN' | translate
+        }}</a>
+        {{ 'WELCOME_TO_BLIP.CLICK_BLUE_2' | translate }}
+      </span>
+    </span>
+  </div>
+</div>

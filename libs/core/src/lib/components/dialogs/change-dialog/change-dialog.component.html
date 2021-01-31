@@ -1,0 +1,18 @@
+<span mat-dialog-title class="capitalize">{{ data.action | translate }}</span>
+<div mat-dialog-content>
+  <span>{{ data.type | translate }}</span>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button (click)="close()" cdkFocusInitial>
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button
+    mat-raised-button
+    data-cy="change-button"
+    class="change"
+    [mat-dialog-close]="true"
+    class="capitalize"
+  >
+    {{ data.action | translate }}
+  </button>
+</div>

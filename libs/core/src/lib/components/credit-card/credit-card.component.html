@@ -1,0 +1,193 @@
+<form
+  class="card-container"
+  id="card-form"
+  [formGroup]="cardForm"
+  (ngSubmit)="save(); $event.stopPropagation()"
+  [ngClass]="{ 'red-highlight': !orgBillable }"
+>
+  <mat-form-field
+    class="width-100"
+    appearance="outline"
+    appUpdateOutlineGap
+    [floatLabel]="'always'"
+  >
+    <mat-label [translate]="'CREDIT_CARD.NAME_ON_CARD.TEXT'"></mat-label>
+    <input
+      data-cy="credit-card-name"
+      matInput
+      type="text"
+      [formControl]="cardForm.controls['name']"
+    />
+    <mat-error
+      *ngIf="cardForm.controls['name'].hasError('required')"
+      [innerHTML]="'CREDIT_CARD.NAME_ON_CARD.REQUIRED' | translate"
+    ></mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    appearance="outline"
+    appUpdateOutlineGap
+    [floatLabel]="'always'"
+    class="width-100"
+  >
+    <mat-label [translate]="'CREDIT_CARD.NUMBER.TEXT'"></mat-label>
+    <input
+      matInput
+      style="display: none"
+      [formControl]="cardForm.controls['number']"
+    />
+    <div data-cy="credit-card-number" id="ccNum" class="cc-num"></div>
+    <mat-error
+      *ngIf="cardForm.controls['number'].hasError('required')"
+      [innerHTML]="'CREDIT_CARD.NUMBER.REQUIRED' | translate"
+    ></mat-error>
+    <mat-error
+      *ngIf="cardForm.controls['number'].hasError('invalid')"
+      [innerHTML]="'CREDIT_CARD.NUMBER.INVALID' | translate"
+    ></mat-error>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="8px">
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      [floatLabel]="'always'"
+      fxFlex="70"
+    >
+      <mat-label [translate]="'CREDIT_CARD.EXPIRATION.TEXT'"></mat-label>
+      <input
+        data-cy="credit-card-expiration"
+        matInput
+        type="text"
+        [formControl]="cardForm.controls['expiration']"
+        appCreditCard
+        [form]="cardForm.controls['expiration']"
+        [input]="'month'"
+      />
+      <mat-error
+        *ngIf="cardForm.controls['expiration'].hasError('required')"
+        [innerHTML]="'CREDIT_CARD.EXPIRATION.REQUIRED' | translate"
+      ></mat-error>
+      <mat-error
+        *ngIf="cardForm.controls['expiration'].hasError('pattern')"
+        [innerHTML]="'CREDIT_CARD.EXPIRATION.PATTERN' | translate"
+      ></mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      [floatLabel]="'always'"
+      fxFlex="30"
+    >
+      <mat-label [translate]="'CREDIT_CARD.CVV.TEXT'"></mat-label>
+      <input
+        matInput
+        style="display: none"
+        [formControl]="cardForm.controls['cvv']"
+      />
+      <div data-cy="credit-card-cvv" id="ccCVV" class="cc-num"></div>
+      <mat-error
+        *ngIf="cardForm.controls['cvv'].hasError('required')"
+        [innerHTML]="'CREDIT_CARD.CVV.REQUIRED' | translate"
+      ></mat-error>
+      <mat-error
+        *ngIf="cardForm.controls['cvv'].hasError('invalid')"
+        [innerHTML]="'CREDIT_CARD.CVV.INVALID' | translate"
+      ></mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="address-fields">
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      class="width-100"
+      [floatLabel]="'always'"
+    >
+      <mat-label [translate]="'CREDIT_CARD.ADDRESS1.TEXT'"></mat-label>
+      <input matInput [formControl]="cardForm.controls['address1']" />
+      <mat-error
+        *ngIf="cardForm.controls['address1'].hasError('required')"
+        [innerHTML]="'CREDIT_CARD.ADDRESS1.REQUIRED' | translate"
+      ></mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      class="width-100"
+      [floatLabel]="'always'"
+    >
+      <mat-label [translate]="'CREDIT_CARD.ADDRESS2.TEXT'"></mat-label>
+      <input matInput [formControl]="cardForm.controls['address2']" />
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      [floatLabel]="'always'"
+      class="width-100"
+    >
+      <mat-label [translate]="'CREDIT_CARD.CITY.TEXT'"></mat-label>
+      <input matInput [formControl]="cardForm.controls['city']" />
+      <mat-error
+        *ngIf="cardForm.controls['city'].hasError('required')"
+        [innerHTML]="'CREDIT_CARD.CITY.REQUIRED' | translate"
+      ></mat-error>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="8px">
+      <mat-form-field
+        appearance="outline"
+        appUpdateOutlineGap
+        [floatLabel]="'always'"
+        fxFlex="70"
+      >
+        <mat-label [translate]="'CREDIT_CARD.STATE.TEXT'"></mat-label>
+        <input matInput [formControl]="cardForm.controls['state']" />
+        <mat-error
+          *ngIf="cardForm.controls['state'].hasError('required')"
+          [innerHTML]="'CREDIT_CARD.STATE.REQUIRED' | translate"
+        ></mat-error>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        appUpdateOutlineGap
+        [floatLabel]="'always'"
+        fxFlex="30"
+      >
+        <mat-label [translate]="'CREDIT_CARD.POSTAL_CODE.TEXT'"></mat-label>
+        <input matInput [formControl]="cardForm.controls['postalCode']" />
+        <mat-error
+          *ngIf="cardForm.controls['postalCode'].hasError('required')"
+          [innerHTML]="'CREDIT_CARD.POSTAL_CODE.REQUIRED' | translate"
+        ></mat-error>
+
+        <mat-error
+          *ngIf="cardForm.controls['postalCode'].hasError('pattern')"
+          [innerHTML]="'CREDIT_CARD.POSTAL_CODE.INVALID' | translate"
+        ></mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayoutAlign="end center">
+    <button
+      data-cy="credit-card-submit"
+      mat-raised-button
+      id="formSubmitBtn"
+      class="save-button"
+      [disabled]="!cardForm.valid"
+      type="submit"
+      (click)="$event.stopPropagation()"
+    >
+      {{ 'SAVE' | translate }}
+    </button>
+    <input
+      type="hidden"
+      name="payment_method_token"
+      id="payment_method_token"
+    />
+  </div>
+</form>

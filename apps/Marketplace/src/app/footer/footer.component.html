@@ -1,0 +1,46 @@
+<footer ngClass.xs="mobile" fxHide.xs>
+  <mat-toolbar
+    class="toolbar"
+    fxLayout.gt-xs="row"
+    fxLayoutAlign.gt-xs="space-between start"
+    fxLayout.xs="column"
+    fxLayoutAlign.xs="start start"
+  >
+    <div
+      fxLayout.gt-xs="row"
+      fxLayoutAlign.gt-xs="space-between center"
+      fxLayoutGap="8px"
+      fxLayout.xs="column"
+      fxLayoutAlign.xs="start start"
+    >
+      <div>{{ 'FOOTER.COPYRIGHT' | translate }}</div>
+      <div fxLayoutGap.gt-xs="4px">
+        <span (click)="open('terms')">
+          {{ 'FOOTER.TERMS_OF_USE' | translate }}
+        </span>
+        <span>|</span>
+        <span (click)="open('privacy')">
+          {{ 'FOOTER.PRIVACY_POLICY' | translate }}
+        </span>
+        <span>|</span>
+        <a [href]="backToOldLink" target="_blank" rel="noopener">
+          {{ 'FOOTER.V1' | translate }}
+        </a>
+      </div>
+    </div>
+    <div
+      class="language"
+      fxLayoutGap="8px"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <mat-icon>translate</mat-icon>
+      <span (click)="translate('en-US')">
+        {{ 'LANGUAGES.EN' | translate }}
+      </span>
+      <span (click)="translate('es-MX')">
+        {{ 'LANGUAGES.ES' | translate }}
+      </span>
+    </div>
+  </mat-toolbar>
+</footer>

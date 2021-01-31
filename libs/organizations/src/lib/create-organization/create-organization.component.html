@@ -1,0 +1,248 @@
+<div fxLayoutAlign="center start" fxFlex="100" class="form-holder">
+  <mat-card
+    class="card"
+    fxFlex="33"
+    fxFlex.sm="50"
+    fxFlex.xs="100"
+    ngClass.gt-xs="margin-top-65"
+    ngClass.xs="card-xs margin-top-16"
+  >
+    <form [formGroup]="createOrganizationForm" (ngSubmit)="create()">
+      <div fxLayout="row" class="create-org" ngClass.xs="create-org-xs">
+        <span *ngIf="!hasOrganization">{{
+          'SETUP_YOUR_ACCOUNT' | translate
+        }}</span>
+        <span *ngIf="hasOrganization">{{
+          'ORGANIZATION.CREATE' | translate
+        }}</span>
+      </div>
+
+      <div fxHide data-ab-test="organization-location">
+        <div
+          fxLayout="row"
+          class="input-question"
+          ngClass.xs="input-question-xs"
+        >
+          <span>{{ 'ORGANIZATION.LOCATION.QUESTION' | translate }}</span>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+            <mat-label [translate]="'LOCATION.CITY_OR_STATE'"></mat-label>
+            <input
+              matInput
+              #location
+              type="text"
+              appGooglePlaces
+              (placeChange)="updateForm($event)"
+              [formControl]="createOrganizationForm.controls['location']"
+            />
+            <mat-error
+              *ngIf="
+                createOrganizationForm.controls['location'].hasError('required')
+              "
+              [innerHTML]="'LOCATION.REQUIRED' | translate"
+            >
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" class="input-question" ngClass.xs="input-question-xs">
+        <span>{{ 'ORGANIZATION.NAME.QUESTION' | translate }}</span>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+          <mat-label [translate]="'ORGANIZATION.NAME.NO_OPTION'"></mat-label>
+          <input
+            matInput
+            #name
+            type="text"
+            [formControl]="createOrganizationForm.controls['name']"
+            required
+          />
+          <mat-error
+            *ngIf="createOrganizationForm.controls['name'].hasError('required')"
+            [innerHTML]="'ORGANIZATION.NAME.REQUIRED' | translate"
+          >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxHide data-ab-test="organization-category">
+        <div
+          fxLayout="row"
+          class="input-question"
+          ngClass.xs="input-question-xs"
+        >
+          <span>{{ 'ORGANIZATION.CATEGORY.QUESTION' | translate }}</span>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+            <mat-label [translate]="'ORGANIZATION.CATEGORY.TEXT'"></mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="createOrganizationForm.controls['category']"
+              [matAutocomplete]="auto"
+            />
+            <mat-error
+              *ngIf="
+                createOrganizationForm.controls['category'].hasError('required')
+              "
+              [innerHTML]="'ORGANIZATION.CATEGORY.REQUIRED' | translate"
+            >
+            </mat-error>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option
+                *ngFor="let type of filteredTypes | async"
+                [value]="type.name"
+              >
+                <span>{{ type.name }}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" *ngIf="!hasPhoneNumber">
+        <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+          <mat-label [translate]="'PHONE_NUMBER.TEXT'"></mat-label>
+          <input
+            matInput
+            type="tel"
+            appPhoneNumber
+            [formControl]="createOrganizationForm.controls['phone']"
+          />
+          <mat-error
+            *ngIf="createOrganizationForm.controls['phone'].hasError('pattern')"
+            [innerHTML]="'PHONE_NUMBER.HINT' | translate"
+          >
+          </mat-error>
+          <mat-error
+            *ngIf="
+              createOrganizationForm.controls['phone'].hasError('required')
+            "
+            [innerHTML]="'PHONE_NUMBER.REQUIRED' | translate"
+          >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" class="input-question" ngClass.xs="input-question-xs">
+        <span
+          [ngClass]="{
+            warn:
+              createOrganizationForm.controls['political'].hasError(
+                'required'
+              ) && submitted
+          }"
+        >
+          {{ 'POLITICAL.WILL_RUN_QUESTION' | translate }}</span
+        >
+      </div>
+      <div fxLayout="row" class="yes-no-buttons">
+        <mat-button-toggle-group
+          name="political"
+          aria-label="Political"
+          [formControl]="createOrganizationForm.controls['political']"
+        >
+          <mat-button-toggle value="on" class="yes">{{
+            'YES' | translate
+          }}</mat-button-toggle>
+          <mat-button-toggle value="off" class="no">{{
+            'NO' | translate
+          }}</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <div fxHide data-ab-test="is-agency-question">
+        <div
+          fxLayout="row"
+          class="input-question"
+          ngClass.xs="input-question-xs"
+        >
+          <span
+            [ngClass]="{
+              warn:
+                createOrganizationForm.controls['type'].hasError('required') &&
+                submitted
+            }"
+          >
+            {{ 'AGENCY.ARE_YOU' | translate }}</span
+          >
+        </div>
+        <div fxLayout="row" class="yes-no-buttons">
+          <mat-button-toggle-group
+            name="agency"
+            aria-label="Agency Question"
+            [formControl]="createOrganizationForm.controls['type']"
+          >
+            <mat-button-toggle [value]="organizationTypes.AGENCY" class="yes">{{
+              'YES' | translate
+            }}</mat-button-toggle>
+            <mat-button-toggle
+              [value]="organizationTypes.MARKETPLACE"
+              class="no"
+              >{{ 'NO' | translate }}
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        class="checkbox"
+        *ngIf="!(userService.$profile | async)?.organizations?.length"
+      >
+        <mat-checkbox
+          color="primary"
+          [formControl]="createOrganizationForm.controls['terms_accepted']"
+        >
+        </mat-checkbox>
+        <div class="checkbox-text">
+          <span
+            class="agree"
+            [ngClass]="{
+              warn:
+                createOrganizationForm.controls['terms_accepted'].hasError(
+                  'required'
+                ) && submitted
+            }"
+          >
+            {{ 'TERMS.AGREE' | translate }}
+            <span
+              (click)="openTerms()"
+              class="terms"
+              [ngClass]="{
+                warn:
+                  createOrganizationForm.controls['terms_accepted'].hasError(
+                    'required'
+                  ) && submitted
+              }"
+            >
+              {{ 'TERMS.TEXT' | translate }}
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div fxLayout="row" class="margin-top-30">
+        <button
+          mat-raised-button
+          type="submit"
+          class="blue-filled-button"
+          fxFlex="100"
+          [disabled]="savingOrganization"
+        >
+          <span *ngIf="!hasOrganization">
+            {{ 'FINISH' | translate }}
+          </span>
+          <span *ngIf="hasOrganization">
+            {{ 'CREATE' | translate }} {{ 'ORGANIZATION.TEXT' | translate }}
+          </span>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

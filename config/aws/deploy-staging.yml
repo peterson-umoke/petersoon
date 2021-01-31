@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - git clone --quiet https://$GH_TOKEN@github.com/Acme-Intergalactic/marketplace-v2.git v2
+      - cd v2
+      - echo Installing codebuild-extras...
+      - curl -fsSL https://raw.githubusercontent.com/thii/aws-codebuild-extras/master/install >> extras.sh
+      - . ./extras.sh
+      - cd ..
+      - cp v2/firebase.json .
+      - npm install -g firebase-tools
+  build:
+    commands:
+      - firebase use --token $FIREBASE_TOKEN blip-marketplace
+      - firebase target:apply hosting staging staging-blip-marketplace
+      - firebase deploy --only hosting:staging --message "'$CODEBUILD_GIT_SHORT_COMMIT'"

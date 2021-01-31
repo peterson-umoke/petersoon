@@ -1,0 +1,95 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Whitney SSm A, Whitney SSm B, Roboto, sans-serif',
+);
+
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);
+
+$blip-mat-blue: (
+  50: #e8f0f6,
+  100: #c6dbe9,
+  200: #a0c3da,
+  300: #79aacb,
+  400: #5d98bf,
+  500: #4086b4,
+  600: #3a7ead,
+  700: #3273a4,
+  800: #2a699c,
+  900: #1c568c,
+  A100: #c6e2ff,
+  A200: #93c8ff,
+  A400: #60adff,
+  A700: #47a0ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$blip-mat-red: (
+  50: #fde4e9,
+  100: #fabcc7,
+  200: #f690a2,
+  300: #f2637c,
+  400: #f04160,
+  500: #ed2044,
+  600: #eb1c3e,
+  700: #e81835,
+  800: #e5132d,
+  900: #e00b1f,
+  A100: #ffffff,
+  A200: #ffd8da,
+  A400: #ffa5ab,
+  A700: #ff8b93,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+// Define the default theme (same as the example above).
+$blip-app-primary: mat-palette($blip-mat-blue);
+$blip-app-accent: mat-palette($mat-blue-grey);
+$blip-app-warn: mat-palette($blip-mat-red);
+$blip-app-theme: mat-light-theme(
+  $blip-app-primary,
+  $blip-app-accent,
+  $blip-app-warn
+);
+
+// Include the default theme styles.
+@include angular-material-theme($blip-app-theme);
+
+// Overlay styles
+@import '~@angular/cdk/overlay-prebuilt.css';

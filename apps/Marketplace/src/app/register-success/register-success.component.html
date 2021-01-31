@@ -1,0 +1,59 @@
+<div fxLayout="row" fxLayoutAlign="center start" class="confirmation-holder">
+  <mat-card
+    fxLayout="column"
+    fxLayoutAlign="center"
+    fxFlex="33"
+    fxFlex.sm="50"
+    fxFlex.xs="100"
+    ngClass.gt-xs="margin-top-65"
+    ngClass.xs="margin-top-16"
+  >
+    <div fxLayout="row" class="card-text thanks">
+      <span>{{ 'REGISTER_SUCCESS.THANKS' | translate }}</span>
+    </div>
+
+    <div fxLayout="row" class="card-text check-email">
+      <span>{{
+        'REGISTER_SUCCESS.CHECK_EMAIL' | translate: { email: userEmail }
+      }}</span>
+    </div>
+
+    <div fxLayout="row" class="card-text didnt-see">
+      <span>{{ 'REGISTER_SUCCESS.DIDNT_SEE_EMAIL' | translate }}</span>
+    </div>
+
+    <div fxLayout="row" class="resend">
+      <button
+        mat-raised-button
+        (click)="resendLink()"
+        class="blue-outlined-button"
+        fxFlex="40"
+        fxFlex.sm="45"
+        fxFlex.xs="50"
+        appGoogleAnalytics
+        [googleCategory]="'Register Success'"
+        [googleAction]="'Click'"
+        [googleLabel]="'Resend Email Confirmation'"
+      >
+        {{ 'REGISTER_SUCCESS.RESEND_LINK' | translate }}
+      </button>
+    </div>
+
+    <div fxLayout="row" class="card-text">
+      <span class="or">
+        {{ 'OR' | translate }}
+      </span>
+      <span (click)="logout()" class="change-email">
+        {{ 'REGISTER_SUCCESS.CHANGE_EMAIL' | translate }}
+      </span>
+    </div>
+
+    <div fxLayout="row" class="graphic-holder" fxLayoutAlign="center start">
+      <img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/images/blipman.png"
+        alt="Blip"
+        class="blip-graphic"
+      />
+    </div>
+  </mat-card>
+</div>

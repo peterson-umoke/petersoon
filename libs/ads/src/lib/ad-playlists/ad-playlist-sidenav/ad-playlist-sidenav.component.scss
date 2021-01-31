@@ -1,0 +1,126 @@
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.min-width {
+  min-width: 416px !important;
+}
+
+.container {
+  padding: 20px;
+
+  .name {
+    color: $dark-gray;
+    font-size: $eighteen;
+    font-weight: 500;
+    letter-spacing: -0.36px;
+    line-height: 25px;
+
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /*! autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+  }
+
+  .image {
+    margin-top: 20px;
+
+    .art {
+      width: 224px;
+      height: 61px;
+
+      img {
+        max-height: 61px;
+        max-width: 224px;
+      }
+    }
+
+    .sizes {
+      color: $black;
+      font-size: $twelve;
+      margin-left: 12px;
+
+      mat-icon {
+        color: $dark-gray;
+        font-size: $eighteen;
+      }
+    }
+  }
+
+  .custom {
+    margin-top: 22px;
+
+    span {
+      color: $black;
+      font-size: $twenty-two;
+      font-weight: 500;
+      line-height: 34px;
+    }
+  }
+
+  .reset {
+    margin-top: 8px;
+    font-size: $twelve;
+    font-weight: bold;
+    line-height: 32px;
+    padding: 0 2px;
+    text-transform: capitalize;
+  }
+
+  .schedules {
+    margin-top: 8px;
+
+    .mat-expansion-panel-header-description,
+    .mat-expansion-panel-header-title {
+      color: $black;
+      font-size: $twenty-two;
+      font-weight: 500;
+      line-height: 34px;
+    }
+
+    .mat-expansion-panel-header[aria-disabled='true']
+      .mat-expansion-panel-header-title,
+    .mat-expansion-panel-header[aria-disabled='true']
+      .mat-expansion-panel-header-description {
+      color: $light-gray !important;
+    }
+
+    .mat-expansion-panel:not([class*='mat-elevation-z']) {
+      box-shadow: none;
+    }
+
+    .mat-expansion-panel-header {
+      padding: 0 10px 0 0;
+    }
+
+    .disabled {
+      color: $light-gray !important;
+    }
+
+    .priority {
+      height: 48px;
+      color: $black;
+      font-size: $twenty-two;
+      font-weight: 500;
+      line-height: 34px;
+
+      span {
+        height: 48px;
+      }
+    }
+
+    .orange-outlined-button {
+      background-color: $white !important;
+      border: 2px solid $orange;
+      box-shadow: 0 3px 4px 0 rgba(19, 72, 84, 0.12);
+      color: $orange;
+      font-size: $sixteen;
+      font-weight: 600;
+      letter-spacing: -0.36px;
+      width: 100%;
+      margin-top: 40px;
+    }
+  }
+}

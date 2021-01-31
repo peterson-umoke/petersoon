@@ -1,0 +1,119 @@
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.min-width {
+  min-width: 416px !important;
+}
+
+.container {
+  padding: 20px;
+
+  .close {
+    margin-bottom: 32px;
+
+    button {
+      height: 28px;
+      line-height: 24px;
+      background-color: $white !important;
+      border-radius: 2px;
+      box-shadow: 0 3px 4px 0 rgba(19, 72, 84, 0.12);
+      font-size: $fourteen;
+      font-weight: 600;
+      letter-spacing: -0.28px;
+      line-height: 16px;
+    }
+  }
+
+  .text {
+    color: $dark-gray;
+    font-size: $fourteen;
+    line-height: 18px;
+    font-weight: 500;
+  }
+
+  .search-container {
+    margin: 16px 0;
+  }
+
+  .ad {
+    .mat-list-item {
+      height: 88px !important;
+      padding: 8px 0;
+      margin-left: -16px;
+
+      .art {
+        height: 88px;
+        width: 145px;
+
+        img {
+          max-height: 88px;
+          max-width: 145px;
+          height: auto;
+          width: auto;
+        }
+      }
+
+      .info {
+        margin-left: 20px;
+        height: 88px;
+
+        .name {
+          color: $dark-gray;
+          font-size: $fifteen;
+          font-weight: bold;
+          letter-spacing: -0.3px;
+          line-height: 18px;
+          height: 18px;
+
+          word-break: break-all;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          /*! autoprefixer: ignore next */
+          -webkit-box-orient: vertical;
+        }
+
+        .sizes {
+          color: $dark-gray;
+          font-size: $fifteen;
+          font-weight: 500;
+          letter-spacing: -0.3px;
+          line-height: 18px;
+          height: 18px;
+          margin-top: 8px;
+
+          mat-icon {
+            font-size: $fifteen;
+            font-weight: 500;
+            position: relative;
+            top: 4px;
+            left: -2px;
+          }
+        }
+
+        .created {
+          color: $light-gray;
+          font-size: $fourteen;
+          font-weight: 600;
+          line-height: 19px;
+          margin-top: 9px;
+          height: 19px;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: darken($color: $white, $amount: 3) !important;
+      cursor: pointer !important;
+    }
+  }
+
+  .no-ads {
+    color: $dark-gray;
+    font-size: $fifteen;
+    line-height: 18px;
+    font-weight: 600;
+    margin-top: 40px;
+  }
+}

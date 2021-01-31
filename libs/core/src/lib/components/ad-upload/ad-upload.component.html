@@ -1,0 +1,63 @@
+<input
+  #fileSelect
+  type="file"
+  accept="image/*"
+  (click)="fileSelect.value = null"
+  (change)="uploadSelected($event.target.files)"
+  multiple
+  style="display: none;"
+/>
+<div (click)="fileSelect.click()" *ngIf="custom"><ng-content></ng-content></div>
+<div
+  class="upload-images"
+  ngClass.xs="xs"
+  fxLayout="row"
+  *ngIf="!custom"
+  appDragDrop
+  [ngClass]="{ 'over-drop-zone': overDropZone, 'full-height': fullHeight }"
+  (fileOver)="overDropZone = $event"
+  (fileDropped)="uploadDropped($event)"
+>
+  <div
+    fxFlex
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="16px"
+    id="ic-upload"
+  >
+    <div
+      *ngIf="!uploaderRow"
+      fxHide.xs
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="4px"
+    >
+      <span class="drag-drop">{{ 'DRAG_DROP.AD_UPLOAD' | translate }}</span>
+      <span class="drag-drop">{{ 'DRAG_DROP.TYPES' | translate }}</span>
+    </div>
+    <button
+      *ngIf="!uploaderRow"
+      mat-raised-button
+      class="blue-filled-button"
+      (click)="fileSelect.click()"
+    >
+      <span fxHide.xs>{{ 'CHOOSE_FILE' | translate }}</span>
+      <span
+        fxHide.gt-xs
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        fxLayoutGap="4px"
+      >
+        <mat-icon>file_upload</mat-icon>
+        <span>{{ 'UPLOAD_BILLBOARD_DESIGN' | translate }}</span>
+      </span>
+    </button>
+    <div
+      *ngIf="uploaderRow"
+      (click)="fileSelect.click()"
+      class="uploader-row-text"
+    >
+      {{ 'UPLOAD_IMAGE' | translate }}
+    </div>
+  </div>
+</div>

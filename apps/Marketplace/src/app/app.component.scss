@@ -1,0 +1,32 @@
+@import '../styles/styles.scss';
+
+mat-progress-bar {
+  position: absolute;
+  top: 50px;
+  z-index: 2;
+}
+
+app-header {
+  z-index: 2;
+}
+
+#app {
+  min-height: 100vh;
+  position: relative;
+}
+
+.outlet {
+  background-color: $white !important;
+  // Footer Height (76px)
+  padding-bottom: 76px;
+  // Header (50px) + Footer (76px) = 126px
+  min-height: calc(100vh - (126px));
+  overflow-x: hidden;
+}
+
+app-footer {
+  background-color: $white;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}

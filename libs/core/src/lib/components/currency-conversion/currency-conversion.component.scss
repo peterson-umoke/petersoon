@@ -1,0 +1,9 @@
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.conversion-rate {
+  color: $darker-gray;
+  font-size: $fourteen;
+  font-weight: 500;
+  line-height: 14px;
+}

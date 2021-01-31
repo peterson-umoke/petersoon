@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": [
+    {
+      "id": "3z8wgu",
+      "campaign_type": "STANDARD",
+      "daily_budget": 20.0,
+      "deleted": null,
+      "description": "",
+      "enabled": false,
+      "end_date": "2019-10-01",
+      "max_price": null,
+      "name": "My Disabled Campaign Has Ended",
+      "start_date": null,
+      "timezone": "America/Denver",
+      "thumbnails": []
+    }
+  ]
+}

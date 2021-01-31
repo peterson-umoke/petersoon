@@ -1,0 +1,62 @@
+@import '../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+@import '../../../../../../../apps/Marketplace/src/styles/colors.scss';
+
+.container {
+  position: relative;
+  margin-top: 4px;
+}
+
+.overlay {
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.color-dropdown {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  max-height: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  transition: max-height 0.2s ease-out;
+  width: 156px;
+  z-index: 2;
+}
+
+.color-ball {
+  height: 16px;
+  margin-right: 3px;
+  width: 16px;
+}
+
+.color-picker-btn:hover {
+  border: 2px $black solid;
+}
+
+.color-picker-btn {
+  background: white;
+  border: 1px #e0e0e0 solid;
+  border-radius: 5px;
+  height: 32px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+button:focus,
+input[type='button']:focus {
+  outline: none;
+}
+
+.background-text {
+  color: $black;
+  display: flex;
+  font-size: 15px;
+  font-weight: 400;
+}

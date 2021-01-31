@@ -1,0 +1,229 @@
+<!-- Add/Remove All Button Template-->
+<ng-template #addRemoveButtons>
+  <div
+    class="add-remove-container"
+    fxLayout="row"
+    [fxLayoutAlign]="mapExpand ? 'space-around center' : 'space-between center'"
+    fxLayoutAlign.lt-md="space-around center"
+    [style.min-width]="'291px'"
+    fxLayoutGap="10px"
+  >
+    <button
+      mat-raised-button
+      class="blue-outlined-button"
+      [disabled]="(allowAddingSigns$ | async) === false"
+      [ngClass]="{
+        'width-100': (selectedSignsCount$ | async) === 0,
+        'disabled-button': (allowAddingSigns$ | async) === false
+      }"
+      (click)="addVisibleSigns()"
+      fxLayoutAlign="center center"
+    >
+      <span>{{
+        ((selectedSignsCount$ | async) === 0
+          ? 'CAMPAIGN.CREATION.ADD_VISIBLE_SIGNS'
+          : 'CAMPAIGN.CREATION.ADD_VISIBLE'
+        ) | translate
+      }}</span>
+      <span> ({{ visibleSignsCount$ | async }})</span>
+    </button>
+    <button
+      mat-raised-button
+      class="blue-outlined-button"
+      (click)="removeAllSigns()"
+      *ngIf="(selectedSignsCount$ | async) > 0"
+      fxLayoutAlign="center center"
+    >
+      {{ 'CAMPAIGN.CREATION.REMOVE_ALL' | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<div
+  fxLayout="column"
+  ngStyle.gt-sm="'min-width': '890px'"
+  ngStyle.lt-lg="padding: '0 12px'"
+>
+  <!--- Header --->
+  <div gdColumns="1fr 1fr" gdColumns.lt-sm="1fr" gdGap.lt-sm="12px">
+    <!--- Search --->
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      class="search-form-field"
+      ngStyle.lt-sm="width: '100%'"
+      id="ic-search-field"
+    >
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        appGooglePlaces
+        (placeChange)="updateBounds($event)"
+        matInput
+        type="search"
+        placeholder="{{ 'LOCATION.SEARCH_TEXT' | translate }}"
+      />
+    </mat-form-field>
+    <!--- Filter --->
+    <mat-form-field
+      gdGridAlign="end center"
+      appearance="outline"
+      class="sign-filter wrapper"
+      ngStyle.gt-xs="width: '291px'"
+      ngStyle.lt-sm="width: '100%'; 'margin-bottom': '12px'"
+    >
+      <mat-select
+        [value]="selectedFilter$ | async"
+        (selectionChange)="filterSigns($event.value)"
+      >
+        <mat-option [value]="signFilters.ALL">{{
+          'CAMPAIGN.CREATION.SIGN_FILTER.ALL' | translate
+        }}</mat-option>
+        <mat-option [value]="signFilters.SELECTED_SIGNS">{{
+          'CAMPAIGN.CREATION.SIGN_FILTER.SELECTED' | translate
+        }}</mat-option>
+        <mat-option [value]="signFilters.AVAILABLE">{{
+          'CAMPAIGN.CREATION.SIGN_FILTER.AVAILABLE' | translate
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <hr fxHide.lt-sm />
+  <!-- Sign List Name, Address --- City, Province --- Add/Remove Btns-->
+  <div
+    fxHide.lt-md
+    [fxHide]="mapExpand"
+    [ngStyle]="{ 'margin-bottom': '12px' }"
+  >
+    <div gdColumns="216px 1fr 309.97px 291px">
+      <span></span>
+      <div gdGridAlign="start end">
+        <span *ngIf="(visibleSignsCount$ | async) > 0">
+          {{ 'CAMPAIGN.CREATION.SIGN_LIST.NAME' | translate }},
+          {{ 'CAMPAIGN.CREATION.SIGN_LIST.ADDRESS' | translate }}
+        </span>
+      </div>
+      <div gdGridAlign="start end">
+        <span *ngIf="(visibleSignsCount$ | async) > 0">
+          {{ 'CAMPAIGN.CREATION.SIGN_LIST.CITY' | translate }},
+          {{ 'CAMPAIGN.CREATION.SIGN_LIST.STATE' | translate }}
+        </span>
+      </div>
+      <!-- Add/Remove All Btn -->
+      <div fxHide.lt-md>
+        <ng-container *ngTemplateOutlet="addRemoveButtons"> </ng-container>
+      </div>
+    </div>
+  </div>
+  <!--- List/Map --->
+  <div
+    [fxLayout]="mapExpand ? 'column' : 'row'"
+    [fxLayoutAlign]="mapExpand ? 'center' : 'space-between'"
+    fxLayout.lt-md="column"
+    fxLayoutAlign.lt-md="center"
+    class="container"
+  >
+    <div
+      [fxHide]="!mapExpand"
+      fxHide.lt-md
+      [style.margin-bottom]="'16px'"
+      fxLayoutAlign="end"
+    >
+      <ng-container *ngTemplateOutlet="addRemoveButtons"></ng-container>
+    </div>
+    <!--- Sign List --->
+    <cdk-virtual-scroll-viewport
+      [itemSize]="itemSize$ | async"
+      class="scroll-container"
+      [ngClass]="mapExpand ? 'scroll-map-expand order-2' : 'order-1'"
+      ngClass.lt-md="scroll-mobile order-3"
+      #virtualScroll
+    >
+      <div
+        class="no-signs"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        *ngIf="(visibleSignsCount$ | async) === 0"
+      >
+        {{ 'CAMPAIGN.CREATION.SIGN_LIST.NO_SIGNS' | translate }}
+        <span class="expand-search">
+          {{ 'CAMPAIGN.CREATION.SIGN_LIST.EXPAND_SEARCH' | translate }}
+        </span>
+      </div>
+      <div
+        *cdkVirtualFor="
+          let sign of visibleSigns$;
+          templateCacheSize: 0;
+          trackBy: signTrackByFn
+        "
+      >
+        <campaigns-wizard-locations-card
+          [sign]="sign"
+          [markerClicked]="signMarkerClicked(sign)"
+          [renderCardMap]="renderCardMaps$ | async"
+          [signSelected]="sign.selected"
+          [allowAddingSigns]="allowAddingSigns$ | async"
+          [allowAddingUniqueSign]="allowAddingUniqueSign$ | async"
+          [ltMd]="ltMd$ | async"
+        ></campaigns-wizard-locations-card>
+      </div>
+    </cdk-virtual-scroll-viewport>
+
+    <!--- Map--->
+    <div
+      class="map-container"
+      [ngClass]="{
+        'map-container-expand': mapExpand,
+        'order-1': mapExpand,
+        'order-2': !mapExpand
+      }"
+      ngClass.lt-md="map-container-mobile order-1"
+    >
+      <button
+        class="expand-btn"
+        [ngClass]="{
+          'expand-btn': !mapExpand,
+          'minimize-btn': mapExpand
+        }"
+        fxLayoutAlign="center center"
+        (click)="toggleMapExpand()"
+        fxHide.lt-md
+      >
+        <img />
+      </button>
+      <agm-map
+        [latitude]="mapOptions.center.lat"
+        [longitude]="mapOptions.center.lng"
+        [keyboardShortcuts]="mapOptions.keyboardShortcuts"
+        [mapTypeControl]="mapOptions.mapTypeControl"
+        [maxZoom]="mapOptions.maxZoom"
+        [minZoom]="mapOptions.minZoom"
+        [styles]="mapOptions.styles"
+        [zoom]="mapOptions.zoom"
+        [fullscreenControl]="mapOptions.fullscreenControl"
+        [streetViewControl]="mapOptions.streetViewControl"
+        [scrollwheel]="mapOptions.scrollwheel"
+        (boundsChange)="updateCurrentBounds($event)"
+        (idle)="updateVisible()"
+        (mapClick)="deselectClusters()"
+        (mapReady)="mapReady($event)"
+      >
+        <agm-marker
+          *ngFor="
+            let cluster of visibleClusters$ | async;
+            trackBy: clusterTrackByFn
+          "
+          [latitude]="cluster.lat"
+          [longitude]="cluster.lon"
+          [iconUrl]="cluster.icon.url"
+          [zIndex]="cluster.icon.zIndex"
+          (markerClick)="selectCluster($event)"
+        ></agm-marker>
+      </agm-map>
+    </div>
+
+    <!--- Add Remove Buttons Mobile --->
+    <div class="order-2" fxHide.gt-sm [style.padding]="'12px 0'">
+      <ng-container *ngTemplateOutlet="addRemoveButtons"></ng-container>
+    </div>
+  </div>
+</div>

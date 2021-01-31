@@ -1,0 +1,97 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.xs,
+.sm {
+  margin: 16px 8px 0px 8px;
+}
+
+.header {
+  margin-top: 40px;
+
+  .users-text {
+    color: $dark-gray;
+    font-size: $fifteen;
+    font-weight: $semi-bold;
+    line-height: 18px;
+  }
+}
+
+.fifty-width {
+  max-width: 50%;
+}
+
+.text {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: $medium;
+}
+
+.role-text {
+  min-width: 120px !important;
+}
+
+.margin-top {
+  margin-top: 16px;
+}
+
+.roles {
+  margin-top: 16px;
+}
+
+mat-list-option {
+  .role-description {
+    flex-wrap: wrap;
+  }
+}
+
+.owner-div {
+  margin: 8px 0px;
+}
+
+.warn {
+  color: $red !important;
+}
+
+.save {
+  margin-left: 16px;
+}
+
+.cancelBtn {
+  border-radius: 4px !important;
+  cursor: pointer !important;
+}
+
+.blue-outlined-button {
+  width: 85px;
+}
+
+.info-text {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: $medium;
+  letter-spacing: -0.3px;
+}
+
+.users {
+  min-height: 48px;
+  padding: 16px 0px 16px 0px;
+
+  span {
+    padding-bottom: 4px;
+  }
+
+  .name {
+    font-weight: $semi-bold;
+  }
+
+  .roles {
+    flex-wrap: wrap;
+  }
+
+  .info-row {
+    border-left: 3px solid $background-gray;
+    margin-top: 4px;
+    padding-left: 14px;
+  }
+}

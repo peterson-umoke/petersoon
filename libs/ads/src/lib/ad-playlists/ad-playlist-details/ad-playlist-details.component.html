@@ -1,0 +1,179 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="container"
+>
+  <div fxLayout="row" fxLayoutAlign="start center" class="back-to-playlists">
+    <a [routerLink]="playlistRoute" fxLayoutAlign="start center">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      <span>{{ 'BACK' | translate }}</span>
+    </a>
+
+    <mat-icon class="folder">folder</mat-icon>
+
+    <mat-form-field class="form-name" fxFlex="fill">
+      <input
+        matInput
+        #playlistName
+        [formControl]="playlistForm.controls['name']"
+        [maxlength]="playlistNameMax"
+      />
+      <mat-hint *ngIf="!playlistForm.controls['name'].disabled" align="end">
+        {{ playlistForm.controls['name'].value.length }}
+        / {{ playlistNameMax }}</mat-hint
+      >
+      <mat-error
+        *ngIf="playlistForm.controls['name'].hasError('required')"
+        [innerHTML]="'NAME.REQUIRED' | translate"
+      >
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <button
+    mat-button
+    class="blue-filled-button add-creative margin-top"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    (click)="addCreative()"
+  >
+    <mat-icon>add</mat-icon>
+    <span class="text"
+      >{{ 'ADD' | translate }} {{ 'CREATIVE' | translate }}</span
+    >
+  </button>
+
+  <!-- If there are no ads in this playlist -->
+  <div *ngIf="!playlist.ads?.length" class="no-ads margin-top">
+    {{ 'PLAYLISTS.NO_ADS' | translate }}
+  </div>
+
+  <div fxHide.lt-md class="margin-top">
+    <mat-list class="container" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div
+        *ngFor="let ad of playlist.ads; let index = index"
+        class="item"
+        cdkDrag
+      >
+        <mat-list-item (click)="openDetails(ad, index + 1)">
+          <!-- ^ ad index should be 1 base for ease of user -->
+          <div class="row" fxLayout="row" fxLayoutAlign="start center">
+            <div class="drag" fxLayoutAlign="center center">
+              <mat-icon>drag_handle</mat-icon>
+            </div>
+
+            <div class="art">
+              <img
+                [src]="
+                  ad.thumbnail_url ||
+                  (ad.images && ad.images[0]?.thumbnail_url) ||
+                  'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+                "
+                [alt]="ad.name"
+              />
+            </div>
+
+            <div class="info" fxLayout="column" fxLayoutAlign="start start">
+              <span class="name">{{ ad.name }}</span>
+              <!-- TODO: ADD THE NUMBER OF IMAGES AND WHEN IT WAS CREATED TO AD GROUP SERIALIZER -->
+              <!-- <span class="sizes" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon>collections</mat-icon>
+                <span>2 Ad Sizes</span>
+              </span>
+              <span class="created">{{ '8/12/2018' | date:'MM/d/yyyy' }}</span> -->
+            </div>
+
+            <div
+              class="custom-schedule"
+              fxLayout="column"
+              fxLayoutAlign="start start"
+            >
+              <!-- TODO: Add edited field -->
+              <!-- <span class="last-updated">{{ 'CUSTOM_SCHEDULE' | translate }} ({{ 'EDITED' | translate }}
+                {{ 05/18/2018 | date:'MM/d/yyyy' }})</span> -->
+              <span *ngIf="ad.rules?.DateTimeRange">
+                {{ 'DATE' | translate }} {{ 'RANGE' | translate }}
+                {{
+                  ad.rules.DateTimeRange.start.includes('_')
+                    ? ('N/A' | translate)
+                    : (ad.rules.DateTimeRange.start | date: 'M/d/yyyy')
+                }}
+                -
+                {{
+                  ad.rules.DateTimeRange.end.includes('_')
+                    ? ('N/A' | translate)
+                    : (ad.rules.DateTimeRange.end | date: 'M/d/yyyy')
+                }}
+              </span>
+              <span *ngIf="ad.rules?.WeeklyOnTimes">
+                {{ 'WEEKLY_DAILY' | translate }} {{ 'SCHEDULE' | translate }}
+                {{ 'MODIFIED' | translate }}
+              </span>
+              <span *ngIf="ad.rules?.UrlBoolean">{{
+                'WEB_TRIGGERS.TEXT' | translate
+              }}</span>
+              <span *ngIf="ad.rules?.ZIndex">{{ 'PRIORITY' | translate }}</span>
+            </div>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </div>
+
+  <!-- Small and Extra Small List -->
+  <div class="margin-top" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div
+      fxHide.gt-sm
+      class="small-list"
+      *ngFor="let ad of playlist.ads; let index = index"
+      cdkDrag
+    >
+      <!-- ^ ad index should be 1 base for ease of user -->
+      <mat-card fxLayout="row" (click)="openDetails(ad, index + 1)">
+        <div class="drag" fxLayoutAlign="center center">
+          <mat-icon>drag_handle</mat-icon>
+        </div>
+
+        <div class="art-sm">
+          <img
+            [src]="
+              ad.thumbnail_url ||
+              (ad.images && ad.images[0]?.thumbnail_url) ||
+              'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+            "
+            [alt]="ad.name"
+          />
+        </div>
+
+        <div class="info" fxLayout="column" fxLayoutAlign="start start">
+          <span class="ad-name">{{ ad.name }}</span>
+          <!-- TODO: ADD THE NUMBER OF IMAGES AND WHEN IT WAS CREATED TO AD GROUP SERIALIZER -->
+          <!-- <span class="sizes" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon>collections</mat-icon>
+            <span>2 Ad Sizes</span>
+          </span>
+          <span class="created">{{ 'CREATED' | translate }} {{ '8/12/2018' | date:'MM/d/yyyy' }}</span> -->
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <mat-toolbar fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+    <a mat-raised-button class="button" (click)="cancel()">
+      <span>{{ 'CANCEL' | translate }}</span>
+    </a>
+    <button
+      mat-raised-button
+      class="blue-filled-button button"
+      [disabled]="playlistForm.invalid"
+      (click)="save()"
+    >
+      <span>{{ 'SAVE' | translate }}</span>
+    </button>
+  </mat-toolbar>
+</footer>

@@ -1,0 +1,184 @@
+<form
+  class="web-triggers-container"
+  [formGroup]="webTriggersForm"
+  (ngSubmit)="findNumber()"
+>
+  <button
+    class="reset"
+    mat-button
+    type="button"
+    [disabled]="webTriggersForm.disabled"
+    color="primary"
+    (click)="reset()"
+  >
+    {{ 'WEB_TRIGGERS.CLEAR_VALUES' | translate }}
+  </button>
+
+  <mat-form-field
+    class="url"
+    appearance="outline"
+    appUpdateOutlineGap
+    [floatLabel]="'always'"
+    fxLayout="row"
+  >
+    <mat-label [translate]="'WEB_TRIGGERS.URL.TEXT'"></mat-label>
+    <input
+      matInput
+      #email
+      required
+      type="url"
+      [formControl]="webTriggersForm.controls['url']"
+      [placeholder]="'WEB_TRIGGERS.URL.PLACEHOLDER' | translate"
+    />
+    <mat-error
+      *ngIf="webTriggersForm.controls['url'].hasError('required')"
+      [innerHTML]="'WEB_TRIGGERS.URL.REQUIRED' | translate"
+    ></mat-error>
+  </mat-form-field>
+
+  <mat-tab-group class="tab-group" (selectedTabChange)="tabChange($event)">
+    <mat-tab [label]="'WEB_TRIGGERS.CURRENT_VALUE.TEXT' | translate">
+      <mat-form-field
+        class="tab"
+        appearance="outline"
+        appUpdateOutlineGap
+        fxLayout="row"
+      >
+        <input
+          matInput
+          type="number"
+          [formControl]="webTriggersForm.controls['currentValue']"
+          [placeholder]="'WEB_TRIGGERS.CURRENT_VALUE.PLACEHOLDER' | translate"
+        />
+      </mat-form-field>
+    </mat-tab>
+    <mat-tab [label]="'WEB_TRIGGERS.XPATH.TEXT' | translate">
+      <mat-form-field
+        class="tab"
+        appearance="outline"
+        appUpdateOutlineGap
+        fxLayout="row"
+      >
+        <input
+          matInput
+          type="text"
+          [formControl]="webTriggersForm.controls['xpath']"
+          [placeholder]="'WEB_TRIGGERS.XPATH.PLACEHOLDER' | translate"
+        />
+      </mat-form-field>
+    </mat-tab>
+  </mat-tab-group>
+
+  <mat-form-field
+    class="expiration"
+    appearance="outline"
+    appUpdateOutlineGap
+    [floatLabel]="'always'"
+    fxLayout="row"
+  >
+    <mat-label [translate]="'WEB_TRIGGERS.EXPIRATION.TEXT'"></mat-label>
+    <input
+      matInput
+      required
+      type="number"
+      [min]="0"
+      [formControl]="webTriggersForm.controls['expiration']"
+      [placeholder]="'WEB_TRIGGERS.EXPIRATION.PLACEHOLDER' | translate"
+    />
+    <mat-error
+      *ngIf="webTriggersForm.controls['expiration'].hasError('required')"
+      [innerHTML]="'WEB_TRIGGERS.EXPIRATION.REQUIRED' | translate"
+    ></mat-error>
+    <mat-error
+      *ngIf="webTriggersForm.controls['expiration'].hasError('min')"
+      [innerHTML]="'WEB_TRIGGERS.EXPIRATION.MIN' | translate"
+    ></mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    class="xpaths-select"
+    [floatLabel]="'always'"
+    *ngIf="xpathArray.length"
+  >
+    <mat-select
+      [placeholder]="'WEB_TRIGGERS.XPATH.SELECT' | translate"
+      [value]="webTriggersForm.controls['xpath'].value"
+      (selectionChange)="xpathSelectChange($event)"
+    >
+      <mat-option *ngFor="let path of xpathArray" [value]="path">
+        {{ path }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="showMore" fxFlex="100" class="more">
+    <div fxLayout="row" fxLayoutAlign="center" class="above-threshold">
+      <mat-form-field fxFlex="20">
+        <mat-select
+          [value]="webTriggersForm.controls['on_above_threshold'].value"
+          (selectionChange)="aboveThresholdChange($event)"
+        >
+          <mat-option [value]="false">{{ 'OFF' | translate }}</mat-option>
+          <mat-option [value]="true">{{ 'ON' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span fxLayoutAlign="center center" fxFlex="shrink" class="text">{{
+        'ABOVE' | translate
+      }}</span>
+
+      <mat-form-field
+        fxFlex="grow"
+        appearance="outline"
+        appUpdateOutlineGap
+        [floatLabel]="'always'"
+        fxLayout="row"
+      >
+        <mat-label [translate]="'WEB_TRIGGERS.THRESHOLD'"></mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          [formControl]="webTriggersForm.controls['threshold']"
+          [placeholder]="'WEB_TRIGGERS.THRESHOLD' | translate"
+        />
+      </mat-form-field>
+    </div>
+
+    <div
+      class="on-by-default"
+      fxLayout="row"
+      fxLayoutAlign="end center"
+      fxFlex="100"
+    >
+      <span class="text">
+        {{
+          (webTriggersForm.controls['on_by_default'].value
+            ? 'WEB_TRIGGERS.ON_BY_DEFAULT'
+            : 'WEB_TRIGGERS.OFF_BY_DEFAULT') | translate
+        }}
+      </span>
+      <mat-slide-toggle
+        color="primary"
+        [disabled]="webTriggersForm.disabled"
+        (change)="onByDefaultChange($event)"
+        [checked]="webTriggersForm.controls['on_by_default'].value"
+      ></mat-slide-toggle>
+    </div>
+  </div>
+
+  <button
+    mat-raised-button
+    type="submit"
+    *ngIf="!showMore"
+    [disabled]="
+      webTriggersForm.invalid ||
+      webTriggersForm.disabled ||
+      !optionalValueFilled()
+    "
+    class="blue-filled-button"
+    (click)="findNumber()"
+  >
+    {{ 'FIND_YOUR_NUMBER' | translate }}
+  </button>
+</form>

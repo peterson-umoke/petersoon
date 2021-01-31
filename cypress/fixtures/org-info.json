@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": {
+    "permissions": [
+      "create",
+      "create_payment",
+      "delete",
+      "manage_ad",
+      "manage_campaign",
+      "manage_card",
+      "manage_reports",
+      "manage_users",
+      "moderate_t1",
+      "read",
+      "transfer_ownership",
+      "view_ad",
+      "view_campaign",
+      "view_card",
+      "view_payment",
+      "view_reports",
+      "view_users",
+      "write"
+    ],
+    "name": "Test Organization",
+    "timezone": "US/Mountain",
+    "funded": false,
+    "prepay-only": false,
+    "spendable": 0,
+    "campaigns": {
+      "active": 5,
+      "archived": 9,
+      "drafted": 8,
+      "expired": 1,
+      "paused": 0,
+      "pending": 0,
+      "templates": 0
+    }
+  }
+}

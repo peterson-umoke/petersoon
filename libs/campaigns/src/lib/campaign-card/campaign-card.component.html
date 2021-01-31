@@ -1,0 +1,382 @@
+<div class="flip-container">
+  <!-- <div *ngIf="!checklistsLoaded">
+    <mat-card class="card front">
+      <div
+        class="skeleton"
+        fxLayout="column"
+        fxLayoutAlign="center space-between"
+      >
+        <div class="toolbar"></div>
+        <span class="header">
+          {{ 'WAITING_TO_LAUNCH.WAITING' | translate }}
+        </span>
+        <div class="thumbnail"></div>
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div fxLayoutAlign="space-between center">
+          <div class="box1"></div>
+          <div class="box2"></div>
+          <div class="box3"></div>
+        </div>
+      </div>
+    </mat-card>
+  </div> -->
+  <div
+    class="flipper"
+    [ngClass]="{ flip: waitingToLaunch || showNotifications }"
+  >
+    <mat-card class="card front">
+      <mat-toolbar fxLayoutAlign="space-between center" class="toolbar">
+        <app-campaign-menu
+          data-cy="campaign-menu"
+          [campaign]="campaign"
+          [iconType]="'dehaze'"
+          class="more"
+          (click)="$event.stopPropagation()"
+        >
+        </app-campaign-menu>
+        <app-campaign-play-pause
+          *ngIf="
+            campaign.userStepsComplete &&
+            campaign.approved &&
+            campaign.show_play_pause
+          "
+          [campaign]="campaign"
+          [requestApproval]="false"
+          class="play-pause"
+          (click)="$event.stopPropagation()"
+        >
+        </app-campaign-play-pause>
+        <button
+          data-cy="notifications-button"
+          *ngIf="
+            campaign.userStepsComplete &&
+            campaign.approved &&
+            campaign.show_play_pause
+          "
+          mat-icon-button
+          class="notifications"
+          (click)="
+            showNotifications = !showNotifications; $event.stopPropagation()
+          "
+          matTooltip="{{ 'NOTIFICATIONS.TEXT' | translate }}"
+          matTooltipPosition="below"
+        >
+          <mat-icon
+            matBadgeHidden="{{ !campaign.notifications?.length }}"
+            matBadge="{{ campaign.notifications?.length }}"
+            matBadgePosition="before"
+            matBadgeColor="warn"
+            >notifications</mat-icon
+          >
+        </button>
+      </mat-toolbar>
+
+      <div
+        class="divider"
+        *ngIf="
+          (campaign.userStepsComplete &&
+            campaign.approved &&
+            campaign.show_play_pause) ||
+          campaign.deleted ||
+          campaign.status === 'CAMPAIGN.TYPE.ENDED'
+        "
+      >
+        <mat-divider></mat-divider>
+        <span data-cy="campaign-status">{{ campaign.status | translate }}</span>
+      </div>
+      <app-campaign-play-pause
+        data-cy="request-approval-button"
+        [campaign]="campaign"
+        [requestApproval]="true"
+        (click)="$event.stopPropagation()"
+        *ngIf="
+          !campaign.deleted &&
+          campaign.userStepsComplete &&
+          !campaign.approved &&
+          campaign.status !== 'CAMPAIGN.TYPE.ENDED'
+        "
+      >
+      </app-campaign-play-pause>
+
+      <div
+        data-cy="complete-campaign-button"
+        *ngIf="
+          campaign.status !== 'CAMPAIGN.TYPE.ENDED' &&
+          !campaign.deleted &&
+          !campaign.userStepsComplete
+        "
+        fxLayoutAlign="center center"
+      >
+        <button
+          mat-raised-button
+          class="complete-campaign blue-outlined-button"
+          (click)="goTo(review); $event.stopPropagation()"
+        >
+          {{ 'CAMPAIGNS.COMPLETE_CAMPAIGN' | translate }}
+        </button>
+      </div>
+
+      <div class="campaign-name">{{ campaign.name }}</div>
+
+      <div class="thumbnails">
+        <img
+          [src]="
+            campaign.thumbnails[imageIndex] ||
+            'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+          "
+          [alt]="campaign.name"
+          appImageViewer
+          [images]="campaign.thumbnails"
+          [imageIndex]="imageIndex"
+        />
+      </div>
+
+      <!-- Ads Row -->
+      <div fxLayout="row" fxLayoutAlign="start center" class="ads">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          (click)="goTo(artwork); $event.stopPropagation()"
+        >
+          <mat-icon>collections</mat-icon>
+          <span class="text">{{
+            (imageNumber.length ? 'ADS.TEXT' : 'ADS.NO_ADS') | translate
+          }}</span>
+          <span
+            class="images"
+            [ngClass]="{ 'selected-image': obj.index === imageIndex }"
+            *ngFor="let obj of imageNumber"
+            (click)="changeImage(obj.index); $event.stopPropagation()"
+            >{{ obj.display }}</span
+          >
+        </div>
+      </div>
+
+      <!-- Temple Row -->
+      <!-- FIXME: Get name of template used -->
+      <div fxLayout="row" fxLayoutAlign="start center" class="type" fxHide>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>person_outline</mat-icon>
+          <span class="text">{{ 'ADS.TEXT' | translate }}</span>
+        </div>
+      </div>
+
+      <!-- Schedule Row -->
+      <div fxLayout="row" fxLayoutAlign="start center" class="schedule">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          (click)="goTo(budget); $event.stopPropagation()"
+        >
+          <mat-icon>calendar_today</mat-icon>
+          <span class="text" *ngIf="campaign?.first_shown">{{
+            campaign?.first_shown | date: 'MMM d, y'
+          }}</span>
+          <span
+            class="text"
+            *ngIf="!campaign?.first_shown && !campaign?.start_date"
+            >{{ 'ASAP' | translate }}</span
+          >
+          <span
+            class="text"
+            *ngIf="!campaign?.first_shown && campaign?.start_date"
+            >{{ campaign?.start_date | date: 'MMM
+              d, y' }}</span
+          >
+          <span class="text">-</span>
+          <span class="text">{{
+            (campaign?.end_date | date: 'MMM d, y') || ('ONGOING' | translate)
+          }}</span>
+        </div>
+      </div>
+
+      <!-- Spend Row -->
+      <div fxLayout="row" fxLayoutAlign="start center" class="spend">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          (click)="goTo(budget); $event.stopPropagation()"
+        >
+          <mat-icon>attach_money</mat-icon>
+          <span class="text" fxLayout="row" fxLayoutAlign="start center"
+            >{{ 'CAMPAIGNS.TOTAL_SPEND' | translate }}
+            <span *ngIf="campaign.infoLoaded" class="inner-text">{{
+              campaign.spent || 0
+                | currency
+                  : (translationService.$currency | async)
+                  : 'symbol'
+                  : '1.2-2'
+            }}</span>
+            <span *ngIf="!campaign.infoLoaded" class="loading-bar">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="stats">
+        <div
+          fxFlex="32"
+          fxLayout="column"
+          fxLayoutAlign="space-around center"
+          class="box"
+          (click)="goTo(analytics); $event.stopPropagation()"
+          *ngIf="campaign.infoLoaded"
+        >
+          <span
+            class="number"
+            matTooltip="{{ campaign.blips | number }}"
+            matTooltipPosition="above"
+            matTooltipDisabled="{{ campaign.blips < 999999 }}"
+            fxLayout="row"
+            >{{ campaign.blips || 0 | number }}</span
+          >
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-icon>trending_up</mat-icon>
+            <span class="text">{{ 'CAMPAIGNS.TOTAL_BLIPS' | translate }}</span>
+          </div>
+        </div>
+        <div
+          fxFlex="32"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="box"
+          *ngIf="!campaign.infoLoaded"
+        >
+          <img
+            src="https://blipbillboards-marketplace.s3.amazonaws.com/blip_animation.gif"
+            alt="Blip Animation"
+          />
+        </div>
+        <div
+          fxFlex="32"
+          fxLayout="column"
+          fxLayoutAlign="space-around center"
+          class="box"
+          (click)="goTo(analytics); $event.stopPropagation()"
+          *ngIf="campaign.infoLoaded"
+        >
+          <span
+            class="number"
+            matTooltip="{{ campaign.week_blips || 0 | number }}"
+            matTooltipPosition="above"
+            matTooltipDisabled="{{ campaign.week_blips || 0 < 999999 }}"
+          >
+            {{ campaign.week_blips || 0 | number }}
+          </span>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-icon>date_range</mat-icon>
+            <span class="text">{{ 'CAMPAIGNS.THIS_WEEK' | translate }}</span>
+          </div>
+        </div>
+        <div
+          fxFlex="32"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="box"
+          *ngIf="!campaign.infoLoaded"
+        >
+          <img
+            src="https://blipbillboards-marketplace.s3.amazonaws.com/blip_animation.gif"
+            alt="Blip Animation"
+          />
+        </div>
+        <div
+          fxFlex="32"
+          fxLayout="column"
+          fxLayoutAlign="space-around center"
+          class="box"
+          (click)="goTo(analytics); $event.stopPropagation()"
+          *ngIf="campaign.infoLoaded"
+        >
+          <span
+            class="number"
+            matTooltip="{{ campaign.yesterday_blips || 0 | number }}"
+            matTooltipPosition="above"
+            matTooltipDisabled="{{ campaign.yesterday_blips || 0 < 999999 }}"
+          >
+            {{ campaign.yesterday_blips || 0 | number }}
+          </span>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-icon>today</mat-icon>
+            <span class="text">{{ 'YESTERDAY' | translate }}</span>
+          </div>
+        </div>
+        <div
+          fxFlex="32"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="box"
+          *ngIf="!campaign.infoLoaded"
+        >
+          <img
+            src="https://blipbillboards-marketplace.s3.amazonaws.com/blip_animation.gif"
+            alt="Blip Animation"
+          />
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="row" fxLayoutAlign="start center" class="see-analytics">
+          <mat-icon>equalizer</mat-icon>
+          <a
+            data-cy="see-all-analytics"
+            (click)="goTo(analytics); $event.stopPropagation()"
+            >{{ 'CAMPAIGNS.SEE_ANALYTICS' | translate }}</a
+          >
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="card back">
+      <div *ngIf="waitingToLaunch">
+        <mat-toolbar fxLayoutAlign="space-between center" class="toolbar">
+          <app-campaign-menu
+            [campaign]="campaign"
+            [iconType]="'dehaze'"
+            class="more"
+            (click)="$event.stopPropagation()"
+          >
+          </app-campaign-menu>
+        </mat-toolbar>
+
+        <app-waiting-to-launch
+          [campaign]="campaign"
+          [artworkLink]="artwork"
+        ></app-waiting-to-launch>
+      </div>
+      <div *ngIf="!waitingToLaunch">
+        <mat-toolbar fxLayoutAlign="end center" class="toolbar">
+          <button
+            mat-icon-button
+            class="close"
+            (click)="showNotifications = !showNotifications"
+            matTooltip="{{ 'CLOSE' | translate }}"
+            matTooltipPosition="below"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-toolbar>
+
+        <div *ngFor="let notification of campaign.notifications">
+          <div class="notification">
+            {{ notification.key | translate: notification.params }}
+            <a
+              *ngIf="notification.params.linkText"
+              (click)="
+                invokeLinkFunction(notification.params.linkFunction);
+                $event.stopPropagation()
+              "
+              class="notification-cta"
+              >{{ notification.params.linkText | translate }}</a
+            >
+          </div>
+
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

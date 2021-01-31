@@ -1,0 +1,204 @@
+@import '../../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+$google-white: #ffffff;
+
+agm-map {
+  height: 100%;
+}
+
+.container {
+  background-color: $white;
+}
+
+.map-container {
+  min-width: 291px;
+  max-width: 291px;
+  height: 320px;
+  margin-left: 8px;
+}
+
+.map-container-expand,
+.map-container-mobile {
+  max-width: 100%;
+  width: 100%;
+  margin-left: 0;
+}
+
+.map-container-expand {
+  height: 400px;
+  margin-bottom: 16px;
+}
+
+.map-container-mobile {
+  height: 216px;
+}
+
+.map-container,
+.map-container-expand,
+.map-container-mobile {
+  position: relative;
+}
+
+.mobile-add-remove-buttons {
+  width: 265px;
+  padding: 8px 0;
+}
+
+.scroll-container {
+  height: calc(100vh - 400px);
+  min-height: 320px;
+  width: 100%;
+}
+
+.scroll-map-expand {
+  height: calc(100vh - 815px);
+  min-height: 246px;
+}
+
+.scroll-mobile {
+  height: calc(100vh - 240px);
+  min-height: 0;
+}
+
+.width-60 {
+  width: 60%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.scroll-container-mobile {
+  min-width: 200px;
+  margin-bottom: 16px;
+}
+
+cdk-virtual-scroll-viewport ::ng-deep {
+  .cdk-virtual-scroll-content-wrapper {
+    max-width: 100%;
+  }
+}
+
+.no-signs {
+  font-size: $eighteen;
+  color: $black;
+  .expand-search {
+    font-size: $fourteen;
+  }
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.order-3 {
+  order: 3;
+}
+
+.expand-btn,
+.minimize-btn {
+  background: none;
+  background-color: $google-white;
+  border: 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+  cursor: pointer;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  top: 9px;
+  right: 9px;
+  z-index: 99;
+}
+
+.expand-btn:focus,
+.minimize-btn:focus {
+  outline: 0;
+}
+
+.expand-btn {
+  img {
+    content: url(https://blipbillboards-marketplace.s3.amazonaws.com/svg/light-map-expand.svg);
+  }
+}
+
+.expand-btn:hover {
+  img {
+    content: url(https://blipbillboards-marketplace.s3.amazonaws.com/svg/dark-map-expand.svg);
+  }
+}
+
+.minimize-btn {
+  img {
+    content: url(https://blipbillboards-marketplace.s3.amazonaws.com/svg/light-map-minimize.svg);
+  }
+}
+
+.minimize-btn:hover {
+  img {
+    content: url(https://blipbillboards-marketplace.s3.amazonaws.com/svg/dark-map-minimize.svg);
+  }
+}
+
+.search-form-field {
+  width: 250px;
+}
+
+.sign-filter {
+  width: 265px;
+}
+
+::ng-deep .mat-select-value {
+  color: $black !important;
+}
+
+:host ::ng-deep .sign-filter.wrapper div.mat-form-field-wrapper {
+  font-size: $eighteen;
+  color: $black;
+  font-weight: 500;
+  padding: 5px 0 0 0;
+  margin: 0;
+
+  ::ng-deep div.mat-form-field-infix {
+    padding: 0.065em 0 !important;
+  }
+
+  ::ng-deep div.mat-select-arrow-wrapper {
+    transform: translateY(0%) !important;
+  }
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $light-gray;
+  margin: 12px 0;
+  color: $black;
+}
+
+.sign-list-header {
+  min-width: 400px;
+  width: 100%;
+  margin-left: 216px;
+  padding-right: 247px;
+  font-weight: medium;
+  font-size: $twelve;
+  color: $black;
+}
+
+.add-remove-container {
+  min-width: 265px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.disabled-button {
+  opacity: 0.8;
+  cursor: not-allowed;
+}

@@ -1,0 +1,211 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="reports-container"
+>
+  <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="reports">{{ 'REPORTS.TEXT' | translate }}</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" class="report-type">
+    <mat-form-field
+      fxFlex.xs="100"
+      fxFlex.sm="50"
+      fxFlex.md="30"
+      fxFlex.gt-md="20"
+    >
+      <mat-select
+        [placeholder]="'REPORTS.SELECT' | translate"
+        [(value)]="selectedReport"
+      >
+        <mat-option *ngFor="let report of reportTypes" [value]="report.value">
+          {{ report.text | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="report-options" *ngIf="organization">
+    <app-invoice
+      [organization]="organization"
+      *ngIf="selectedReport === 'invoice'"
+    ></app-invoice>
+    <app-pop
+      [organization]="organization"
+      (report)="createdReport($event)"
+      *ngIf="selectedReport === 'pop'"
+    ></app-pop>
+    <app-campaign-spend
+      [organization]="organization"
+      (report)="createdReport($event)"
+      *ngIf="selectedReport === 'campaignSpend'"
+    ></app-campaign-spend>
+  </div>
+
+  <div class="report-table" *ngIf="dataSource.data.length">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <!-- Report Column -->
+      <ng-container matColumnDef="report">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'REPORTS.TEXT' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let report" class="cell-text">
+          <span *ngIf="report.type === 'ProofOfPlay'">
+            {{ 'REPORTS.POP.TEXT' | translate }} -
+            {{
+              (report.parameters.detailed
+                ? 'REPORTS.POP.DETAILED'
+                : 'REPORTS.POP.SUMMARY') | translate
+            }}
+          </span>
+          <span *ngIf="report.type === 'ProofOfPlayBySign'">
+            {{ 'REPORTS.DAILY_PLAY.TEXT' | translate }}
+          </span>
+          <span *ngIf="report.type === 'CampaignSpend'">
+            {{ 'REPORTS.CAMPAIGN_SPEND.TEXT' | translate }}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell
+          fxHide.xs
+          *matHeaderCellDef
+          mat-sort-header
+          class="sort-header"
+          >{{ 'DESCRIPTION' | translate }}
+        </mat-header-cell>
+        <mat-cell fxHide.xs *matCellDef="let report" class="cell-text">
+          <span>
+            {{ report.starting | date: 'MM/d/yyyy' }}
+            -
+            {{ report.ending | date: 'MM/d/yyyy' }}
+            <span *ngIf="!report.parameters?.campaign_name">
+              {{
+                'REPORTS.FOR'
+                  | translate: { recipient: report.organization.name }
+              }}
+            </span>
+            <span *ngIf="report.parameters?.campaign_name">
+              {{
+                'REPORTS.FOR'
+                  | translate: { recipient: report.parameters.campaign_name }
+              }}
+            </span>
+            <span *ngIf="report.parameters?.ads">
+              -
+              {{ report.parameters.ads.length }}
+              {{
+                (report.parameters?.ads?.length === 1 ? 'AD' : 'ADS.TEXT')
+                  | translate
+              }}
+            </span>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Created Column -->
+      <ng-container matColumnDef="created">
+        <mat-header-cell
+          fxFlex.xs="25"
+          fxFlex.gt-xs="15"
+          fxFlex.gt-sm="10"
+          fxFlex.gt-md="8"
+          *matHeaderCellDef
+          mat-sort-header
+          class="sort-header"
+        >
+          {{ 'CREATED' | translate }}
+        </mat-header-cell>
+        <mat-cell
+          fxFlex.xs="25"
+          fxFlex.gt-xs="15"
+          fxFlex.gt-sm="10"
+          fxFlex.gt-md="8"
+          *matCellDef="let report"
+          class="cell-text"
+        >
+          {{ report.created | date: 'MM/d/yyyy' }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="files">
+        <mat-header-cell
+          fxFlex.xs="20"
+          fxFlex.gt-xs="15"
+          fxFlex.gt-sm="10"
+          fxFlex.gt-md="8"
+          *matHeaderCellDef
+          mat-sort-header
+          class="sort-header"
+        >
+          {{ 'REPORTS.FILES' | translate }}
+        </mat-header-cell>
+        <mat-cell
+          fxFlex.xs="20"
+          fxFlex.gt-xs="15"
+          fxFlex.gt-sm="10"
+          fxFlex.gt-md="8"
+          *matCellDef="let report"
+          class="cell-text"
+          fxFlexLayout="column"
+        >
+          <div class="loading" *ngIf="!report.completed">
+            {{ 'REPORTS.LOADING' | translate }}
+          </div>
+          <div
+            class="download-links"
+            fxLayout="row"
+            fxLayoutAlign="space-between"
+            *ngIf="report.completed"
+          >
+            <a (click)="openPdf(report)">{{ 'REPORTS.PDF' | translate }}</a>
+            <a
+              (click)="openCsv(report)"
+              *ngIf="report.csv_url && userIsReseller"
+              >{{ 'REPORTS.CSV' | translate }}</a
+            >
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell
+          fxFlex.xs="10"
+          fxFlex="5"
+          *matHeaderCellDef
+        ></mat-header-cell>
+        <mat-cell
+          fxFlex.xs="10"
+          fxFlex="5"
+          *matCellDef="let report"
+          class="cell-text"
+        >
+          <mat-icon
+            class="delete-report"
+            (click)="deleteReport(report.id); $event.stopPropagation()"
+          >
+            delete
+          </mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      *ngIf="dataSource.data.length > 10"
+      #paginator
+      [pageSize]="paginatorPageSizes[0]"
+      [pageSizeOptions]="paginatorPageSizes"
+      [showFirstLastButtons]="true"
+      class="paginator"
+    >
+    </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.margin-top {
+  padding-top: 30px;
+}
+.xs,
+.sm {
+  padding-top: 15px;
+}
+
+.menu {
+  margin-right: 5px;
+}
+
+.sort-header {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.cell-text {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 18px;
+}
+
+.num-ads {
+  mat-icon {
+    color: $light-gray;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+  }
+
+  span {
+    color: $dark-gray;
+    font-size: $fifteen;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    line-height: 18px;
+  }
+}
+
+.mat-row {
+  height: 60px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: darken($color: $white, $amount: 2);
+  }
+}
+
+.art {
+  padding: 8px 0px;
+
+  div {
+    padding-right: 8px !important;
+  }
+
+  .artwork {
+    max-height: 50px;
+    max-width: 118px;
+    height: auto;
+    width: auto;
+  }
+}
+
+.art-sm {
+  width: 100px;
+
+  img {
+    max-height: 50px;
+    max-width: 95px;
+    height: auto;
+    width: auto;
+  }
+}
+
+.no-playlists {
+  color: $dark-gray;
+  font-size: $fifteen;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.list {
+  .mat-card {
+    padding: 16px;
+    margin-bottom: 16px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: darken($color: $white, $amount: 2);
+    }
+
+    .menu {
+      position: relative;
+      left: -3px;
+      top: -3px;
+    }
+
+    .name {
+      color: $dark-gray;
+      font-size: $thirteen;
+      font-weight: bold;
+      margin-bottom: 8px;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      /*! autoprefixer: ignore next */
+      -webkit-box-orient: vertical;
+    }
+
+    .contains {
+      color: $dark-gray;
+      font-size: $twelve;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .modified {
+      color: $light-gray;
+      font-size: $fourteen;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  }
+}
+
+mat-cell:first-child,
+mat-footer-cell:first-child,
+mat-header-cell:first-child {
+  padding-left: 0 !important;
+}

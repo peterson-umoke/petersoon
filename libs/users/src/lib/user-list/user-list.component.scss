@@ -1,0 +1,55 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.blue-outlined-button {
+  border-radius: 20px;
+  color: $light-blue;
+  font-size: $fifteen;
+  font-weight: $medium;
+  height: 32px;
+  line-height: 30px !important;
+}
+
+.sort-header {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: $semi-bold;
+  letter-spacing: -0.3px;
+}
+
+.cell-text {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: $medium;
+  letter-spacing: -0.3px;
+}
+
+.role-cell {
+  flex-wrap: wrap;
+}
+
+mat-list {
+  margin-top: 16px;
+}
+
+.users {
+  min-height: 48px;
+  padding: 16px 0px 8px 0px;
+
+  span {
+    padding-bottom: 4px;
+  }
+
+  .name {
+    font-weight: $semi-bold;
+  }
+
+  .roles {
+    flex-wrap: wrap;
+  }
+
+  .user-info-row {
+    border-left: 3px solid $background-gray;
+    padding-left: 8px;
+  }
+}

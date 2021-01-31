@@ -1,0 +1,187 @@
+<main>
+  <div class="background"></div>
+
+  <section class="referral-header">
+    <h1 class="headers">
+      {{ 'REFERRALS.BLIP_REFERALL' | translate }}
+    </h1>
+  </section>
+
+  <section class="referral-program">
+    <p class="referral-content">
+      {{ 'REFERRALS.SEVENTY-FIVE' | translate }}
+      <br />
+      <br />
+      {{ 'REFERRALS.COPY_LINK' | translate }}
+    </p>
+    <div class="referral-link">
+      <p>
+        {{ referralUrl }}
+      </p>
+      <mat-icon
+        svgIcon="content-copy"
+        (click)="copyOnClick($event, referralUrl)"
+        title="Copy"
+      ></mat-icon>
+    </div>
+  </section>
+
+  <section class="friends">
+    <img
+      [src]="
+        'https://blipbillboards-marketplace.s3.amazonaws.com/images/referral-program.png'
+      "
+    />
+  </section>
+
+  <h1 class="title headers">{{ 'REFERRALS.HOW_IT_WORKS' | translate }}</h1>
+
+  <ol class="steps">
+    <div class="step one">
+      <img
+        [src]="
+          'https://blipbillboards-marketplace.s3.amazonaws.com/svg/share.svg'
+        "
+      />
+      <li>
+        <h4>{{ 'REFERRALS.STEPS.YOU_SHARE' | translate }}</h4>
+        <p>{{ 'REFERRALS.STEPS.SHARE_IT' | translate }}</p>
+        <ul class="social-media">
+          <li>
+            <a href="https://twitter.com/">
+              <mat-icon svgIcon="twitter"></mat-icon>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/">
+              <mat-icon svgIcon="facebook"></mat-icon>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/">
+              <mat-icon svgIcon="linkedin"></mat-icon>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/">
+              <mat-icon svgIcon="instagram"></mat-icon>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+
+    <div class="step two">
+      <img
+        [src]="
+          'https://blipbillboards-marketplace.s3.amazonaws.com/svg/pencil.svg'
+        "
+      />
+      <li>
+        <h4>{{ 'REFERRALS.STEPS.FRIENDS_SIGN_UP' | translate }}</h4>
+        <p>{{ 'REFERRALS.STEPS.SOMEONE_USES' | translate }}</p>
+      </li>
+    </div>
+
+    <div class="step three">
+      <img
+        [src]="
+          'https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign.svg'
+        "
+      />
+      <li>
+        <h4>{{ 'REFERRALS.STEPS.THEY_SPEND' | translate }}</h4>
+        <p>{{ 'REFERRALS.STEPS.TAKE_CARE' | translate }}</p>
+      </li>
+    </div>
+
+    <div class="step four">
+      <img
+        [src]="
+          'https://blipbillboards-marketplace.s3.amazonaws.com/svg/thumbs-up.svg'
+        "
+      />
+      <li>
+        <h4>{{ 'REFERRALS.STEPS.YOU_GET' | translate }}</h4>
+        <p>{{ 'REFERRALS.STEPS.ENJOY' | translate }}</p>
+      </li>
+    </div>
+  </ol>
+
+  <div class="divider"></div>
+
+  <h1 class="quick-tools headers">{{ 'REFERRALS.QUICK_TOOLS' | translate }}</h1>
+
+  <div class="share tool">
+    <h4>{{ 'REFERRALS.SHARE_LINK' | translate }}</h4>
+    <p>{{ 'REFERRALS.SHARE_IT' | translate }}</p>
+    <div class="referral-link">
+      <p>
+        {{ referralUrl }}
+      </p>
+      <mat-icon
+        svgIcon="content-copy"
+        (click)="copyOnClick($event, referralUrl)"
+        title="Copy"
+      ></mat-icon>
+    </div>
+  </div>
+
+  <div class="embed tool">
+    <h4>{{ 'REFERRALS.EMBED' | translate }}</h4>
+    <p>{{ 'REFERRALS.EMBED_SHARE' | translate }}</p>
+    <mat-toolbar
+      fxLayout="row"
+      class="toolbar"
+      fxLayoutAlign="space-between center"
+    >
+      <nav mat-tab-nav-bar>
+        <a
+          mat-tab-link
+          [active]="activeOptionIndex === 1"
+          (click)="activeOptionIndex = 1"
+        >
+          Option 1
+        </a>
+        <a
+          mat-tab-link
+          [active]="activeOptionIndex === 2"
+          (click)="activeOptionIndex = 2"
+        >
+          Option 2
+        </a>
+        <a
+          mat-tab-link
+          [active]="activeOptionIndex === 3"
+          (click)="activeOptionIndex = 3"
+        >
+          Option 3 </a
+        ><a
+          mat-tab-link
+          [active]="activeOptionIndex === 4"
+          (click)="activeOptionIndex = 4"
+        >
+          Option 4
+        </a>
+      </nav>
+    </mat-toolbar>
+    <div class="referral-link">
+      <p>
+        {{ embedIframe }}
+      </p>
+      <mat-icon
+        svgIcon="content-copy"
+        (click)="copyOnClick($event, embedIframe)"
+        title="Copy"
+      ></mat-icon>
+    </div>
+    <iframe
+      [src]="referralHtml | safe: 'resourceUrl'"
+      height="233"
+      width="280"
+      scrolling="no"
+      frameBorder="0"
+    >
+    </iframe>
+  </div>
+</main>

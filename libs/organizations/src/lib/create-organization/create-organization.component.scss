@@ -1,0 +1,156 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.form-holder {
+  background: $background-gray;
+  height: 100vh;
+  padding: 0px 16px 32px;
+
+  .card {
+    padding: 16px 48px 32px;
+  }
+
+  .card-xs {
+    padding: 16px;
+  }
+
+  .logo-holder {
+    margin-bottom: 16px;
+    padding-left: 48px;
+
+    img.blip-logo {
+      width: 100px;
+    }
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .logo-holder-xs {
+    padding-left: 16px;
+  }
+
+  .create-org {
+    margin: 12px 0 20px 0;
+
+    span {
+      color: $dark-gray;
+      font-size: $twenty-four;
+      font-weight: $normal;
+    }
+  }
+
+  .create-org-xs {
+    span {
+      font-size: $twenty-two;
+    }
+  }
+
+  .input-question {
+    span {
+      color: $dark-gray;
+      font-size: $fifteen;
+      font-weight: $normal;
+      margin-bottom: 4px;
+    }
+  }
+
+  .input-question-xs {
+    font-size: $twelve;
+  }
+
+  .yes-no-buttons {
+    margin-bottom: 30px;
+
+    .yes,
+    .no {
+      height: 30px;
+      text-align: center;
+      width: 96px;
+    }
+
+    .yes {
+      margin-right: 16px;
+    }
+  }
+
+  .warn {
+    color: $red !important;
+  }
+
+  .checkbox {
+    margin-top: 10px;
+
+    .checkbox-text {
+      margin-left: 15px;
+
+      .agree {
+        color: $dark-gray;
+        font-size: $thirteen;
+        font-weight: $semi-bold;
+        letter-spacing: -0.26px;
+        line-height: 15px;
+        text-transform: capitalize;
+      }
+
+      .terms {
+        color: $light-blue;
+        font-size: $thirteen;
+        font-weight: $semi-bold;
+        letter-spacing: -0.26px;
+        line-height: 15px;
+        text-decoration: none;
+        text-transform: capitalize;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .mat-button-toggle-group-appearance-standard,
+  .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+    border-radius: 2px !important;
+  }
+
+  mat-button-toggle ::ng-deep {
+    .mat-button-toggle-label-content {
+      line-height: 30px !important;
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  // #region Material Button Toggle Group
+  .mat-button-toggle-group {
+    border: none;
+    box-shadow: none;
+  }
+
+  .mat-button-toggle {
+    border: 1px solid $light-blue;
+    border-left: 1px solid $light-blue !important;
+    border-radius: 2px;
+    background-color: $white;
+    box-shadow: 0 3px 4px 0 rgba(19, 72, 84, 0.12);
+    color: $light-blue;
+    font-size: $fifteen;
+    font-weight: $normal;
+    letter-spacing: -0.3px;
+    line-height: 18px;
+  }
+
+  .mat-button-toggle-checked {
+    background-color: $light-blue;
+    box-shadow: 0 3px 4px 0 rgba(19, 72, 84, 0.12);
+    color: $white;
+    font-size: $fifteen;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    line-height: 18px;
+  }
+
+  // #endregion
+}

@@ -1,0 +1,62 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Business Types
+    match /business-types/{document=**} {
+      // Always allow read
+      allow write, read: if true;
+    }
+
+    // Design
+    match /design/{document=**} {
+      // Always allow read
+      allow read, write: if true;
+    }
+
+    // Endpoints
+    match /endpoints/{document=**} {
+      // Always allow read
+      allow read: if true;
+      // Do not allow writing, deleting, or updating
+      allow write, delete, update: if false;
+    }
+
+    // Logs
+    match /logs/{document=**} {
+      allow write: if request.auth.uid != null;
+    }
+
+    // Reports
+    match /reports/{document=**} {
+      // Always allow read
+      allow read: if true;
+      allow write, delete, update: if false;
+    }
+
+    // Template Fonts
+    match /template-fonts/{document=**} {
+      // Always allow read
+      allow write, read: if true;
+    }
+
+    // Template Sizes
+    match /template-sizes/{document=**} {
+      // Always allow read
+      allow write, read: if true;
+    }
+
+    // Templates
+    match /templates/{document=**} {
+      // Always allow read
+      allow write, read: if true;
+    }
+
+    // Users
+    match /users/{userId} {
+      // Allow read if authenticated and matches the uid
+      allow read: if request.auth.uid == userId
+      // Allow creating a record if you are authenticated
+      allow create, update: if request.auth.uid != null && request.auth.uid == userId;
+      allow delete: if false;
+    }
+  }
+}

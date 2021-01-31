@@ -1,0 +1,51 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.live {
+  border: 1px solid $green;
+  .mat-button-toggle-checked {
+    background-color: $green;
+    color: $white;
+  }
+}
+.paused {
+  border: 1px solid $orange;
+  .mat-button-toggle-checked {
+    background-color: $orange;
+    color: $white;
+  }
+}
+
+.toggle-group ::ng-deep {
+  height: 20px;
+
+  mat-button-toggle {
+    height: 20px;
+    width: 25px;
+  }
+
+  .mat-button-toggle-label-content {
+    height: 20px !important;
+    padding: 0 !important;
+    text-align: center;
+    width: 25px !important;
+  }
+
+  mat-icon {
+    font-size: 14px;
+    height: 20px;
+    line-height: 0;
+    position: relative;
+    top: -6px;
+    width: 25px;
+  }
+}
+
+.request-approval {
+  font-size: $thirteen;
+  font-weight: 500;
+  height: 28px;
+  line-height: inherit;
+  margin-bottom: 24px;
+  width: 156px;
+}

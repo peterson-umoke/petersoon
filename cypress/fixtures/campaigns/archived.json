@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": [
+    {
+      "id": "d9c7q4",
+      "campaign_type": "STANDARD",
+      "daily_budget": 20.0,
+      "deleted": "2019-09-18T17:56:17.280Z",
+      "description": "",
+      "enabled": true,
+      "end_date": null,
+      "max_price": null,
+      "name": "My Archived Campaign",
+      "start_date": null,
+      "timezone": "America/Denver",
+      "thumbnails": [
+        "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-8q2dw2-960x540-89e79e1a-thumbnail.png"
+      ]
+    }
+  ]
+}

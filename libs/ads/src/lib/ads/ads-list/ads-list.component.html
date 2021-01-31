@@ -1,0 +1,115 @@
+<mat-table #table [dataSource]="dataSource" matSort class="table" fxHide.lt-md>
+  <!-- Art Column -->
+  <ng-container matColumnDef="art">
+    <mat-header-cell fxFlex="20" *matHeaderCellDef class="sort-header">{{
+      'ART' | translate
+    }}</mat-header-cell>
+    <mat-cell
+      fxFlex="20"
+      *matCellDef="let ad"
+      class="cell-text art"
+      fxLayout="column"
+      fxLayoutAlign="center start"
+    >
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <app-ad-menu class="menu" [ad]="ad"></app-ad-menu>
+        <img
+          fxFlex="85"
+          class="artwork"
+          [src]="
+            ad.images[0]?.url ||
+            'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+          "
+          [alt]="ad.name"
+          appImageViewer
+          [images]="ad.images"
+          [imageIndex]="0"
+        />
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="ad">
+    <mat-header-cell
+      fxFlex="50"
+      *matHeaderCellDef
+      mat-sort-header
+      class="sort-header"
+      >{{ 'AD' | translate }}
+    </mat-header-cell>
+    <mat-cell fxFlex="50" *matCellDef="let ad" class="cell-text ad-name">
+      <span>{{ ad.name }}</span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Number of Ads Column -->
+  <ng-container matColumnDef="num_of_ads">
+    <mat-header-cell
+      fxFlex="15"
+      *matHeaderCellDef
+      mat-sort-header
+      class="sort-header"
+      >{{ 'ADS.NUM_OF' | translate }}
+    </mat-header-cell>
+    <mat-cell fxFlex="15" *matCellDef="let ad" class="cell-text num-ads">
+      <mat-icon appImageViewer [images]="ad.images" [imageIndex]="0"
+        >collections</mat-icon
+      >
+      <span
+        >{{ ad.images.length }}
+        {{ (ad.images.length === 1 ? 'SIZE' : 'SIZES') | translate }}</span
+      >
+    </mat-cell>
+  </ng-container>
+
+  <!-- Start Date Column -->
+  <ng-container matColumnDef="uploaded">
+    <mat-header-cell
+      fxFlex="15"
+      *matHeaderCellDef
+      mat-sort-header
+      class="sort-header"
+    >
+      {{ 'DATE' | translate }} {{ 'UPLOADED' | translate }}
+    </mat-header-cell>
+    <mat-cell fxFlex="15" *matCellDef="let ad" class="cell-text">{{
+      ad.created | date: 'MM/d/yyyy'
+    }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<mat-paginator
+  *ngIf="dataSource.data.length > 20"
+  fxHide.lt-md
+  #paginator
+  [pageSize]="5"
+  [pageSizeOptions]="paginatorPageSizes"
+  [showFirstLastButtons]="true"
+  class="paginator"
+></mat-paginator>
+
+<!-- Small and Extra Small List -->
+<div fxHide.gt-sm *ngFor="let ad of filteredAds" class="list" fxLayout="column">
+  <mat-card fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayoutAlign="start">
+      <app-ad-menu class="menu-sm" [ad]="ad"></app-ad-menu>
+      <div fxLayout="column" fxLayoutAlign="space-between">
+        <span class="name">{{ ad.name }}</span>
+        <span class="sizes" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon class="icon">collections</mat-icon>
+          <span
+            >{{ ad.images.length }}
+            {{ (ad.images.length === 1 ? 'SIZE' : 'SIZES') | translate }}</span
+          >
+        </span>
+      </div>
+    </div>
+    <div class="dates" fxLayout="column" fxLayoutAlign="start end">
+      <span class="text">{{ 'CREATED' | translate }}</span>
+      <span class="created">{{ ad.created | date: 'd MMM yyyy' }}</span>
+    </div>
+  </mat-card>
+</div>

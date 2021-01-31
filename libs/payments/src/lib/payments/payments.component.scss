@@ -1,0 +1,40 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+@media only screen and (min-width: 600px) {
+  .payments-container {
+    margin-top: 30px;
+  }
+}
+
+.xs,
+.sm {
+  margin: 16px 8px 0px 8px;
+}
+
+.payments {
+  color: $dark-gray;
+  font-size: $fifteen;
+  line-height: 18px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+.blue-filled-button,
+.disabled-button {
+  mat-icon {
+    font-size: $fifteen;
+    font-weight: 500;
+    position: relative;
+    top: 4px;
+  }
+
+  font-size: $fifteen;
+  font-weight: 500;
+  height: 32px;
+  line-height: 32px !important;
+}
+
+.credit {
+  margin-left: 8px;
+}

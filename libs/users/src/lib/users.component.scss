@@ -1,0 +1,38 @@
+@import '../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../apps/Marketplace/src/styles/sizes.scss';
+
+@media only screen and (min-width: 600px) {
+  .users-container {
+    margin-top: 30px;
+  }
+}
+
+.blue-filled-button {
+  font-size: $fifteen;
+  font-weight: $medium;
+  height: 32px;
+  line-height: 32px !important;
+
+  mat-icon {
+    font-size: $fifteen;
+    font-weight: $medium;
+    position: relative;
+    top: 4px;
+  }
+}
+
+.xs,
+.sm {
+  margin: 16px 8px 0px 8px;
+}
+
+.header {
+  margin-top: 40px;
+
+  .users {
+    color: $dark-gray;
+    font-size: $fifteen;
+    font-weight: $semi-bold;
+    line-height: 18px;
+  }
+}

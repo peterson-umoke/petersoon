@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": {
+    "user": {
+      "id": "r5sa64",
+      "email": "testfinished@test.com",
+      "email_verified": "2019-09-04T21:23:44.434391Z",
+      "phone": "5555555555",
+      "first_name": "",
+      "last_name": "",
+      "terms_accepted": "2019-09-04T21:24:02.739614Z",
+      "timezone": "America/Denver"
+    },
+    "organizations": [
+      {
+        "id": "qtxt6x",
+        "owner": "r5sa64",
+        "created": 1567632243000,
+        "modified": 1569855674000,
+        "name": "Test Organization",
+        "category": null,
+        "location": {
+          "address_components": [
+            {
+              "long_name": "1412",
+              "short_name": "1412",
+              "types": [
+                "street_number"
+              ]
+            },
+            {
+              "long_name": "South Geneva Road",
+              "short_name": "S Geneva Rd",
+              "types": [
+                "route"
+              ]
+            },
+            {
+              "long_name": "Sunset Heights",
+              "short_name": "Sunset Heights",
+              "types": [
+                "neighborhood",
+                "political"
+              ]
+            },
+            {
+              "long_name": "Orem",
+              "short_name": "Orem",
+              "types": [
+                "locality",
+                "political"
+              ]
+            },
+            {
+              "long_name": "Utah County",
+              "short_name": "Utah County",
+              "types": [
+                "administrative_area_level_2",
+                "political"
+              ]
+            },
+            {
+              "long_name": "Utah",
+              "short_name": "UT",
+              "types": [
+                "administrative_area_level_1",
+                "political"
+              ]
+            },
+            {
+              "long_name": "United States",
+              "short_name": "US",
+              "types": [
+                "country",
+                "political"
+              ]
+            },
+            {
+              "long_name": "84058",
+              "short_name": "84058",
+              "types": [
+                "postal_code"
+              ]
+            }
+          ],
+          "formatted_address": "1412 S Geneva Rd, Orem, UT 84058, USA",
+          "geometry": {
+            "location": {
+              "lat": 40.2714098,
+              "lng": -111.7251147
+            },
+            "viewport": {
+              "south": 40.2702192697085,
+              "west": -111.72611693029148,
+              "north": 40.2729172302915,
+              "east": -111.72341896970852
+            }
+          },
+          "id": "d4a15d55192e32312026c2163ed3033d9f1dba80",
+          "name": "1412 S Geneva Rd",
+          "place_id": "ChIJFx3eUgWbTYcRtPqFdklGl5Y",
+          "types": [
+            "street_address"
+          ],
+          "url": "https://maps.google.com/?q=1412+S+Geneva+Rd,+Orem,+UT+84058,+USA&ftid=0x874d9b0552de1d17:0x969746497685fab4",
+          "utc_offset": -360,
+          "vicinity": "Orem"
+        },
+        "type": "MARKETPLACE",
+        "allow_tagging": false,
+        "allow_video": null
+      }
+    ],
+    "config": {
+      "ANALYTICS_KEY": null,
+      "CURRENCY_CODE": "USD",
+      "GOOGLE_JS_MAPS_KEY": null,
+      "GOOGLE_STATIC_MAPS_KEY": null,
+      "LOCALE_CODE": "en",
+      "LOCALE_ID": "en-US",
+      "SCRAPE_URL": "https://blip-scraper.herokuapp.com/scrape_json",
+      "SPREEDLY_KEY": "Y8T36KDytUzfILp49yQuJ6e4HjF"
+    }
+  }
+}

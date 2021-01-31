@@ -1,0 +1,230 @@
+<div ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.gt-md="gt-md">
+  <div class="profile">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+      <span>{{ 'PROFILE.INFORMATION' | translate }}</span>
+    </div>
+
+    <div
+      fxLayout.gt-xs="row"
+      fxLayoutAlign="start start"
+      fxLayout.xs="column"
+      class="profile-form"
+    >
+      <form fxFlex.gt-xs="80" [formGroup]="profileForm">
+        <div fxLayout.gt-xs="row" fxLayoutGap.gt-xs="48px" fxLayout="column">
+          <div fxLayout="row">
+            <mat-form-field
+              appearance="outline"
+              appUpdateOutlineGap
+              fxFlex.xs="100"
+            >
+              <mat-label [translate]="'NAME.FIRST'"></mat-label>
+              <input
+                matInput
+                type="text"
+                [formControl]="profileForm.controls['first_name']"
+              />
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <mat-form-field
+              appearance="outline"
+              appUpdateOutlineGap
+              fxFlex.xs="100"
+            >
+              <mat-label [translate]="'NAME.LAST'"></mat-label>
+              <input
+                matInput
+                type="text"
+                [formControl]="profileForm.controls['last_name']"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field
+            appearance="outline"
+            appUpdateOutlineGap
+            fxFlex.xl="15"
+            fxFlex.lg="20"
+            fxFlex.md="25"
+            fxFlex.sm="40"
+            fxFlex.xs="50"
+          >
+            <mat-label [translate]="'PHONE_NUMBER.TEXT'"></mat-label>
+            <input
+              matInput
+              required
+              type="tel"
+              appPhoneNumber
+              [formControl]="profileForm.controls['phone']"
+            />
+            <mat-error
+              *ngIf="profileForm.controls['phone'].hasError('pattern')"
+              [innerHTML]="'PHONE_NUMBER.HINT' | translate"
+            ></mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="preferences" *ngIf="showPreferences">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+      <span>{{ 'ACCOUNT.CHOOSE_PREFERENCES' | translate }}</span>
+    </div>
+
+    <div
+      class="options"
+      gdRows="auto auto"
+      gdColumns.gt-sm="200px 200px"
+      gdGap.gt-sm="32px 60px"
+      gdAreas.gt-sm="language money"
+      gdColumns.gt-xs="200px 200px"
+      gdGap.gt-xs="32px 60px"
+      gdAreas.gt-xs="language money"
+      gdColumns.xs="200px"
+      gdGap.xs="32px"
+      gdAreas.xs="language | money"
+    >
+      <div gdArea="language">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+          class="preference-header"
+        >
+          <img
+            [src]="
+              'https://blipbillboards-marketplace.s3.amazonaws.com/svg/purple_world.svg'
+            "
+          />
+          <span>{{ 'PREFERENCES.CHOOSE_LANGUAGE' | translate }}</span>
+        </div>
+        <mat-button-toggle-group
+          name="language"
+          [value]="preferences.language"
+          [vertical]="true"
+          (change)="changeLanguage($event)"
+          class="toggle-group"
+        >
+          <mat-button-toggle value="en-US">
+            <span>{{ 'LANGUAGES.EN' | translate }}</span>
+          </mat-button-toggle>
+          <mat-button-toggle value="es-MX">
+            <span>{{ 'LANGUAGES.ES' | translate }}</span>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+      <div gdArea="money">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+          class="preference-header"
+        >
+          <img
+            [src]="
+              'https://blipbillboards-marketplace.s3.amazonaws.com/svg/green_money.svg'
+            "
+          />
+          <span>{{ 'PREFERENCES.UNIT' | translate }}</span>
+        </div>
+        <mat-button-toggle-group
+          name="money"
+          [value]="preferences.currency"
+          [vertical]="true"
+          (change)="changeCurrency($event)"
+          class="toggle-group"
+        >
+          <mat-button-toggle value="USD">
+            <span>{{ 'MONEY.USD' | translate }}</span>
+          </mat-button-toggle>
+          <mat-button-toggle value="MXN">
+            <span>{{ 'MONEY.MXN' | translate }}</span>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </div>
+
+  <div class="notifications">
+    <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+      <span>{{ 'NOTIFICATIONS.FREQUENCY' | translate }}</span>
+    </div>
+
+    <div *ngIf="notificationPreferences" class="list" fxLayout="column">
+      <div
+        *ngFor="let notification of notificationPreferences; let last = last"
+        fxLayout="row"
+      >
+        <div
+          class="notification"
+          fxLayout="column"
+          fxLayoutAlign="start start"
+          fxLayoutGap="16px"
+          fxFlex.xs="100"
+          fxFlex.sm="80"
+          fxFlex.gt-xs="75"
+          fxFlex.gt-md="65"
+          fxFlex.gt-lg="50"
+          [ngClass]="{ 'border-bottom': !last }"
+        >
+          <div
+            class="title"
+            fxLayout="row"
+            fxLayoutAlign="start start"
+            fxFlex="25"
+          >
+            <img [src]="notificationData[notification.friendly_name].icon" />
+            <span>{{
+              'NOTIFICATIONS.TYPES.' + notification.friendly_name + '.TITLE'
+                | translate
+            }}</span>
+          </div>
+          <div
+            fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="start start"
+            fxLayoutGap.gt-xs="24px"
+            fxLayout.xs="column"
+            fxLayoutAlign.xs="start start"
+            fxLayoutGap.xs="16px"
+            class="info"
+          >
+            <div class="description" fxFlex="80">
+              <span>{{
+                'NOTIFICATIONS.TYPES.' +
+                  notification.friendly_name +
+                  '.DESCRIPTION' | translate
+              }}</span>
+            </div>
+
+            <div ngClass.gt-xs="select">
+              <mat-form-field
+                appearance="outline"
+                [floatLabel]="notification.send_frequency ? 'never' : 'always'"
+              >
+                <mat-select
+                  [(value)]="notification.send_frequency"
+                  (selectionChange)="
+                    updateNotificationPreferences(notification)
+                  "
+                  [placeholder]="'NOTIFICATIONS.SELECT_FREQUENCY' | translate"
+                >
+                  <mat-option
+                    *ngFor="let frequency of notification.frequency_options"
+                    [value]="frequency"
+                  >
+                    {{ 'NOTIFICATIONS.FREQUENCIES.' + frequency | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

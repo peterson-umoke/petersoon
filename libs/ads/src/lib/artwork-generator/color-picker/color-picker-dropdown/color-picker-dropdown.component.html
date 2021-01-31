@@ -1,0 +1,30 @@
+<div class="container">
+  <div #overlay class="overlay" (click)="toggleColorPicker()"></div>
+  <button
+    (click)="toggleColorPicker()"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    class="color-picker-btn"
+  >
+    <span class="background-text"
+      ><img
+        class="color-ball"
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/color_wheel.svg"
+      />{{ 'CAMPAIGN.CREATION.GENERATOR.BACKGROUND_COLOR' | translate }}</span
+    >
+    <span class="mat-select-arrow"></span>
+  </button>
+  <div
+    #colorDropdown
+    class="color-dropdown"
+    [ngStyle]="{ height: colors ? '239px' : '204px' }"
+  >
+    <ads-color-picker
+      [colors]="colors"
+      [selectedColor]="selectedColor"
+      (onEnter)="toggleColorPicker()"
+      (onUpdateColor)="updateColor($event)"
+    >
+    </ads-color-picker>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div
+  fxLayout="column"
+  ngClass.xs="xs"
+  ngClass.sm="margin-top sm"
+  ngClass.md="margin-top md"
+  ngClass.gt-md="margin-top gt-md"
+  class="container"
+>
+  <div fxFlex="50" fxFlex.sm="75" fxFlex.xs="100" class="images-waiting">
+    <span>{{
+      'VERIFICATIONS.IMAGES_WAITING'
+        | translate: { count: verifications.length }
+    }}</span>
+  </div>
+
+  <div fxFlex="50" fxFlex.sm="75" fxFlex.xs="100" class="approve-or-reject">
+    <span *ngIf="verifications.length">{{
+      'VERIFICATIONS.APPROVE_OR_REJECT' | translate
+    }}</span>
+    <span *ngIf="!verifications.length">{{
+      'VERIFICATIONS.NONE' | translate
+    }}</span>
+  </div>
+
+  <div fxFlex="50" fxFlex.sm="75" fxFlex.xs="100">
+    <mat-divider></mat-divider>
+  </div>
+
+  <div *ngFor="let v of verifications">
+    <div
+      fxLayout="column"
+      fxFlex="50"
+      fxFlex.sm="75"
+      fxFlex.xs="100"
+      class="verification"
+    >
+      <div class="uploaded">
+        {{ 'UPLOADED' | translate }} {{ v.processed | date: 'MMM d, y' }}
+      </div>
+      <div class="filename">{{ v.filename }}</div>
+      <div class="image">
+        <img
+          [src]="v.url"
+          alt="v.filename"
+          appImageViewer
+          [images]="[v]"
+          [imageIndex]="0"
+        />
+      </div>
+      <div class="made-adjustments">
+        {{ 'VERIFICATIONS.ADJUSTMENTS.MADE' | translate }}
+        <ul class="adjustments">
+          <li *ngFor="let change of v.changes | keys">
+            <span *ngIf="change.key === 'brightness'">{{
+              'VERIFICATIONS.ADJUSTMENTS.BRIGHTNESS' | translate
+            }}</span>
+            <span *ngIf="change.key === 'format'">{{
+              'VERIFICATIONS.ADJUSTMENTS.FORMAT' | translate
+            }}</span>
+            <span *ngIf="change.key === 'mode'">{{
+              'VERIFICATIONS.ADJUSTMENTS.MODE' | translate
+            }}</span>
+            <span *ngIf="change.key === 'resized'">{{
+              'VERIFICATIONS.ADJUSTMENTS.RESIZED' | translate
+            }}</span>
+            <span *ngIf="change.key === 'transparency'">{{
+              'VERIFICATIONS.ADJUSTMENTS.TRANSPARENCY' | translate
+            }}</span>
+          </li>
+        </ul>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="bottom">
+        <app-image-outline
+          [height]="v.height"
+          [width]="v.width"
+          [background]="true"
+        ></app-image-outline>
+        <div fxLayoutGap="14px" class="buttons">
+          <button mat-raised-button class="approve" (click)="approve(v.id)">
+            {{ 'APPROVE' | translate }}
+          </button>
+          <button mat-raised-button class="reject" (click)="reject(v.id)">
+            {{ 'REJECT' | translate }}
+          </button>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <mat-toolbar
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    fxLayoutGap="30px"
+    *ngIf="verifications.length"
+  >
+    <button
+      mat-raised-button
+      class="blue-outlined-button"
+      (click)="approveAll()"
+    >
+      <span fxHide.gt-xs>{{ 'VERIFICATIONS.APPROVE.XS' | translate }}</span>
+      <span fxHide.xs>{{ 'VERIFICATIONS.APPROVE.GT_XS' | translate }}</span>
+    </button>
+    <button
+      mat-raised-button
+      class="blue-outlined-button"
+      (click)="rejectAll()"
+    >
+      <span fxHide.gt-xs>{{ 'VERIFICATIONS.REJECT.XS' | translate }}</span>
+      <span fxHide.xs>{{ 'VERIFICATIONS.REJECT.GT_XS' | translate }}</span>
+    </button>
+  </mat-toolbar>
+</footer>

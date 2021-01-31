@@ -1,0 +1,197 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="margin-top sm"
+  ngClass.md="margin-top md"
+  ngClass.gt-md="margin-top gt-md"
+  class="container"
+>
+  <div
+    [ngClass]="{ hidden: !dataSource.data.length || !filteredPlaylists.length }"
+  >
+    <mat-table
+      #table
+      [dataSource]="dataSource"
+      matSort
+      class="table"
+      fxHide.lt-md
+    >
+      <!-- Art Column -->
+      <ng-container matColumnDef="art">
+        <mat-header-cell
+          fxFlex="25"
+          *matHeaderCellDef
+          class="sort-header"
+        ></mat-header-cell>
+        <mat-cell
+          fxFlex="25"
+          *matCellDef="let playlist"
+          class="cell-text art"
+          fxLayout="column"
+          fxLayoutAlign="center start"
+        >
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <app-playlists-menu
+              class="menu"
+              [playlist]="playlist"
+              (click)="$event.stopPropagation()"
+            >
+            </app-playlists-menu>
+            <img
+              fxFlex="85"
+              class="artwork"
+              [src]="
+                playlist.ads[0]?.thumbnail_url ||
+                'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+              "
+              [alt]="playlist.name"
+            />
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell
+          fxFlex="45"
+          *matHeaderCellDef
+          mat-sort-header
+          class="sort-header"
+        >
+          {{ 'NAME.TEXT' | translate }}
+        </mat-header-cell>
+        <mat-cell
+          fxFlex="45"
+          *matCellDef="let playlist"
+          class="cell-text ad-name"
+        >
+          <span>{{ playlist.name }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Number of Ads Column -->
+      <ng-container matColumnDef="num_of_ads">
+        <mat-header-cell
+          fxFlex="15"
+          *matHeaderCellDef
+          mat-sort-header
+          class="sort-header"
+        >
+          {{ 'ADS.NUM_OF' | translate }}
+        </mat-header-cell>
+        <mat-cell
+          fxFlex="15"
+          *matCellDef="let playlist"
+          class="cell-text num-ads"
+        >
+          <mat-icon>collections</mat-icon>
+          <span
+            >{{ playlist.ads.length }}
+            {{
+              (playlist.ads.length === 1 ? 'AD' : 'ADS.TEXT') | translate
+            }}</span
+          >
+        </mat-cell>
+      </ng-container>
+
+      <!-- Start Date Column -->
+      <ng-container matColumnDef="modified">
+        <mat-header-cell
+          fxFlex="15"
+          *matHeaderCellDef
+          mat-sort-header
+          class="sort-header"
+        >
+          {{ 'LAST' | translate }} {{ 'MODIFIED' | translate }}
+        </mat-header-cell>
+        <mat-cell fxFlex="15" *matCellDef="let playlist" class="cell-text">
+          {{ playlist.modified | date: 'MM/d/yyyy' }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="details(row)"
+      ></mat-row>
+    </mat-table>
+    <mat-paginator
+      *ngIf="dataSource.data.length > 20"
+      fxHide.lt-md
+      [pageSize]="5"
+      [pageSizeOptions]="paginatorPageSizes"
+      [showFirstLastButtons]="true"
+      class="paginator"
+    >
+    </mat-paginator>
+
+    <!-- Small and Extra Small List -->
+    <div
+      fxHide.gt-sm
+      *ngFor="let playlist of filteredPlaylists"
+      class="list"
+      fxLayout="column"
+    >
+      <mat-card
+        fxLayout="row"
+        fxLayoutAlign="space-between"
+        (click)="details(playlist)"
+      >
+        <div fxFlex="45" fxLayout="row" fxLayoutAlign="start">
+          <app-playlists-menu
+            class="menu"
+            [playlist]="playlist"
+          ></app-playlists-menu>
+          <div fxFlex="fill" class="art-sm">
+            <div fxFlex="100">
+              <img
+                [src]="
+                  playlist.ads[0]?.thumbnail_url ||
+                  'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+                "
+                [alt]="playlist.name"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          fxFlex="45"
+          class="info"
+          fxLayout="column"
+          fxLayoutAlign="start start"
+        >
+          <span class="name">{{ playlist.name }}</span>
+          <span class="contains">
+            {{ 'CONTAINS' | translate }} {{ playlist.ads.length }}
+            {{ (playlist.ads.length === 1 ? 'AD' : 'ADS.TEXT') | translate }}
+          </span>
+          <span class="modified"
+            >{{ 'MODIFIED' | translate }}
+            {{ playlist.modified | date: 'MM/d/yyyy' }}</span
+          >
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div
+    *ngIf="(playlistService.$loaded | async) && !dataSource.data.length"
+    class="no-playlists"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
+    <span>{{ 'PLAYLISTS.NONE' | translate }}</span>
+  </div>
+
+  <div
+    *ngIf="
+      (playlistService.$loaded | async) &&
+      dataSource.data.length &&
+      !filteredPlaylists.length
+    "
+    class="no-playlists"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
+    <span>{{ 'PLAYLISTS.SEARCH_NO_RESULTS' | translate }}</span>
+  </div>
+</div>

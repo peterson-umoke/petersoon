@@ -1,0 +1,106 @@
+<svg
+  #template xmlns="http://www.w3.org/2000/svg" version="1.1" [attr.width]="width" [attr.height]="height">
+<style #styleTag></style>
+<foreignObject height="100%" width="100%">
+<xhtml:div
+  class="base"
+  [ngClass]="genTemplate | templateClass: containerType"
+  [ngStyle]="{ height: height + 'px', width: width + 'px' }"
+  *ngIf="generatorInfo$ | async as genInfo"
+>
+  <xhtml:div
+    class="primary-section"
+    [ngStyle]="{
+      background: genInfo[getColor(genTemplate, 'primary')].background,
+      color: genInfo[getColor(genTemplate, 'primary')].fontColor
+    }"
+  >
+    <xhtml:div
+      class="headline-container"
+      [ngStyle]="{ 'max-height': (subheadIsEmpty$ | async) ? '90%' : null }"
+    >
+      <xhtml:h1
+        class="headline"
+        coreFitText
+        [elementText]="genInfo.headline"
+        [resize]="triggerResize$ | async"
+        (resized)="fontResized($event)"
+      >
+        <xhtml:span [ngClass]="genInfo.font.replace(' ','')">
+          {{ genInfo.headline | translate }}
+        </xhtml:span>
+      </xhtml:h1>
+    </xhtml:div>
+    <xhtml:div *ngIf="(subheadIsEmpty$ | async) === false" class="spacer"></xhtml:div>
+    <xhtml:div
+      *ngIf="(subheadIsEmpty$ | async) === false"
+      class="subhead-container"
+      [ngStyle]="{
+        height: (subheadIsEmpty$ | async) ? '0%' : null,
+        'max-height': (headlineIsEmpty$ | async) ? '90%' : null
+      }"
+    >
+      <xhtml:h2
+        class="subhead"
+        coreFitText
+        [elementText]="genInfo.subhead"
+        [maxFontSize]="subheadFontSize$ | async"
+        [resize]="triggerResize$ | async"
+        (resized)="subheadOrThirdResized($event)"
+      >
+        <xhtml:span [ngClass]="genInfo.font.replace(' ','')">
+          {{
+            (templatesWithSubheadAndThirdSwap.indexOf(genTemplate) >= 0
+              ? ''
+              : genInfo.subhead) | translate
+          }}</xhtml:span
+        >
+      </xhtml:h2>
+    </xhtml:div>
+  </xhtml:div>
+  <xhtml:div
+    class="secondary-section"
+    [ngStyle]="{
+      background: genInfo[getColor(genTemplate, 'secondary')].background,
+      color: genInfo[getColor(genTemplate, 'secondary')].fontColor
+    }"
+  >
+    <xhtml:div
+      *ngIf="
+        templatesWithSubheadAndThirdSwap.indexOf(genTemplate) >= 0 ||
+        !genInfo.imageURL
+      "
+      class="third-container"
+    >
+      <xhtml:h2
+        coreFitText
+        [elementText]="
+          templatesWithSubheadAndThirdSwap.indexOf(genTemplate) >= 0
+            ? genInfo.subhead
+            : genInfo.third
+        "
+        [maxFontSize]="subheadFontSize$ | async"
+        [resize]="triggerResize$ | async"
+        (resized)="subheadOrThirdResized($event)"
+        class="third"
+      >
+        <xhtml:span [ngClass]="genInfo.font.replace(' ','')">{{
+          (templatesWithSubheadAndThirdSwap.indexOf(genTemplate) >= 0
+            ? genInfo.subhead
+            : genInfo.third) | translate
+        }}</xhtml:span>
+      </xhtml:h2>
+    </xhtml:div>
+    <xhtml:div
+      *ngIf="
+        templatesWithSubheadAndThirdSwap.indexOf(genTemplate) < 0 &&
+        genInfo.imageURL
+      "
+      class="third-container"
+    >
+      <xhtml:img class="third-image" [attr.src]="genInfo.imageURL" />
+    </xhtml:div>
+  </xhtml:div>
+</xhtml:div>
+</foreignObject>
+</svg>

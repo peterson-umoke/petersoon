@@ -1,0 +1,54 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="ads-container"
+>
+  <app-ad-upload></app-ad-upload>
+
+  <div class="container" *ngIf="adsService.adsLoaded$ | async">
+    <div *ngIf="allAds.length">
+      <div
+        *ngIf="viewType === 'card'"
+        fxLayout.xs="column"
+        fxLayoutAlign.xs="start center"
+        fxLayoutGap.xs="5px"
+        fxLayout="row wrap"
+        fxLayoutGap="19px"
+        class="content"
+      >
+        <app-ads-card
+          *ngFor="let ad of ads"
+          [ad]="ad"
+          (adClicked)="adClicked($event)"
+        ></app-ads-card>
+      </div>
+      <div *ngIf="viewType === 'list' && ads.length">
+        <ads-list [ads]="allAds"></ads-list>
+      </div>
+    </div>
+
+    <div
+      class="no-ads"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      *ngIf="!allAds.length"
+    >
+      {{ 'ADS.NONE' | translate }}
+    </div>
+
+    <!-- Search text does not match any ads -->
+    <div
+      class="no-ads"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      *ngIf="!ads.length && allAds.length"
+    >
+      {{ 'ADS.NONE_SEARCH' | translate }}
+    </div>
+
+    <!-- Link to Design team -->
+    <app-design-link></app-design-link>
+  </div>
+</div>

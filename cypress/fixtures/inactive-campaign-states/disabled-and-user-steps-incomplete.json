@@ -1,0 +1,256 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": {
+    "id": "a9rzyv",
+    "name": "My Inactive Campaign",
+    "start_date": "2019-10-02",
+    "end_date": null,
+    "editable": true,
+    "sign_group": null,
+    "billboards": 0,
+    "blips": 0,
+    "impressions": 0,
+    "spent": 0,
+    "first_shown": null,
+    "last_shown": null,
+    "thumbnails": [],
+    "days": 0,
+    "monthly": [
+      {
+        "month": "2018-10-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2018-11-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2018-12-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-01-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-02-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-03-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-04-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-05-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-06-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-07-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-08-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "month": "2019-09-01",
+        "blips": 0,
+        "spent": 0
+      }
+    ],
+    "daily": [
+      {
+        "day": "2019-09-04",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-05",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-06",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-07",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-08",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-09",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-10",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-11",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-12",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-13",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-14",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-15",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-16",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-17",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-18",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-19",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-20",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-21",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-22",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-23",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-24",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-25",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-26",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-27",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-28",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-29",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-09-30",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-10-01",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-10-02",
+        "blips": 0,
+        "spent": 0
+      },
+      {
+        "day": "2019-10-03",
+        "blips": 0,
+        "spent": 0
+      }
+    ],
+    "yesterday": [],
+    "hourly": [],
+    "signs": [],
+    "timezone": "America/Denver",
+    "checklist": {
+      "all_signs_disabled": false,
+      "all_signs_unavailable": false,
+      "campaign_enabled": false,
+      "org_has_daily_spend": true,
+      "campaign_has_started": true,
+      "campaign_has_ended": false,
+      "signs_with_images": [],
+      "signs_without_images": {},
+      "signs_with_modded_images": [],
+      "signs_with_all_ad_rules_off": [],
+      "signs_awaiting_modding": [],
+      "signs_with_rejected_images": [],
+      "pending_verifications": false,
+      "rules_allow_current_showing": true
+    },
+    "sign_count": 0
+  }
+}

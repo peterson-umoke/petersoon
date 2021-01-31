@@ -1,0 +1,70 @@
+@import '../../styles/sizes.scss';
+@import '../../styles/colors.scss';
+
+header {
+  .box-shadow {
+    border-bottom: 5px solid $transparent-black;
+  }
+
+  .toolbar {
+    height: 50px;
+    background-color: $white;
+    padding: 0px;
+
+    .blip-image {
+      width: 80px;
+      height: auto;
+      outline: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .blip-image-xs {
+      margin-left: 12px;
+    }
+
+    .blip-image-gtxs {
+      margin: 0 32px 0 52px;
+    }
+
+    .mat-tab-label-active {
+      background-color: $white-gray;
+    }
+
+    .mat-tab-nav-bar {
+      border-bottom: none;
+    }
+
+    .mat-tab-link {
+      color: $dark-gray;
+      font-size: $fifteen;
+      font-weight: 600;
+      letter-spacing: -0.24px;
+      line-height: 15px;
+      min-width: 80px !important;
+      opacity: initial;
+      padding: 0 16px !important;
+      text-transform: capitalize;
+    }
+
+    .mat-badge-content {
+      right: 0px;
+      top: 0px;
+    }
+
+    @supports (-ms-ime-align: auto) {
+      .menu {
+        margin-left: auto;
+        margin-right: 0;
+        position: static !important;
+      }
+    }
+
+    .menu {
+      position: absolute;
+      right: 10px;
+    }
+  }
+}

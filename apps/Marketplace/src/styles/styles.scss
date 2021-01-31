@@ -1,0 +1,301 @@
+/* You can add global styles to this file, and also import other style files */
+@import './colors.scss';
+@import './sizes.scss';
+
+// #region Ad Templates
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300');
+// #endregion
+
+html,
+body {
+  background-color: $background-gray;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+*:not(mat-icon) {
+  font-family: 'Whitney SSm A', 'Whitney SSm B', 'Roboto', sans-serif;
+}
+
+app-root {
+  height: 100%;
+}
+
+[no-outline] {
+  outline: none !important;
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-disabled
+  .mat-form-field-underline {
+  background-image: none !important;
+  background: none !important;
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background: none !important;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 0 16px 0 !important;
+}
+
+// #region Sizes
+.xs,
+.sm {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.md {
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.gt-md {
+  padding-left: 164px;
+  padding-right: 164px;
+}
+
+// #endregion
+
+// #region Web Triggers
+.web-triggers-container {
+  .url,
+  .tab {
+    input {
+      padding-top: 3px;
+    }
+
+    .mat-form-field-wrapper {
+      width: 100% !important;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+      padding: 0.4em 0 0.75em 0 !important;
+    }
+  }
+
+  mat-tab-header {
+    border-bottom: none !important;
+  }
+
+  .mat-tab-label-active {
+    background-color: transparent !important;
+    color: $gray !important;
+  }
+
+  .mat-tab-label {
+    opacity: 1;
+    min-width: 80px !important;
+    padding: 0 8px !important;
+    color: $light-blue;
+    font-size: $fifteen;
+    font-weight: 600;
+    line-height: 18px;
+  }
+}
+
+// #endregion
+
+// #region Button Styles
+.blue-filled-button {
+  background-color: $light-blue !important;
+  box-shadow: 0 3px 4px 0 rgba(0, 180, 240, 0.12) !important;
+  color: $white !important;
+  font-size: $sixteen !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.36px !important;
+}
+
+.blue-outlined-button {
+  background-color: $white !important;
+  border: 1px solid $light-blue !important;
+  box-shadow: 0 3px 4px 0 rgba(0, 180, 240, 0.12) !important;
+  color: $light-blue !important;
+  font-size: $sixteen !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.36px !important;
+}
+
+// #endregion
+
+// #region Prefix Symbols
+.budget-amount,
+.charge-card {
+  .mat-form-field-appearance-outline .mat-form-field-prefix,
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0 !important;
+  }
+}
+
+// #endregion
+
+// #region Search Field
+.search-form-field {
+  height: 32px !important;
+
+  .mat-form-field-wrapper {
+    height: 60px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mat-form-field-flex {
+    height: 32px;
+  }
+
+  // Search Icon
+  .mat-form-field-prefix {
+    color: $light-gray;
+    font-size: 15px;
+    left: -0.5em;
+    top: 0.35em !important;
+  }
+
+  .mat-form-field-infix {
+    border-top: none !important;
+    color: $gray;
+    font-size: $sixteen;
+    margin: 0;
+    padding: 0 !important;
+    top: -0.09em;
+  }
+}
+
+// #endregion
+
+// #region Material Input appearance="outline"
+.mat-form-field-subscript-wrapper {
+  margin-top: 2px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  background-color: $white;
+  border-radius: 5px;
+  margin: 0 !important;
+  height: 32px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  height: 32px !important;
+  top: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.18em 0 0.75em 0 !important;
+}
+
+.mat-form-field-infix {
+  border-top: 0.3em solid transparent !important;
+}
+
+.mat-form-field-label-wrapper {
+  overflow: visible !important;
+}
+
+.mat-focused .mat-form-field-label {
+  color: $light-blue !important;
+}
+
+.mat-form-field-invalid .mat-form-field-label {
+  color: $red !important;
+}
+
+.mat-form-field-label {
+  color: $light-gray !important;
+  top: 1.3em !important;
+}
+
+.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75) !important;
+  // left: 1px !important;
+}
+
+// #endregion
+
+// #region MCC Color Picker
+.btn-picker {
+  outline: none;
+}
+
+// #endregion
+
+// prevent iphone's from zooming in on input fields
+
+/*** iPhone and iOS Form Input Zoom Fixes ***/
+/* Fix Input Zoom on devices older than iPhone 5: */
+@media screen and (device-aspect-ratio: 2/3) {
+  select,
+  textarea,
+  input[type='text'],
+  input[type='password'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  input[type='date'],
+  input[type='month'],
+  input[type='time'],
+  input[type='week'],
+  input[type='number'],
+  input[type='email'],
+  input[type='url'] {
+    font-size: 16px;
+  }
+}
+
+/* Fix Input Zoom on iPhone 5, 5C, 5S, iPod Touch 5g */
+@media screen and (device-aspect-ratio: 40/71) {
+  select,
+  textarea,
+  input[type='text'],
+  input[type='password'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  input[type='date'],
+  input[type='month'],
+  input[type='time'],
+  input[type='week'],
+  input[type='number'],
+  input[type='email'],
+  input[type='url'] {
+    font-size: 16px;
+  }
+}
+
+/* Fix Input Zoom on iPhone 6, iPhone 6s, iPhone 7  */
+@media screen and (device-aspect-ratio: 375/667) {
+  select,
+  textarea,
+  input[type='text'],
+  input[type='password'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  input[type='date'],
+  input[type='month'],
+  input[type='time'],
+  input[type='week'],
+  input[type='number'],
+  input[type='email'],
+  input[type='url'] {
+    font-size: 16px;
+  }
+}
+
+/* Fix Input Zoom on iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8, iPhone X, XS, XS Max  */
+@media screen and (device-aspect-ratio: 9/16) {
+  select,
+  textarea,
+  input[type='text'],
+  input[type='password'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  input[type='date'],
+  input[type='month'],
+  input[type='time'],
+  input[type='week'],
+  input[type='number'],
+  input[type='email'],
+  input[type='url'] {
+    font-size: 16px;
+  }
+}

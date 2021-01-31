@@ -1,0 +1,210 @@
+<ng-template #saveButtons>
+  <div
+    fxLayout="column"
+    [style.position]="'relative'"
+    ngStyle.lt-sm="width: '100%'"
+    id="ic-request-approval"
+  >
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      class="save-continue"
+      [ngStyle]="{
+        'background-color':
+          (disablePrimaryButton$ | async) ? '#b2b3b8' : '#00b400'
+      }"
+      fxLayoutAlign.lt-sm="space-between center"
+    >
+      <div
+        fxLayoutAlign="center center"
+        fxHide.gt-xs
+        class="drop-down"
+        (click)="toggleSaveAndClose()"
+        *ngIf="enableDropdown$ | async"
+      >
+        <mat-icon inline ngStyle.lt-sm="'font-size': '36px'">{{
+          saveAndClose ? 'arrow_drop_up' : 'arrow_drop_down'
+        }}</mat-icon>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="text"
+        [ngStyle]="{
+          cursor: (disablePrimaryButton$ | async) ? 'not-allowed' : 'pointer'
+        }"
+        (click)="primaryButtonClick()"
+      >
+        {{ primaryButtonText$ | async | translate }}
+      </div>
+      <div
+        fxLayoutAlign="center center"
+        fxHide.lt-sm
+        class="drop-down"
+        (click)="toggleSaveAndClose()"
+        *ngIf="enableDropdown$ | async"
+      >
+        <mat-icon>{{
+          saveAndClose ? 'arrow_drop_up' : 'arrow_drop_down'
+        }}</mat-icon>
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      class="save-close"
+      *ngIf="saveAndClose && (enableDropdown$ | async)"
+    >
+      <div
+        fxLayoutAlign="center center"
+        class="text"
+        (click)="generatorPage ? saveGeneratorAd(false) : saveClose()"
+      >
+        {{ 'CAMPAIGN.CREATION.SAVE_AND_CLOSE' | translate }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  class="container"
+  ngStyle.lt-lg="padding: '0'"
+  *ngIf="tabData"
+  (touchmove)="displayPrimaryButton($event)"
+>
+  <div
+    class="header"
+    ngStyle.gt-sm="'min-width': '890px'"
+    ngStyle.lt-sm="padding: '0'"
+    ngStyle.lt-lg="padding: '20px 12px 0 12px'"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <div
+        class="scroll-arrow-left"
+        [ngClass]="{ empty: !showLeftArrow }"
+        fxLayoutAlign="center center"
+        fxHide.gt-sm
+        (click)="showLeftArrow ? scrollHorizontal(true) : null"
+      >
+        <mat-icon *ngIf="showLeftArrow">keyboard_arrow_left</mat-icon>
+      </div>
+      <div
+        class="nav-bar-scroll"
+        fxLayout="row"
+        id="navBarScroll"
+        (scroll)="checkScroll($event)"
+      >
+        <div class="nav-bar-wrapper">
+          <nav mat-tab-nav-bar disableRipple disablePagination>
+            <a
+              *ngFor="let tab of tabData; index as i"
+              mat-tab-link
+              ngStyle.lt-sm="'margin-right': '0px'"
+              [routerLink]="tab.route"
+              [style.opacity]="rla.isActive ? '1.0' : '0.7'"
+              routerLinkActive
+              #tabLink
+              #rla="routerLinkActive"
+              [active]="rla.isActive"
+            >
+              <span ng>
+                <ng-container [ngSwitch]="tab.title">
+                  <mat-icon
+                    inline
+                    class="icon-tab"
+                    [ngClass]="{
+                      'green-icon': locationsSet$ | async
+                    }"
+                    *ngSwitchCase="'LOCATIONS'"
+                  >
+                    {{
+                      (locationsSet$ | async) ? 'check_circle' : 'location_on'
+                    }}
+                  </mat-icon>
+                  <mat-icon
+                    inline
+                    class="icon-tab"
+                    [ngClass]="{
+                      'green-icon': budgetSet$ | async
+                    }"
+                    *ngSwitchCase="'BUDGET'"
+                  >
+                    {{ (budgetSet$ | async) ? 'check_circle' : 'attach_money' }}
+                  </mat-icon>
+                  <mat-icon
+                    inline
+                    class="icon-tab"
+                    [ngClass]="{
+                      'green-icon': scheduleSet$ | async
+                    }"
+                    *ngSwitchCase="'SCHEDULE'"
+                  >
+                    {{
+                      (scheduleSet$ | async) ? 'check_circle' : 'calendar_today'
+                    }}
+                  </mat-icon>
+                  <mat-icon
+                    inline
+                    class="icon-tab"
+                    [ngClass]="{
+                      'green-icon': artworkSet$ | async
+                    }"
+                    *ngSwitchCase="'ARTWORK'"
+                  >
+                    {{ (artworkSet$ | async) ? 'check_circle' : 'image' }}
+                  </mat-icon>
+                  <mat-icon
+                    *ngSwitchCase="'REVIEW'"
+                    inline
+                    class="icon-tab"
+                    [ngClass]="{
+                      'green-icon': canRequestApproval$ | async
+                    }"
+                    >{{
+                      (canRequestApproval$ | async)
+                        ? 'check_circle'
+                        : 'desktop_windows'
+                    }}</mat-icon
+                  >
+                </ng-container>
+                {{ tab.title | translate }}
+              </span>
+            </a>
+          </nav>
+        </div>
+      </div>
+      <div
+        class="scroll-arrow-right"
+        [ngClass]="{ empty: !showRightArrow }"
+        fxLayoutAlign="center center"
+        fxHide.gt-sm
+        (click)="showRightArrow ? scrollHorizontal(false) : null"
+      >
+        <mat-icon *ngIf="showRightArrow">keyboard_arrow_right</mat-icon>
+      </div>
+      <div fxHide.lt-sm>
+        <ng-container *ngTemplateOutlet="saveButtons"></ng-container>
+      </div>
+    </div>
+    <hr />
+    <h1
+      ngStyle.lt-sm="'font-size': '20px'; padding: '0 12px'"
+      ngStyle.lt-lg="padding: '0 12px'"
+    >
+      {{ pageDetails$ | async | translate }}
+    </h1>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+<div
+  fxHide.gt-xs
+  id="mobileSave"
+  class="mobile-save-container"
+  fxLayoutAlign="center center"
+  [ngStyle]="{
+    height: saveAndClose ? '215px' : '75px',
+    bottom: hidePrimaryButton ? '-220px' : '0'
+  }"
+>
+  <ng-container *ngTemplateOutlet="saveButtons"></ng-container>
+</div>

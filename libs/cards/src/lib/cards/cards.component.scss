@@ -1,0 +1,81 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+@media only screen and (min-width: 600px) {
+  .cards-container {
+    margin-top: 30px;
+  }
+}
+
+.xs,
+.sm {
+  margin: 16px 8px 0px 8px;
+}
+
+.mat-header-cell {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-cell {
+  width: 100%;
+  height: 48px;
+  color: $black;
+  font-size: $fifteen;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: darken($color: $white, $amount: 5);
+  }
+
+  .mat-icon-button {
+    width: $twenty-four;
+    height: $twenty-four;
+    line-height: $twenty-four;
+  }
+
+  mat-icon {
+    font-size: $eighteen;
+    height: $eighteen;
+    width: $eighteen;
+    line-height: $eighteen;
+  }
+
+  mat-form-field {
+    color: $black;
+    font-size: $fifteen;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    position: relative;
+    top: 6px;
+  }
+}
+
+.no-cards {
+  color: $dark-gray;
+  font-size: $fifteen;
+  line-height: 18px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+.add-card {
+  color: $dark-gray;
+  font-size: $fifteen;
+  line-height: 18px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+.card-input {
+  margin-top: 20px;
+}

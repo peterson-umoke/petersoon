@@ -1,0 +1,41 @@
+<header>
+  <mat-toolbar class="toolbar" ngClass.gt-xs="box-shadow">
+    <img
+      [routerLink]="appRoutes.CAMPAIGNS"
+      class="blip-image"
+      ngClass.xs="blip-image-xs"
+      ngClass.gt-xs="blip-image-gtxs"
+      src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/red_blip.svg"
+      alt="Blip Image"
+    />
+
+    <nav
+      mat-tab-nav-bar
+      *ngIf="(userService.$profile | async) && showLinks"
+      color="warn"
+      fxHide.xs
+    >
+      <a
+        mat-tab-link
+        [routerLink]="appRoutes.CAMPAIGNS"
+        [active]="activeLinkIndex === 0"
+        (click)="activeLinkIndex = 0"
+      >
+        {{ 'CAMPAIGNS.TEXT' | translate }}
+      </a>
+      <a
+        mat-tab-link
+        [routerLink]="appRoutes.ADS"
+        [active]="activeLinkIndex === 1"
+        (click)="activeLinkIndex = 1"
+        matBadge="{{ verificationsNeeded }}"
+        matBadgeColor="warn"
+        matBadgeHidden="{{ verificationsNeeded === 0 }}"
+      >
+        {{ 'ADS.TEXT' | translate }}
+      </a>
+    </nav>
+
+    <app-header-menu [showLinks]="showLinks" class="menu"></app-header-menu>
+  </mat-toolbar>
+</header>

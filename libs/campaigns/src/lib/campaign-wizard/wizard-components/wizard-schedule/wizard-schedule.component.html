@@ -1,0 +1,176 @@
+<ng-template #mpb>
+  <div class="max-per-blip" fxLayout="column">
+    <span class="title">
+      {{ 'MAX_PER_BLIP' | translate }}
+    </span>
+    <div fxLayout="row" fxLayoutGap="1px">
+      <div
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        *ngFor="let col of [0, 1, 2]"
+        class="mpb-column"
+      >
+        <div
+          [ngClass]="{
+            'low-block': col === 0,
+            'med-block': col === 1,
+            'high-block': col === 2
+          }"
+        ></div>
+        <mat-form-field class="input">
+          <input
+            [formControl]="col === 0 ? mpbLow : col === 1 ? mpbMed : mpbHigh"
+            matInput
+            required
+            type="number"
+            step=".01"
+            [min]="
+              col === 0
+                ? minMpbLow
+                : col === 1
+                ? centValue(minMpbMed || mpbLow.value, 0.01)
+                : centValue(minMpbHigh || mpbMed.value, 0.01)
+            "
+            [max]="
+              col === 0
+                ? centValue(mpbMed.value, -0.01)
+                : col === 1
+                ? centValue(mpbHigh.value, -0.01)
+                : 1000
+            "
+            appCurrency
+            [maxDigits]="2"
+          />
+          <span matPrefix class="prefix">$&nbsp;</span>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  fxLayout="row"
+  *ngIf="schedule"
+  ngStyle.lt-lg="'margin-bottom': '20px'; padding: '0 12px'"
+>
+  <div fxLayout="column" fxHide.lt-md id="ic-schedule-presets">
+    <button
+      mat-raised-button
+      class="preset-btn"
+      *ngFor="let preset of schedulePresetKeys"
+      (click)="updateSelectedPreset(preset)"
+    >
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div
+          [ngClass]="{
+            'selected-preset': preset === (selectedPreset$ | async),
+            'deselected-preset': preset !== (selectedPreset$ | async)
+          }"
+        ></div>
+        <span>{{ 'TEMPLATES.' + preset | translate }}</span>
+      </div>
+    </button>
+  </div>
+  <div fxLayout="column">
+    <div fxHide.gt-sm fxLayout="row">
+      <mat-form-field fxFlexFill>
+        <mat-select
+          placeholder="{{
+            'CAMPAIGN.CREATION.SCHEDULE.CHOOSE_TEMPLATE' | translate
+          }}"
+          [value]="selectedPreset$ | async"
+          (selectionChange)="updateSelectedPreset($event.value)"
+        >
+          <mat-option
+            *ngFor="let preset of schedulePresetKeys"
+            [value]="preset"
+          >
+            {{ 'TEMPLATES.' + preset | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      class="options"
+      fxLayoutGap="12px"
+    >
+      <span (click)="clear()" class="outlined-button">{{
+        'CLEAR_ALL' | translate
+      }}</span>
+      <span (click)="selectAll()" class="outlined-button">{{
+        'SELECT_ALL' | translate
+      }}</span>
+    </div>
+    <div
+      fxLayout="row"
+      ngStyle.gt-sm="'padding-left': '59px'"
+      ngStyle.lt-md="'padding-left': '63px'"
+    >
+      <div
+        class="local-day"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        ngStyle.lt-md="'margin-right': '1px'"
+        *ngFor="let localDay of localDays; let day = index"
+        (click)="selectDay(day)"
+      >
+        {{ localDay }}
+        <mat-icon>arrow_drop_down</mat-icon>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="column" class="hour-picker">
+        <div
+          class="local-hour"
+          ngStyle.lt-md="margin: '0 5px 5px 0'"
+          fxLayout="row"
+          fxLayoutAlign="end center"
+          *ngFor="let localHour of localHours; let hour = index"
+          (click)="selectHour(hour)"
+        >
+          {{ localHour }}
+          <mat-icon>arrow_right</mat-icon>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div class="picker" (mouseleave)="hourMouseUp()">
+          <mat-grid-list
+            cols="7"
+            [gutterSize]="gutterSize$ | async"
+            rowHeight="20px"
+          >
+            <ng-container *ngFor="let days of schedule; let hour = index">
+              <mat-grid-tile
+                *ngFor="let price of days; let day = index"
+                [colspan]="1"
+                [rowspan]="1"
+              >
+                <div
+                  [ngClass]="{
+                    empty: price === hourPrice.zero,
+                    low: price === hourPrice.low,
+                    med: price === hourPrice.med,
+                    high: price === hourPrice.high
+                  }"
+                  (mousedown)="hourMouseDown(hour, day)"
+                  (mouseover)="hourMouseOver(hour, day)"
+                  (mouseup)="hourMouseUp()"
+                ></div>
+              </mat-grid-tile>
+            </ng-container>
+          </mat-grid-list>
+        </div>
+        <div fxHide.gt-xs [style.margin-top]="'20px'">
+          <ng-container *ngTemplateOutlet="mpb"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxHide.lt-sm [style.margin-left]="'20px'">
+    <mat-card id="ic-mppb">
+      <ng-container *ngTemplateOutlet="mpb"></ng-container>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="margin-top sm"
+  ngClass.md="margin-top md"
+  ngClass.gt-md="margin-top gt-md"
+  class="container"
+>
+  <mat-toolbar class="toolbar" fxLayoutAlign="space-between center">
+    <nav mat-tab-nav-bar>
+      <a
+        mat-tab-link
+        [routerLink]="appRoutes.CAMPAIGNS"
+        [active]="activeLinkIndex === 0"
+        (click)="activeLinkIndex = 0"
+        >{{ 'ACTIVE' | translate }}</a
+      >
+      <a
+        mat-tab-link
+        [routerLink]="appRoutes.CAMPAIGNS_ARCHIVED"
+        [active]="activeLinkIndex === 1"
+        (click)="activeLinkIndex = 1"
+        >{{ 'ARCHIVED' | translate }}</a
+      >
+      <a
+        mat-tab-link
+        [routerLink]="appRoutes.CAMPAIGNS_DRAFTS"
+        [active]="activeLinkIndex === 2"
+        (click)="activeLinkIndex = 2"
+        >{{ 'DRAFTS' | translate }}</a
+      >
+    </nav>
+
+    <div fxLayout="row">
+      <div fxHide.xs>
+        <button
+          mat-button
+          class="view-type"
+          *ngIf="currentType === 'list'"
+          (click)="changeType('card')"
+        >
+          <mat-icon>view_module</mat-icon>
+          <span class="text">{{ 'CARD_VIEW' | translate }}</span>
+        </button>
+        <button
+          mat-button
+          class="view-type"
+          *ngIf="currentType === 'card'"
+          (click)="changeType('list')"
+        >
+          <mat-icon>list</mat-icon>
+          <span data-cy="list-view" class="text">{{
+            'LIST_VIEW' | translate
+          }}</span>
+        </button>
+      </div>
+
+      <div fxLayout="row" class="search-container" fxHide.xs>
+        <mat-form-field
+          appearance="outline"
+          appUpdateOutlineGap
+          class="search-form-field"
+        >
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            type="search"
+            placeholder="{{ 'SEARCH' | translate }}"
+            [(ngModel)]="search"
+            (ngModelChange)="searchChange()"
+          />
+        </mat-form-field>
+      </div>
+
+      <a
+        data-cy="new-campaign-button"
+        id="ic-new-campaign"
+        mat-raised-button
+        [routerLink]="newCampaignRoute"
+        class="blue-filled-button"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-icon class="new-campaign" fxHide.lt-md>add</mat-icon>
+        {{ 'NEW_CAMPAIGN' | translate }}
+      </a>
+    </div>
+  </mat-toolbar>
+</div>
+
+<div
+  fxHide
+  fxShow.xs
+  fxLayoutAlign="space-between center"
+  class="xs-bottom-toolbar"
+>
+  <div>
+    <button
+      mat-button
+      class="view-type"
+      *ngIf="currentType === 'list'"
+      (click)="changeType('card')"
+    >
+      <mat-icon>view_module</mat-icon>
+      <span class="text">{{ 'CARD_VIEW' | translate }}</span>
+    </button>
+    <button
+      mat-button
+      class="view-type"
+      *ngIf="currentType === 'card'"
+      (click)="changeType('list')"
+    >
+      <mat-icon>list</mat-icon>
+      <span class="text">{{ 'LIST_VIEW' | translate }}</span>
+    </button>
+  </div>
+
+  <div fxLayout="row" class="search-container">
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      class="search-form-field"
+    >
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="search"
+        placeholder="{{ 'SEARCH' | translate }}"
+        [(ngModel)]="search"
+        (ngModelChange)="searchChange()"
+      />
+    </mat-form-field>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="container"
+>
+  <div fxLayout="row" fxLayoutAlign="start center" class="back-to-cards">
+    <a [routerLink]="cardsRoute" fxLayoutAlign="start center">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      <span>{{ 'BACK' | translate }}</span>
+    </a>
+  </div>
+
+  <div *ngIf="payments.length">
+    <app-payment-details [payments]="payments"></app-payment-details>
+  </div>
+
+  <div
+    *ngIf="!payments.length"
+    class="no-payments"
+    fxLayoutAlign="center center"
+  >
+    <span>{{ 'PAYMENT.NONE_CARD' | translate }}</span>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+/* 
+  !IMPORTANT!
+  Any changes to this file need to be reflected in the corresponding assets/generator-styles file
+  In order to do that you can just compile this file using sass like so:
+  sass --no-source-map libs/ads/src/lib/artwork-generator/generator-template/split_invert.scss apps/Marketplace/src/assets/generator-styles/split_invert.css
+*/
+/* !IMPORTANT Remember to update the corresponding css files in /assets if changes are made to this file */
+@import url('https://fonts.googleapis.com/css?family=Lato|Merriweather|Arbutus+Slab|Baloo+Da+2:b|Barlow+Semi+Condensed:b|Exo+2|Montserrat:600|Oswald&display=swap');
+.headline,
+.subhead,
+.third {
+  /* line-height: 1; this was for the BalooDa font */
+  margin: 0;
+}
+
+span {
+  text-align: justify;
+}
+
+.hidden {
+  visibility: collapse;
+  height: 0;
+}
+
+.Lato {
+  font-family: lato;
+}
+
+.Merriweather {
+  font-family: merriweather;
+}
+
+.ArbutusSlab {
+  font-family: 'Arbutus Slab';
+}
+
+.BalooDa {
+  font-family: 'Baloo Da 2';
+  font-weight: bold;
+  font-style: normal;
+  line-height: 0;
+}
+
+.Barlow {
+  font-family: 'Barlow Semi Condensed';
+  font-weight: bold;
+}
+
+.Exo {
+  font-family: 'Exo 2';
+  font-weight: bold;
+}
+
+.Montserrat {
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
+.Oswald {
+  font-family: 'Oswald';
+}
+
+/* Template 3 SPLIT-INVERT */
+.split-invert {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 3fr) minmax(0, 1fr);
+}
+.split-invert .primary-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.split-invert .primary-section .headline-container {
+  height: 90%;
+  width: 89%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.split-invert .primary-section .headline-container .headline {
+  text-align: center;
+}
+.split-invert .primary-section .subhead-container {
+  max-height: 25%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+.split-invert .secondary-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.split-invert .secondary-section .third-container {
+  height: 95%;
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.split-invert .secondary-section .third-container .third {
+  text-align: center;
+}

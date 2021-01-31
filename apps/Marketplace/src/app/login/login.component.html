@@ -1,0 +1,162 @@
+<div fxLayout="row" fxLayoutAlign="center start" class="login-holder">
+  <div
+    fxLayout="column"
+    fxFlex="33"
+    fxFlex.sm="50"
+    fxFlex.xs="100"
+    ngClass.gt-xs="margin-top-65"
+    ngClass.xs="margin-top-16"
+  >
+    <div *ngIf="loadingService.$loadingRedirect | async" class="login-to-blip">
+      <span>{{ 'CHECKING_CREDENTIALS' | translate }}</span>
+    </div>
+    <mat-card
+      fxLayout="column"
+      fxLayoutAlign="center"
+      *ngIf="(loadingService.$loadingRedirect | async) !== true"
+    >
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div fxLayout="column" class="login-header">
+          <span class="login">{{ 'LOGIN.TO_BLIP' | translate }}</span>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+            <mat-label [translate]="'EMAIL.ADDRESS.TEXT'"></mat-label>
+            <input
+              data-cy="email"
+              matInput
+              #email
+              required
+              type="email"
+              [formControl]="loginForm.controls['email']"
+            />
+            <mat-error
+              *ngIf="loginForm.controls['email'].hasError('required')"
+              [innerHTML]="'EMAIL.ADDRESS.REQUIRED' | translate"
+            ></mat-error>
+            <mat-error
+              *ngIf="loginForm.controls['email'].hasError('email')"
+              [innerHTML]="'EMAIL.ADDRESS.INVALID' | translate"
+            ></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+            <mat-label [translate]="'PASSWORD.TEXT'"></mat-label>
+            <input
+              data-cy="password"
+              matInput
+              required
+              type="password"
+              [formControl]="loginForm.controls['password']"
+            />
+            <mat-error
+              *ngIf="loginForm.controls['password'].hasError('required')"
+              [innerHTML]="'PASSWORD.REQUIRED' | translate"
+            ></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" class="text-link">
+          <span
+            (click)="forgotPassword()"
+            class="forgot-password"
+            appGoogleAnalytics
+            [googleCategory]="'Login'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Forgot Password'"
+          >
+            {{ 'PASSWORD.FORGOT' | translate }}
+          </span>
+        </div>
+
+        <div fxLayout="row" class="login-button">
+          <button
+            data-cy="login-button"
+            mat-raised-button
+            class="blue-filled-button"
+            type="submit"
+            fxFlex="100"
+            appGoogleAnalytics
+            [googleCategory]="'Login'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Login'"
+          >
+            {{ 'LOGIN.TEXT' | translate }}
+          </button>
+        </div>
+
+        <div fxLayout="row" class="social-auth">
+          <button
+            mat-raised-button
+            class="gray-outlined-button"
+            type="button"
+            (click)="google()"
+            fxFlex="100"
+            appGoogleAnalytics
+            [googleCategory]="'Login'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Login With Google'"
+          >
+            <img
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/images/google.png"
+              alt="Google"
+              class="icon"
+            />
+            <span>{{ 'LOGIN.WITH_GOOGLE' | translate }}</span>
+          </button>
+        </div>
+        <div fxLayout="row" class="social-auth facebook">
+          <button
+            mat-raised-button
+            class="gray-outlined-button"
+            type="button"
+            (click)="facebook()"
+            fxFlex="100"
+            fxLayoutAlign="center center"
+            appGoogleAnalytics
+            [googleCategory]="'Login'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Login With Facebook'"
+          >
+            <img
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/images/facebook.png"
+              alt="Facebook"
+              class="icon"
+            />
+            <span>{{ 'LOGIN.WITH_FACEBOOK' | translate }}</span>
+          </button>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" class="seperator">
+          <div class="line" fxFlex="40"></div>
+          <span fxFlex="20" fxLayoutAlign="center">{{ 'OR' | translate }}</span>
+          <div class="line" fxFlex="40"></div>
+        </div>
+
+        <div fxLayout="row" class="new-to-blip">
+          <span>{{ 'NEW_TO_BLIP' | translate }}</span>
+        </div>
+
+        <div fxLayout="row" class="register">
+          <a
+            data-test="register-button"
+            mat-raised-button
+            [routerLink]="registerRoute"
+            queryParamsHandling="preserve"
+            class="gray-outlined-button"
+            fxFlex="100"
+            appGoogleAnalytics
+            [googleCategory]="'Login'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Register For Blip'"
+          >
+            {{ 'REGISTER.NOW' | translate }}
+          </a>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

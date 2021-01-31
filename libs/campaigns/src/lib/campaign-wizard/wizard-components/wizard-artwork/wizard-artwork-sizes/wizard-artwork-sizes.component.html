@@ -1,0 +1,96 @@
+<ng-template #requiredList>
+  <div
+    *ngIf="reducedSizes$ | async as reducedSizes"
+    ngStyle.lt-lg="padding: '0 12px'"
+  >
+    <div
+      gdColumns.lt-sm="1fr 1fr"
+      gdGap.lt-sm="16px"
+      fxLayout.gt-xs="row wrap"
+      fxLayoutGap.gt-xs="20px"
+    >
+      <div *ngFor="let size of reducedSizes" ngClass.gt-xs="size">
+        <app-image-outline
+          [example]="true"
+          [height]="size.height"
+          [width]="size.width"
+        >
+        </app-image-outline>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="(reducedSizes$ | async)?.length < 1"
+    class="no-signs"
+    fxLayoutAlign="center"
+  >
+    {{ 'NO_BOARDS_SELECTED' | translate }}
+  </div>
+</ng-template>
+
+<ng-template #optionalList>
+  <div
+    *ngIf="signSizes$ | async as signSizes"
+    ngStyle.lt-lg="padding: '0 12px'"
+  >
+    <div
+      gdColumns.lt-sm="1fr 1fr"
+      gdGap.lt-sm="16px"
+      fxLayout.gt-xs="row wrap"
+      fxLayoutGap.gt-xs="20px"
+    >
+      <div *ngFor="let size of signSizes" ngClass.gt-xs="size">
+        <app-image-outline
+          [example]="true"
+          [height]="size.height"
+          [width]="size.width"
+        >
+        </app-image-outline>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="(signSizes$ | async)?.length < 1"
+    class="no-signs"
+    fxLayoutAlign="center"
+    ngStyle.lt-lg="padding: '0 12px'"
+  >
+    {{ 'NO_BOARDS_SELECTED' | translate }}
+  </div>
+</ng-template>
+
+<div>
+  <div class="title" ngStyle.lt-lg="padding: '0 12px'" fxHide.lt-sm>
+    {{ 'DESIGN_SIZES' | translate }}
+  </div>
+  <mat-tab-group mat-align-tabs="end" fxHide.lt-sm>
+    <mat-tab label="{{ 'REQUIRED' | translate }}">
+      <ng-container *ngTemplateOutlet="requiredList"></ng-container>
+    </mat-tab>
+    <mat-tab label="{{ 'OPTIONAL' | translate }}">
+      <ng-container *ngTemplateOutlet="optionalList"></ng-container>
+    </mat-tab>
+  </mat-tab-group>
+  <div fxHide.gt-xs fxLayoutGap="8px">
+    <mat-accordion>
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ 'REQUIRED_SIZES' | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngTemplateOutlet="requiredList"></ng-container>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ 'OPTIONAL_SIZES' | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngTemplateOutlet="optionalList"></ng-container>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<span *ngIf="convertedRate" class="conversion-rate">
+  &#x0003D; {{ 'APPROXIMATELY' | translate }}
+  {{ convertedRate | number: '0.2-2' }}
+  {{ 'MONEY.' + currencyCode | translate }}
+</span>

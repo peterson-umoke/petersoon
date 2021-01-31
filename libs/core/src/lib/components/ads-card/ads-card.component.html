@@ -1,0 +1,98 @@
+<mat-card
+  [ngClass]="{
+    'creating-campaign': creatingCampaign,
+    selected: creatingCampaign && selectedAds.includes(ad.id)
+  }"
+  (click)="clicked()"
+>
+  <mat-toolbar fxLayout="column" fxLayoutAlign="start start" class="toolbar">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <app-ad-menu
+        *ngIf="!creatingCampaign"
+        class="more"
+        [ad]="ad"
+        [creatingCampaign]="creatingCampaign"
+        (click)="$event.stopPropagation()"
+      ></app-ad-menu>
+      <span class="ad-name">{{ ad.name }}</span>
+    </div>
+  </mat-toolbar>
+
+  <div fxLayout="row" fxLayoutAlign="start center" class="sizes">
+    <mat-icon>collections</mat-icon>
+    <span
+      >{{ ad.images.length }} {{ 'AD' | translate }}
+      {{ (ad.images.length === 1 ? 'SIZE' : 'SIZES') | translate }}</span
+    >
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" class="created">
+    <span
+      >{{ 'CREATED' | translate }} {{ ad.created | date: 'MM/d/yyyy' }}</span
+    >
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="image">
+    <img
+      [src]="
+        ad.images[imageIndex]?.url ||
+        'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+      "
+      [alt]="ad.name"
+      appImageViewer
+      [images]="ad.images"
+      [imageIndex]="imageIndex"
+    />
+  </div>
+
+  <div *ngIf="ad.images.length" fxLayout="row" class="bars">
+    <div
+      *ngFor="let image of ad.images | slice: 0:maxImages; let i = index"
+      class="image-bar"
+      [ngClass]="{ 'selected-image': i === imageIndex }"
+      (click)="imageIndex = i; $event.stopPropagation()"
+    ></div>
+    <div
+      *ngIf="ad.images.length > maxImages"
+      class="more-images"
+      [ngClass]="{ 'more-selected': imageIndex >= maxImages }"
+    ></div>
+  </div>
+
+  <div
+    *ngIf="ad.images.length"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    class="image-picker"
+  >
+    <button
+      mat-icon-button
+      class="arrow"
+      (click)="changeIndex(-1, $event); $event.stopPropagation()"
+      [disabled]="imageIndex === 0"
+    >
+      <mat-icon>arrow_left</mat-icon>
+    </button>
+    <span>{{
+      'PREVIEWING_AD'
+        | translate: { image: imageIndex + 1, total: ad.images.length }
+    }}</span>
+    <button
+      mat-icon-button
+      class="arrow"
+      (click)="changeIndex(1, $event); $event.stopPropagation()"
+      [disabled]="imageIndex === ad.images.length - 1"
+    >
+      <mat-icon>arrow_right</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="creatingCampaign" fxLayout="row" fxLayoutAlign="center">
+    <button
+      (click)="toggleCampaign($event)"
+      mat-stroked-button
+      color="{{ campaignButtonColor }}"
+    >
+      {{ campaignButtonLabel }}
+    </button>
+  </div>
+</mat-card>

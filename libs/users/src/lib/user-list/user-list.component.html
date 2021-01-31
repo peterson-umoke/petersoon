@@ -1,0 +1,137 @@
+<mat-table #table [dataSource]="dataSource" matSort class="table" fxHide.lt-md>
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell
+      fxFlex="20"
+      *matHeaderCellDef
+      mat-sort-header
+      class="sort-header"
+      >{{ 'NAME.TEXT' | translate }}
+    </mat-header-cell>
+    <mat-cell fxFlex="20" *matCellDef="let user" class="cell-text">
+      <span>{{ user.first_name }} {{ user.last_name }}</span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="email">
+    <mat-header-cell
+      fxFlex="30"
+      *matHeaderCellDef
+      mat-sort-header
+      class="sort-header"
+      >{{ 'EMAIL.TEXT' | translate }}
+    </mat-header-cell>
+    <mat-cell fxFlex="30" *matCellDef="let user" class="cell-text">
+      <span>{{ user.email }}</span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Roles Column -->
+  <ng-container matColumnDef="roles">
+    <mat-header-cell
+      fxFlex="40"
+      *matHeaderCellDef
+      mat-sort-header
+      class="sort-header"
+    >
+      {{ 'USERS.ROLES.TEXT' | translate }}
+    </mat-header-cell>
+    <mat-cell fxFlex="40" *matCellDef="let user" class="cell-text role-cell">
+      <span
+        class="cell-text"
+        *ngFor="let role of user.roles.sort(); let last = last"
+      >
+        {{ 'USERS.ROLES.' + role + '.TEXT' | translate
+        }}<span *ngIf="!last">,&nbsp;</span>
+      </span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- edit Column -->
+  <ng-container matColumnDef="edit">
+    <mat-header-cell
+      fxFlex="10"
+      *matHeaderCellDef
+      class="sort-header"
+    ></mat-header-cell>
+    <mat-cell
+      fxFlex="10"
+      *matCellDef="let user"
+      fxLayoutGap="8px"
+      class="cell-text"
+    >
+      <button
+        *ngIf="orgOwnerId !== user.id && canEdit"
+        mat-button
+        class="blue-outlined-button "
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        (click)="edit(user); $event.stopPropagation()"
+      >
+        <span class="text">{{ 'EDIT' | translate }}</span>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row
+    fxLayout="space-between"
+    *matHeaderRowDef="displayedColumns"
+  ></mat-header-row>
+  <mat-row
+    fxLayout="space-between"
+    *matRowDef="let row; columns: displayedColumns"
+  ></mat-row>
+</mat-table>
+<mat-paginator
+  *ngIf="dataSource.data.length > 20"
+  fxHide.lt-md
+  #paginator
+  [pageSize]="5"
+  [pageSizeOptions]="paginatorPageSizes"
+  [showFirstLastButtons]="true"
+  class="paginator"
+></mat-paginator>
+
+<!-- Small and Extra Small List -->
+<mat-list *ngIf="dataSource?.data?.length" fxHide.gt-sm>
+  <div *ngFor="let user of dataSource.data">
+    <div class="users" fxLayout="column" fxLayoutAlign="start">
+      <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
+        <span class="name cell-text"
+          >{{ user.first_name }} {{ user.last_name }}</span
+        >
+        <button
+          *ngIf="orgOwnerId !== user.id && canEdit"
+          mat-button
+          class="blue-outlined-button"
+          fxLayoutAlign="center center"
+          (click)="edit(user); $event.stopPropagation()"
+        >
+          <span>{{ 'EDIT' | translate }}</span>
+        </button>
+      </div>
+
+      <div
+        class="user-info-row"
+        fxLayout="row"
+        fxFlex="100"
+        fxLayoutAlign="start center"
+      >
+        <div fxLayout="column" fxLayoutAlign="center start">
+          <span class="cell-text">{{ user.email }}</span>
+          <div fxLayout="row" class="roles">
+            <span
+              class="cell-text"
+              *ngFor="let role of user.roles.sort(); let last = last"
+            >
+              {{ 'USERS.ROLES.' + role + '.TEXT' | translate
+              }}<span *ngIf="!last">,&nbsp;</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>

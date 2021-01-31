@@ -1,0 +1,153 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.table,
+.paginator {
+  background: inherit;
+}
+
+.menu {
+  position: relative;
+  left: -10px;
+}
+
+.play-pause {
+  position: relative;
+  top: 5px;
+}
+
+.sort-header {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+}
+
+.cell-text {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+.campaign-name > span {
+  padding-right: 12px;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /*! autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+}
+
+.notifications {
+  margin-left: 16px;
+}
+
+.action-button,
+.notifications {
+  height: 25px;
+  width: 25px;
+
+  mat-icon {
+    color: $light-gray;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: -12px;
+  }
+}
+
+.list {
+  .mat-card {
+    padding: 16px;
+    margin-bottom: 16px;
+
+    .menu {
+      position: relative;
+      left: -3px;
+      top: -3px;
+    }
+
+    .name {
+      color: $dark-gray;
+      font-size: $sixteen;
+      font-weight: 500;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      /*! autoprefixer: ignore next */
+      -webkit-box-orient: vertical;
+    }
+
+    .play-pause-xs {
+      height: 22px;
+      margin-right: 8px;
+    }
+
+    .date {
+      color: $dark-gray;
+      font-size: $fourteen;
+      font-weight: 500;
+    }
+
+    .text {
+      color: $dark-gray;
+      font-size: $thirteen;
+      font-weight: 400;
+      text-transform: capitalize;
+    }
+
+    .spent {
+      margin-bottom: 4px;
+    }
+    .numbers {
+      color: $dark-gray;
+      font-size: $fourteen;
+      font-weight: 600;
+    }
+  }
+}
+
+mat-cell:first-child,
+mat-footer-cell:first-child,
+mat-header-cell:first-child {
+  padding-right: 16px;
+}
+
+.complete-campaign,
+.request-approval {
+  position: relative;
+  top: 10px;
+}
+
+.complete-campaign {
+  font-size: $thirteen;
+  font-weight: 500;
+  height: 28px;
+  line-height: inherit;
+  margin-bottom: 24px;
+}
+
+.status-column {
+  min-width: 216px;
+}
+
+.small {
+  margin-bottom: -16px;
+}
+
+.small-complete {
+  margin-bottom: 8px;
+}
+
+.mobile-status {
+  color: $dark-gray;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}

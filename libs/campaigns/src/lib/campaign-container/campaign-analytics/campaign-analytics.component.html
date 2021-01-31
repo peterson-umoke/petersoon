@@ -1,0 +1,422 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="container"
+  *ngIf="
+    dailyData && monthlyData && campaignService.$campaign | async as campaign
+  "
+>
+  <div
+    fxLayout.lt-md="column"
+    fxLayoutAlign.gt-sm="space-between"
+    fxLayoutGap="8px"
+  >
+    <mat-card fxFlex="50">
+      <mat-card-header>
+        <mat-card-title class="card-title">{{
+          'BLIPS.MONTHLY' | translate
+        }}</mat-card-title>
+      </mat-card-header>
+      <div fxLayoutAlign="center center" class="graph-title">
+        {{ 'BLIPS.MONTHLY_TOTALS' | translate }}
+      </div>
+      <mat-card-content fxLayout="row">
+        <ngx-charts-line-chart
+          [results]="monthlyData"
+          [xAxis]="true"
+          [yAxis]="true"
+          [yScaleMax]="monthlyYAxisMax"
+          [showGridLines]="false"
+        >
+          <ng-template #tooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row"
+                >{{ model.series }} - {{ model.name }}</span
+              >
+              <span *ngIf="model.series === blipsText" class="tooltip-row">{{
+                model.value | number
+              }}</span>
+              <span *ngIf="model.series === spentText" class="tooltip-row">{{
+                model.value
+                  | currency
+                    : (translationService.$currency | async)
+                    : 'symbol'
+                    : '1.2-2'
+              }}</span>
+            </div>
+          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row">{{ model[0].name }}</span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[0].color"
+                  class="colored-box"
+                ></span>
+                <span>{{ model[0].series }} {{ model[0].value | number }}</span>
+              </span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[1].color"
+                  class="colored-box"
+                ></span>
+                <span
+                  >{{ model[1].series }}
+                  {{
+                    model[1].value
+                      | currency
+                        : (translationService.$currency | async)
+                        : 'symbol'
+                        : '1.2-2'
+                  }}
+                </span>
+              </span>
+            </div>
+          </ng-template>
+        </ngx-charts-line-chart>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="50">
+      <mat-card-header>
+        <mat-card-title class="card-title">{{
+          'BLIPS.DAILY' | translate
+        }}</mat-card-title>
+      </mat-card-header>
+      <div fxLayoutAlign="center center" class="graph-title">
+        {{ 'BLIPS.DAILY_TOTALS' | translate }}
+      </div>
+      <mat-card-content fxLayout="row">
+        <ngx-charts-line-chart
+          [results]="dailyData"
+          [xAxis]="true"
+          [yAxis]="true"
+          [yScaleMax]="dailyYAxisMax"
+          [showGridLines]="false"
+        >
+          <ng-template #tooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row"
+                >{{ model.series }} - {{ model.name }}</span
+              >
+              <span *ngIf="model.series === blipsText" class="tooltip-row">{{
+                model.value | number
+              }}</span>
+              <span *ngIf="model.series === spentText" class="tooltip-row">{{
+                model.value
+                  | currency
+                    : (translationService.$currency | async)
+                    : 'symbol'
+                    : '1.2-2'
+              }}</span>
+            </div>
+          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row">{{ model[0].name }}</span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[0].color"
+                  class="colored-box"
+                ></span>
+                <span>{{ model[0].series }} {{ model[0].value | number }}</span>
+              </span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[1].color"
+                  class="colored-box"
+                ></span>
+                <span
+                  >{{ model[1].series }}
+                  {{
+                    model[1].value
+                      | currency
+                        : (translationService.$currency | async)
+                        : 'symbol'
+                        : '1.2-2'
+                  }}
+                </span>
+              </span>
+            </div>
+          </ng-template>
+        </ngx-charts-line-chart>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div
+    fxLayout.lt-md="column"
+    fxLayoutAlign.gt-sm="space-between"
+    fxLayoutGap="8px"
+    class="margin-top-8"
+  >
+    <mat-card fxFlex="50">
+      <mat-card-header>
+        <mat-card-title class="card-title">{{
+          'BLIPS.HOURLY' | translate
+        }}</mat-card-title>
+      </mat-card-header>
+      <div fxLayoutAlign="center center" class="graph-title">
+        {{ 'BLIPS.ALL_TIME' | translate }}
+      </div>
+      <mat-card-content fxLayout="row">
+        <ngx-charts-line-chart
+          [results]="hourlyData"
+          [xAxis]="true"
+          [yAxis]="true"
+          [yScaleMax]="hourlyYAxisMax"
+          [showGridLines]="false"
+        >
+          <ng-template #tooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row"
+                >{{ model.series }} - {{ model.name }}</span
+              >
+              <span *ngIf="model.series === blipsText" class="tooltip-row">{{
+                model.value | number
+              }}</span>
+              <span *ngIf="model.series === spentText" class="tooltip-row">{{
+                model.value
+                  | currency
+                    : (translationService.$currency | async)
+                    : 'symbol'
+                    : '1.2-2'
+              }}</span>
+            </div>
+          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row">{{ model[0].name }}</span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[0].color"
+                  class="colored-box"
+                ></span>
+                <span>{{ model[0].series }} {{ model[0].value | number }}</span>
+              </span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[1].color"
+                  class="colored-box"
+                ></span>
+                <span
+                  >{{ model[1].series }}
+                  {{
+                    model[1].value
+                      | currency
+                        : (translationService.$currency | async)
+                        : 'symbol'
+                        : '1.2-2'
+                  }}
+                </span>
+              </span>
+            </div>
+          </ng-template>
+        </ngx-charts-line-chart>
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="50">
+      <mat-card-header>
+        <mat-card-title class="card-title">{{
+          'BLIPS.HOURLY' | translate
+        }}</mat-card-title>
+      </mat-card-header>
+      <div fxLayoutAlign="center center" class="graph-title">
+        {{ 'YESTERDAY' | translate }}
+      </div>
+      <mat-card-content fxLayout="row">
+        <ngx-charts-line-chart
+          [results]="yesterdayData"
+          [xAxis]="true"
+          [yAxis]="true"
+          [yScaleMax]="yesterdayYAxisMax"
+          [showGridLines]="false"
+        >
+          <ng-template #tooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row"
+                >{{ model.series }} - {{ model.name }}</span
+              >
+              <span *ngIf="model.series === blipsText" class="tooltip-row">{{
+                model.value | number
+              }}</span>
+              <span *ngIf="model.series === spentText" class="tooltip-row">{{
+                model.value
+                  | currency
+                    : (translationService.$currency | async)
+                    : 'symbol'
+                    : '1.2-2'
+              }}</span>
+            </div>
+          </ng-template>
+          <ng-template #seriesTooltipTemplate let-model="model">
+            <div fxLayout="column" class="tooltip">
+              <span class="tooltip-row">{{ model[0].name }}</span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[0].color"
+                  class="colored-box"
+                ></span>
+                <span>{{ model[0].series }} {{ model[0].value | number }}</span>
+              </span>
+              <span
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                class="tooltip-row"
+              >
+                <span
+                  [style.background-color]="model[1].color"
+                  class="colored-box"
+                ></span>
+                <span
+                  >{{ model[1].series }}
+                  {{
+                    model[1].value
+                      | currency
+                        : (translationService.$currency | async)
+                        : 'symbol'
+                        : '1.2-2'
+                  }}
+                </span>
+              </span>
+            </div>
+          </ng-template>
+        </ngx-charts-line-chart>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div
+    fxLayout.lt-md="column"
+    fxLayoutAlign.gt-sm="space-between"
+    fxLayoutGap="8px"
+    class="bottom"
+  >
+    <mat-card fxFlex="33" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <div class="number">{{ campaign.blips | number }}</div>
+      <div fxLayout="column">
+        <span class="descriptor">{{ 'BLIPS.TO_DATE' | translate }}</span>
+        <span class="date"
+          >{{ campaign.first_shown | date: 'd MMM' }} -
+          {{ campaign.last_shown | date: 'd MMM' }}</span
+        >
+      </div>
+    </mat-card>
+    <mat-card fxFlex="33" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <div class="number">
+        {{
+          (campaign.spent / campaign.blips
+            | currency
+              : (translationService.$currency | async)
+              : 'symbol'
+              : '1.3-3') || 0
+        }}
+      </div>
+      <div fxLayout="column">
+        <span class="descriptor">{{ 'BLIPS.AVG_COST' | translate }}</span>
+        <span class="date"
+          >{{ campaign.first_shown | date: 'd MMM' }} -
+          {{ campaign.last_shown | date: 'd MMM' }}</span
+        >
+      </div>
+    </mat-card>
+    <mat-card fxFlex="33" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <div class="number">
+        {{
+          (campaign.spent / campaign.days
+            | currency
+              : (translationService.$currency | async)
+              : 'symbol'
+              : '1.2-2') || 0
+        }}
+      </div>
+      <div fxLayout="column">
+        <span class="descriptor">{{
+          'BLIPS.AVG_DAILY_SPEND' | translate
+        }}</span>
+        <span class="date"
+          >{{ campaign.first_shown | date: 'd MMM' }} -
+          {{ campaign.last_shown | date: 'd MMM' }}</span
+        >
+      </div>
+    </mat-card>
+  </div>
+
+  <div
+    fxLayout.lt-md="column"
+    fxLayoutAlign.gt-sm="space-between"
+    fxLayoutGap="8px"
+    class="bottom"
+  >
+    <mat-card fxFlex="33" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <div class="number">{{ campaign.impressions | number }}</div>
+      <div fxLayout="column">
+        <span class="descriptor">{{ 'BLIPS.IMPRESSIONS' | translate }}</span>
+        <span class="date"
+          >{{ campaign.first_shown | date: 'd MMM' }} -
+          {{ campaign.last_shown | date: 'd MMM' }}</span
+        >
+      </div>
+    </mat-card>
+    <mat-card fxFlex="33" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <div class="number">
+        {{ campaign.blips / campaign.billboards | number: '0.0-0' }}
+      </div>
+      <div fxLayout="column">
+        <span class="descriptor">{{
+          'BLIPS.PER_BOARD' | translate: { signs: campaign.billboards }
+        }}</span>
+        <span class="date"
+          >{{ campaign.first_shown | date: 'd MMM' }} -
+          {{ campaign.last_shown | date: 'd MMM' }}</span
+        >
+      </div>
+    </mat-card>
+    <mat-card fxFlex="33" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <div class="number">
+        {{ campaign.impressions / campaign.spent | number: '0.0-0' }}
+      </div>
+      <div fxLayout="column">
+        <span class="descriptor">{{ 'BLIPS.PER_DOLLAR' | translate }}</span>
+        <span class="date"
+          >{{ campaign.first_shown | date: 'd MMM' }} -
+          {{ campaign.last_shown | date: 'd MMM' }}</span
+        >
+      </div>
+    </mat-card>
+  </div>
+
+  <div *ngIf="campaign.signs.length">
+    <app-campaign-flips [signs]="campaign.signs"></app-campaign-flips>
+  </div>
+</div>

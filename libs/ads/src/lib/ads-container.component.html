@@ -1,0 +1,21 @@
+<mat-sidenav-container [hasBackdrop]="true" class="sidenav">
+  <mat-sidenav
+    mode="over"
+    position="end"
+    [opened]="
+      (adsService.adDetail$ | async) ||
+      (playlistService.$playlistDetail | async) ||
+      (playlistService.$playlistAddCreative | async)
+    "
+    (closedStart)="closed()"
+    ngClass.xs="width"
+  >
+    <ads-detail></ads-detail>
+    <app-ad-playlist-sidenav></app-ad-playlist-sidenav>
+    <app-ad-playlist-creative-picker></app-ad-playlist-creative-picker>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ads-container-header></ads-container-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

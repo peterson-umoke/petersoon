@@ -1,0 +1,80 @@
+<span mat-dialog-title
+  >{{ 'ADD' | translate }} {{ 'PAYMENT.CREDIT' | translate }}</span
+>
+
+<div mat-dialog-content class="add-credit">
+  <div class="margin-top" fxLayout="column">
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      [floatLabel]="'always'"
+      class="input"
+    >
+      <mat-label [translate]="'CREDIT_CARD.AMOUNT.TEXT'"></mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        cdkFocusInitial
+        appCurrency
+        [maxDigits]="10"
+        [formControl]="creditForm.controls['amount']"
+      />
+      <span matPrefix class="prefix">$&nbsp;</span>
+      <mat-error
+        *ngIf="creditForm.controls['amount'].hasError('required')"
+        [innerHTML]="'CREDIT_CARD.AMOUNT.REQUIRED' | translate"
+      ></mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      [floatLabel]="'always'"
+      class="input"
+    >
+      <mat-label [translate]="'PAYMENT.NOTE.TEXT'"></mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        [formControl]="creditForm.controls['details']"
+      />
+      <mat-error
+        *ngIf="creditForm.controls['details'].hasError('required')"
+        [innerHTML]="'PAYMENT.NOTE.REQUIRED' | translate"
+      ></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-select
+        [placeholder]="'PAYMENT.TYPE.TEXT' | translate"
+        [formControl]="creditForm.controls['type']"
+      >
+        <mat-option *ngFor="let type of types" [value]="type">
+          <span>{{ 'PAYMENT.TYPES.' + type | translate }}</span>
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="creditForm.controls['type'].hasError('required')"
+        [innerHTML]="'PAYMENT.TYPE.REQUIRED' | translate"
+      >
+      </mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button data-test="close-button" (click)="close()">
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button
+    mat-raised-button
+    class="save"
+    color="primary"
+    [disabled]="creditForm.invalid"
+    [mat-dialog-close]="creditForm.value"
+  >
+    {{ 'ADD' | translate }} {{ 'PAYMENT.CREDIT' | translate }}
+  </button>
+</div>

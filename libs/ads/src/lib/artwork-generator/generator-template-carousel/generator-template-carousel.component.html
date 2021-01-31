@@ -1,0 +1,76 @@
+<div class="container">
+  <div
+    #scrollContainer
+    class="scroll-container"
+    ngClass.lt-md="xs-scroll-container"
+    gdGap="8px 0"
+  >
+    <div
+      #item
+      [ngClass]="{ 'selected-template': template.key == templateIndex }"
+      ngStyle.xs="'margin-right': '8px'"
+      class="item"
+      *ngFor="let template of templateMap | keyvalue"
+      gdRow="1 / 2"
+      fxLayout="row"
+      fxLayoutAlign="space-between"
+    >
+      <mat-icon
+        class="left"
+        fxFlexAlign="center"
+        fxHide.lt-md
+        (click)="changeTemplate(templateIndex - 1)"
+      >
+        keyboard_arrow_left
+      </mat-icon>
+      <ads-generator-template
+        *ngIf="windowRef.innerWidth >= this.smallDevice"
+        [genTemplate]="template.value"
+        [width]="561"
+        [height]="148"
+        class="template"
+        fxHide
+        fxShow.gt-xs
+        ngClass.xs="xs-template"
+        (click)="changeTemplate(template.key)"
+      >
+      </ads-generator-template>
+
+      <ads-generator-template
+        *ngIf="windowRef.innerWidth < this.smallDevice"
+        [genTemplate]="template.value"
+        [width]="291"
+        [height]="78"
+        class="template"
+        ngClass.xs="xs-template"
+        (click)="changeTemplate(template.key)"
+      >
+      </ads-generator-template>
+      <mat-icon
+        class="right"
+        fxFlexAlign="center"
+        fxHide.lt-md
+        (click)="changeTemplate(templateIndex + 1)"
+      >
+        keyboard_arrow_right
+      </mat-icon>
+    </div>
+    <div class="filler" fxHide.gt-sm gdRow="1 / 2"></div>
+  </div>
+  <div
+    #dots
+    class="dots"
+    ngClass.xs="xs-dots"
+    *ngIf="templateMap"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
+    <mat-icon
+      [ngClass]="{ 'selected-template': template.key == templateIndex }"
+      *ngFor="let template of templateMap | keyvalue"
+      (click)="changeTemplate(template.key)"
+    >
+      {{ template.key == templateIndex ? 'lens' : 'radio_button_off' }}
+    </mat-icon>
+  </div>
+</div>

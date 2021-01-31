@@ -1,0 +1,10 @@
+<div fxLayout="column">
+  <div class="option">
+    <h1>{{ 'CAMPAIGN.CREATION.GENERATOR.FONTS' | translate }}</h1>
+  </div>
+  <div *ngFor="let font of fonts" class="option" (click)="selectFont(font)">
+    <h2 class="{{ font }}" [ngClass]="{ selected: selectedFont === font }">
+      {{ font }}
+    </h2>
+  </div>
+</div>

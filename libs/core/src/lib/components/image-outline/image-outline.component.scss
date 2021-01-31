@@ -1,0 +1,21 @@
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+
+.example:hover {
+  cursor: pointer;
+
+  * {
+    color: $dark-gray;
+  }
+}
+
+.image-outline {
+  color: $gray;
+}
+mat-icon {
+  vertical-align: middle;
+
+  &.landscape-img {
+    margin-right: 0.25em;
+  }
+}

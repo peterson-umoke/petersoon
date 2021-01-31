@@ -1,0 +1,209 @@
+<!--NAME-->
+<ng-template #nameField>
+  <div class="campaign-name">
+    <mat-form-field fxFlexFill>
+      <input
+        matNativeControl
+        [formControl]="campaignForm.get('name')"
+        class="textarea"
+        maxlength="100"
+        type="text"
+      />
+      <mat-hint align="end" *ngIf="campaignForm.get('name').enabled">
+        {{ campaignForm.get('name').value.length }} /
+        {{ campaignNameMax }}
+      </mat-hint>
+      <mat-error
+        *ngIf="campaignForm.get('name').hasError('required')"
+        [innerHTML]="'NAME.REQUIRED' | translate"
+      >
+      </mat-error>
+    </mat-form-field>
+  </div>
+</ng-template>
+
+<!--LOCATIONS-->
+<ng-template #locations>
+  <span
+    class="locations"
+    [ngClass]="{ 'red-text': (locationsCard['valid$'] | async) === false }"
+  >
+    {{
+      'CAMPAIGN.CREATION.REVIEW.LOCATIONS.' +
+        (selectedSignsCount === 1 ? 'SINGULAR' : 'PLURAL')
+        | translate: { count: selectedSignsCount || 0 }
+    }}
+  </span>
+</ng-template>
+
+<!--BUDGET-->
+<ng-template #budget>
+  <div class="budget" fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span
+        class="title"
+        [ngClass]="{ 'red-text': (budgetCard['valid$'] | async) === false }"
+      >
+        {{ 'CAMPAIGN.CREATION.BUDGET.DAILY' | translate }}
+        <span *ngIf="(budgetCard['valid$'] | async) === false">{{
+          'CAMPAIGN.CREATION.BUDGET.VERY_LOW' | translate
+        }}</span>
+      </span>
+      <span
+        class="text"
+        [ngClass]="{ 'red-text': (budgetCard['valid$'] | async) === false }"
+      >
+        {{
+          budgetCard['budget'] || 0
+            | currency: (translationService.$currency | async):'symbol':'1.2-2'
+        }}
+      </span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title">
+        {{ 'START_DATE' | translate }}
+      </span>
+      <div *ngIf="!budgetCard['startDate']">
+        <span class="text" *ngIf="!budgetCard['firstShown']">{{
+          'ASAP' | translate
+        }}</span>
+        <span class="text" *ngIf="budgetCard['firstShown']">{{
+          budgetCard['firstShown'] | date: 'MMMM d, yyyy'
+        }}</span>
+      </div>
+      <span class="text" *ngIf="budgetCard['startDate']">{{
+        budgetCard['startDate'] | date: 'MMMM d, yyyy'
+      }}</span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title">{{ 'END_DATE_OPTIONAL' | translate }}</span>
+      <span class="text">{{
+        (budgetCard['endDate'] | date: 'MMMM d, yyyy') ||
+          ('ONGOING' | translate)
+      }}</span>
+    </div>
+  </div>
+</ng-template>
+
+<!--SCHEDULE-->
+<ng-template #schedule>
+  <div class="schedule">
+    <span *ngIf="scheduleCard['valid$'] | async">
+      {{ 'CAMPAIGN.CREATION.REVIEW.SCHEDULE_SET' | translate }}
+    </span>
+    <span *ngIf="(scheduleCard['valid$'] | async) === false" class="red-text">
+      {{ 'CAMPAIGN.CREATION.REVIEW.NO_SCHEDULE_SET' | translate }}
+    </span>
+  </div>
+</ng-template>
+
+<!--ARTWORK-->
+<ng-template #artwork
+  ><span
+    class="artwork"
+    [ngClass]="{ 'red-text': (artworkCard['valid$'] | async) === false }"
+  >
+    {{
+      'CAMPAIGN.CREATION.REVIEW.ARTWORK.' +
+        ((selectedAdsCount$ | async) === 1 ? 'SINGULAR' : 'PLURAL')
+        | translate: { count: (selectedAdsCount$ | async) || 0 }
+    }}
+  </span>
+</ng-template>
+
+<div
+  fxLayout="row"
+  fxLayoutGap="16px"
+  [style.margin-bottom]="'20px'"
+  ngStyle.lt-lg="padding: '0 12px'"
+>
+  <!--CARDS-->
+  <div
+    fxLayout="column"
+    ngStyle.gt-xs="width: '35%'"
+    ngStyle.lt-sm="width: '100%'"
+    fxLayoutGap="14px"
+  >
+    <mat-card
+      *ngFor="let card of cards; index as i; first as isFirst; last as isLast"
+    >
+      <div fxLayout="column" [fxLayoutGap]="isFirst ? '8px' : '16px'">
+        <div
+          fxLayout="row"
+          [fxLayoutAlign]="isFirst ? 'start' : 'space-between'"
+        >
+          <span
+            class="title"
+            [ngClass]="{
+              'red-text': (card['valid$'] | async) === false
+            }"
+          >
+            {{ card['title'] | translate }}
+            <span *ngIf="isFirst">*</span>
+          </span>
+          <button
+            mat-button
+            class="edit"
+            *ngIf="!isFirst"
+            (click)="navigate(card['link'])"
+          >
+            {{ 'EDIT' | translate }}
+          </button>
+        </div>
+        <ng-container *ngIf="isFirst">
+          <ng-container *ngTemplateOutlet="nameField"></ng-container>
+        </ng-container>
+        <ng-container *ngIf="i === 1">
+          <ng-container *ngTemplateOutlet="locations"></ng-container>
+        </ng-container>
+        <ng-container *ngIf="i === 2">
+          <ng-container *ngTemplateOutlet="budget"></ng-container
+        ></ng-container>
+        <ng-container *ngIf="i === 3">
+          <ng-container *ngTemplateOutlet="schedule"></ng-container>
+        </ng-container>
+        <ng-container *ngIf="i === 4">
+          <ng-container *ngTemplateOutlet="artwork"></ng-container>
+        </ng-container>
+      </div>
+    </mat-card>
+    <!--BILLING-->
+    <mat-card *ngIf="(billable$ | async) === false">
+      <div fxLayout="column" fxLayoutGap="18px">
+        <span
+          class="title"
+          [ngClass]="{
+            'red-text': (billable$ | async) === false
+          }"
+        >
+          {{ 'BILLING' | translate }}
+        </span>
+        <app-credit-card fxFlexFill></app-credit-card>
+      </div>
+    </mat-card>
+  </div>
+  <!--MAP-->
+  <div fxLayout="column" [style.width]="'65%'" fxHide.lt-sm>
+    <agm-map
+      [keyboardShortcuts]="false"
+      [mapTypeControl]="false"
+      [styles]="googleMapStyles"
+      [fullscreenControl]="false"
+      [streetViewControl]="false"
+      [scrollwheel]="false"
+      [mapDraggable]="false"
+      [zoomControl]="false"
+      [fitBounds]="true"
+      [maxZoom]="17"
+      [clickableIcons]="false"
+    >
+      <agm-marker
+        *ngFor="let cluster of selectedClusters$ | async"
+        [agmFitBounds]="true"
+        [latitude]="cluster.lat"
+        [longitude]="cluster.lon"
+        [iconUrl]="cluster.icon"
+      ></agm-marker>
+    </agm-map>
+  </div>
+</div>

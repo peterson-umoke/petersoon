@@ -1,0 +1,97 @@
+<div fxLayout="column" fxLayoutGap="8px" class="margin-top">
+  <mat-card
+    class="map-card"
+    ngClass.xs="map-card-xs"
+    fxLayoutGap="8px"
+    fxLayoutAlign="center center"
+  >
+    <div #map ngClass.xs="maps-xs" ngClass.gt-xs="maps-gt-xs"></div>
+  </mat-card>
+
+  <mat-card fxFlex="100" class="data-card">
+    <mat-table #table [dataSource]="dataSource" matSort class="table">
+      <!-- Sign Column -->
+      <ng-container matColumnDef="sign">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'SIGN' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let sign" class="cell-text">
+          <span>{{ sign.display_name ? sign.display_name : sign.name }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Facing Column -->
+      <ng-container matColumnDef="facing">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'FACING' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let sign" class="cell-text">
+          <span>{{ sign.facing }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Location Column -->
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'LOCATION.TEXT' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let sign" class="cell-text">
+          {{ sign.location }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Blips Column -->
+      <ng-container matColumnDef="blips">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'BLIPS.TEXT' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let sign" class="cell-text">{{
+          sign.flips || 0 | number
+        }}</mat-cell>
+      </ng-container>
+
+      <!-- Est Impressions Column -->
+      <ng-container matColumnDef="est-impr">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'EST_IMPR' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let sign" class="cell-text">{{
+          sign.impressions | number: '0.0-2'
+        }}</mat-cell>
+      </ng-container>
+
+      <!-- Spent Column -->
+      <ng-container matColumnDef="spent">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'SPENT' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let sign" class="cell-text">{{
+          sign.spent || 0 | currency
+        }}</mat-cell>
+      </ng-container>
+
+      <!-- Impressions per $ Column -->
+      <ng-container matColumnDef="impr-per-$">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+          >{{ 'EST_IMPR_DOLLAR' | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let sign" class="cell-text"
+          >{{ sign.impressions / sign.spent | number: '0.0-2' }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card>
+
+  <mat-paginator
+    *ngIf="dataSource.data.length > 10"
+    #paginator
+    [pageSize]="paginatorPageSizes[0]"
+    [pageSizeOptions]="paginatorPageSizes"
+    [showFirstLastButtons]="true"
+    class="paginator"
+  >
+  </mat-paginator>
+</div>

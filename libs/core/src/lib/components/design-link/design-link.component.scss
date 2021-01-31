@@ -1,0 +1,40 @@
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+
+@media only screen and (max-width: 600px) {
+  .design-request {
+    padding: 16px 0px;
+  }
+
+  .design-request p {
+    width: 70%;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .design-request {
+    padding: 16px 0px;
+  }
+
+  .design-request p {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+.design-request {
+  bottom: 0px;
+  background-color: $white;
+  width: 100%;
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: 600;
+  line-height: 18px;
+  position: absolute;
+  text-align: center;
+}
+
+.design-request a {
+  color: $light-blue;
+}

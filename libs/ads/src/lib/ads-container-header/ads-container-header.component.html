@@ -1,0 +1,155 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="margin-top sm"
+  ngClass.md="margin-top md"
+  ngClass.gt-md="margin-top gt-md"
+  class="container"
+>
+  <mat-toolbar
+    fxLayout="row"
+    class="toolbar"
+    fxLayoutAlign="space-between center"
+  >
+    <nav mat-tab-nav-bar>
+      <a
+        mat-tab-link
+        [routerLink]="appRoutes.ADS"
+        [active]="activeLinkIndex === 0"
+        (click)="activeLinkIndex = 0"
+      >
+        {{ 'ADS.TEXT' | translate }}
+      </a>
+      <!-- Hiding playlists until a design for adding playlist to campaign -->
+      <!--<a mat-tab-link [routerLink]="appRoutes.AD_PLAYLISTS" [active]="activeLinkIndex === 1" (click)="activeLinkIndex = 1">
+        {{ 'PLAYLISTS.TEXT' | translate }}
+      </a> -->
+      <a
+        mat-tab-link
+        [routerLink]="appRoutes.AD_VERIFICATIONS"
+        [active]="activeLinkIndex === 2"
+        (click)="activeLinkIndex = 2"
+        matBadge="{{ verificationsNeeded }}"
+        matBadgeColor="warn"
+        matBadgeHidden="{{ verificationsNeeded === 0 }}"
+      >
+        {{ 'VERIFICATIONS.TEXT' | translate }}
+      </a>
+    </nav>
+
+    <div fxLayout="row" fxHide.xs *ngIf="activeLinkIndex !== 2 && !hideAll">
+      <button
+        mat-button
+        class="view-type"
+        *ngIf="currentType === 'list' && activeLinkIndex === 0"
+        (click)="changeType('card')"
+      >
+        <mat-icon>view_module</mat-icon>
+        <span class="text">{{ 'CARD_VIEW' | translate }}</span>
+      </button>
+      <button
+        mat-button
+        class="view-type"
+        *ngIf="currentType === 'card' && activeLinkIndex === 0"
+        (click)="changeType('list')"
+      >
+        <mat-icon>list</mat-icon>
+        <span class="text">{{ 'LIST_VIEW' | translate }}</span>
+      </button>
+
+      <div fxLayout="row" class="search-container">
+        <mat-form-field
+          appearance="outline"
+          appUpdateOutlineGap
+          class="search-form-field"
+        >
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            type="search"
+            placeholder="{{ 'SEARCH' | translate }}"
+            [(ngModel)]="search"
+            (ngModelChange)="searchChange()"
+          />
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="activeLinkIndex === 1">
+        <a
+          mat-button
+          [routerLink]="appRoutes.NEW_PLAYLIST"
+          class="blue-filled-button"
+          ngClass.gt-sm="margin-left"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <mat-icon>add</mat-icon>
+          <span class="text">{{ 'PLAYLISTS.NEW' | translate }}</span>
+        </a>
+      </div>
+    </div>
+  </mat-toolbar>
+</div>
+
+<div
+  fxHide.gt-xs
+  *ngIf="!hideAll"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  class="xs-bottom-toolbar"
+>
+  <div *ngIf="activeLinkIndex === 0">
+    <button
+      mat-button
+      class="view-type"
+      *ngIf="currentType === 'list'"
+      (click)="changeType('card')"
+    >
+      <mat-icon>view_module</mat-icon>
+      <span class="text">{{ 'CARD_VIEW' | translate }}</span>
+    </button>
+    <button
+      mat-button
+      class="view-type"
+      *ngIf="currentType === 'card'"
+      (click)="changeType('list')"
+    >
+      <mat-icon>list</mat-icon>
+      <span class="text">{{ 'LIST_VIEW' | translate }}</span>
+    </button>
+  </div>
+
+  <div *ngIf="activeLinkIndex === 1 && !hideAll">
+    <a
+      mat-button
+      [routerLink]="appRoutes.NEW_PLAYLIST"
+      class="blue-filled-button"
+      ngClass.xs="margin-left adjust"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <mat-icon>add</mat-icon>
+      <span class="text">{{ 'PLAYLISTS.NEW' | translate }}</span>
+    </a>
+  </div>
+
+  <div
+    fxLayout="row"
+    class="search-container"
+    *ngIf="activeLinkIndex !== 2 && !hideAll"
+  >
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      class="search-form-field"
+    >
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="search"
+        placeholder="{{ 'SEARCH' | translate }}"
+        [(ngModel)]="search"
+        (ngModelChange)="searchChange()"
+      />
+    </mat-form-field>
+  </div>
+</div>

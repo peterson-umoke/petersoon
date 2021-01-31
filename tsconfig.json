@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2015",
+    "module": "ES2020",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@marketplace/core": ["libs/core/src/index.ts"],
+      "@marketplace/ads": ["libs/ads/src/index.ts"],
+      "@marketplace/ads-routing": ["libs/ads/src/routing-index.ts"],
+      "@marketplace/campaigns": ["libs/campaigns/src/index.ts"],
+      "@marketplace/cards": ["libs/cards/src/index.ts"],
+      "@marketplace/preferences": ["libs/preferences/src/index.ts"],
+      "@marketplace/organizations": ["libs/organizations/src/index.ts"],
+      "@marketplace/payments": ["libs/payments/src/index.ts"],
+      "@marketplace/reports": ["libs/reports/src/index.ts"],
+      "@marketplace/users": ["libs/users/src/index.ts"]
+    },
+    "rootDir": "."
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

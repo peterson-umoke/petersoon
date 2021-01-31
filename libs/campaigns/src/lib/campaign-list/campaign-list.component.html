@@ -1,0 +1,256 @@
+<mat-table #table [dataSource]="dataSource" matSort class="table" fxHide.lt-md>
+  <!-- Status Column -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      class="sort-header status-column"
+      >{{ 'STATUS' | translate }}
+    </mat-header-cell>
+    <mat-cell class="cell-text status-column" *matCellDef="let campaign">
+      <app-campaign-menu [campaign]="campaign" class="menu"></app-campaign-menu>
+      <app-campaign-play-pause
+        data-cy="list-play-pause"
+        [campaign]="campaign"
+        class="play-pause"
+        *ngIf="
+          campaign.userStepsComplete &&
+          campaign.approved &&
+          campaign.show_play_pause
+        "
+      >
+      </app-campaign-play-pause>
+      <app-campaign-play-pause
+        data-cy="list-request-approval"
+        [campaign]="campaign"
+        requestApproval="true"
+        class="request-approval"
+        *ngIf="
+          !active &&
+          !campaign.deleted &&
+          campaign.userStepsComplete &&
+          !campaign.approved &&
+          campaign.status !== 'CAMPAIGN.TYPE.ENDED'
+        "
+      >
+      </app-campaign-play-pause>
+      <span
+        data-cy="list-waiting-to-launch"
+        *ngIf="active && campaign.userStepsComplete && !campaign.approved"
+        >{{ 'WAITING_TO_LAUNCH.WAITING' | translate }}</span
+      >
+      <button
+        data-cy="list-complete-campaign"
+        *ngIf="
+          campaign.status !== 'CAMPAIGN.TYPE.ENDED' &&
+          !campaign.deleted &&
+          !campaign.userStepsComplete
+        "
+        mat-raised-button
+        class="complete-campaign blue-outlined-button"
+        (click)="goToReview(campaign); $event.stopPropagation()"
+      >
+        {{ 'CAMPAIGNS.COMPLETE_CAMPAIGN' | translate }}
+      </button>
+      <span
+        data-cy="list-view-status"
+        *ngIf="campaign.deleted || campaign.status === 'CAMPAIGN.TYPE.ENDED'"
+      >
+        {{ campaign.status | translate }}
+      </span>
+      <!-- TODO: Find out what we want to do with this then unhide -->
+      <button
+        fxHide
+        mat-icon-button
+        class="notifications"
+        (click)="showNotifications(campaign)"
+      >
+        <mat-icon matBadge="6" matBadgePosition="after" matBadgeColor="warn"
+          >notifications</mat-icon
+        >
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="campaign">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+      >{{ 'CAMPAIGN.TEXT' | translate }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let campaign" class="cell-text campaign-name">
+      <span>{{ campaign.name }}</span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Audience Column -->
+  <!-- <ng-container matColumnDef="audience">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header">{{ 'AUDIENCE' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let campaign" class="cell-text">{{ campaign.start_date | date:'d MMM yyyy' }}</mat-cell>
+  </ng-container> -->
+
+  <!-- Start Date Column -->
+  <ng-container matColumnDef="start_date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header">{{
+      'START' | translate
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let campaign" class="cell-text">
+      {{ (campaign.start_date | date: 'd MMM yyyy') || '---' }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- End Date Column -->
+  <ng-container matColumnDef="end_date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header">{{
+      'END' | translate
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let campaign" class="cell-text">
+      {{ (campaign.end_date | date: 'd MMM yyyy') || '---' }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Spent Column -->
+  <ng-container matColumnDef="spent">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header">{{
+      'SPENT' | translate
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let campaign" class="cell-text">{{
+      campaign.spent || 0 | currency
+    }}</mat-cell>
+  </ng-container>
+
+  <!-- Blips Column -->
+  <ng-container matColumnDef="blips">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="sort-header"
+      >{{ 'BLIPS.TEXT' | translate }}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let campaign" class="cell-text">{{
+      campaign.blips || 0 | number
+    }}</mat-cell>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef class="sort-header">{{
+      'ACTIONS' | translate
+    }}</mat-header-cell>
+    <mat-cell *matCellDef="let campaign" fxLayoutGap="8px">
+      <button
+        mat-icon-button
+        class="action-button"
+        (click)="analytics(campaign)"
+        matTooltip="{{ 'ANALYTICS' | translate }}"
+      >
+        <mat-icon>equalizer</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="action-button"
+        (click)="edit(campaign)"
+        matTooltip="{{ 'EDIT' | translate }}"
+      >
+        <mat-icon>create</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<mat-paginator
+  *ngIf="dataSource.data.length > 20"
+  fxHide.lt-md
+  #paginator
+  [pageSize]="5"
+  [pageSizeOptions]="paginatorPageSizes"
+  [showFirstLastButtons]="true"
+  class="paginator"
+></mat-paginator>
+
+<!-- Small and Extra Small List -->
+<div
+  fxHide.gt-sm
+  *ngFor="let campaign of filteredCampaigns"
+  class="list"
+  fxLayout="column"
+>
+  <mat-card fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayoutAlign="start">
+      <app-campaign-menu [campaign]="campaign" class="menu"></app-campaign-menu>
+      <div fxLayout="column" fxLayoutAlign="space-between">
+        <span class="name">{{ campaign.name }}</span>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          *ngIf="
+            campaign.userStepsComplete &&
+            campaign.approved &&
+            campaign.show_play_pause
+          "
+        >
+          <app-campaign-play-pause
+            data-cy="sm-list-play-pause"
+            [campaign]="campaign"
+            class="play-pause-xs"
+          >
+          </app-campaign-play-pause>
+          <span class="date">
+            <span *ngIf="!campaign.end_date">{{ 'ONGOING' | translate }}</span>
+            <span *ngIf="campaign.end_date"
+              >{{ 'UNTIL' | translate }}
+              {{ campaign.end_date | date: 'd MMM yyyy' }}</span
+            >
+          </span>
+        </div>
+        <app-campaign-play-pause
+          data-cy="sm-list-request-approval"
+          [campaign]="campaign"
+          requestApproval="true"
+          class="request-approval small"
+          *ngIf="
+            !active &&
+            !campaign.deleted &&
+            campaign.userStepsComplete &&
+            !campaign.approved
+          "
+        >
+        </app-campaign-play-pause>
+        <span
+          data-cy="sm-list-waiting-to-launch"
+          *ngIf="active && campaign.userStepsComplete && !campaign.approved"
+          >{{ 'WAITING_TO_LAUNCH.WAITING' | translate }}</span
+        >
+        <button
+          data-cy="sm-list-complete-campaign"
+          *ngIf="
+            campaign.status !== 'CAMPAIGN.TYPE.ENDED' &&
+            !campaign.deleted &&
+            !campaign.userStepsComplete
+          "
+          mat-raised-button
+          class="complete-campaign small-complete blue-outlined-button"
+          (click)="goToReview(campaign); $event.stopPropagation()"
+        >
+          {{ 'CAMPAIGNS.COMPLETE_CAMPAIGN' | translate }}
+        </button>
+        <span
+          class="mobile-status"
+          *ngIf="campaign.deleted || campaign.status === 'CAMPAIGN.TYPE.ENDED'"
+        >
+          {{ campaign.status | translate }}
+        </span>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start end">
+      <span class="text">{{ 'SPEND' | translate }}</span>
+      <span class="numbers spent">
+        <span *ngIf="campaign.spent">{{ campaign.spent | currency }}</span>
+        <span *ngIf="!campaign.spent">---</span>
+      </span>
+      <span class="text">{{ 'BLIPS.TEXT' | translate }}</span>
+      <span class="numbers">
+        <span *ngIf="campaign.blips">{{ campaign.blips | number }}</span>
+        <span *ngIf="!campaign.blips">---</span>
+      </span>
+    </div>
+  </mat-card>
+</div>

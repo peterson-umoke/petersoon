@@ -1,0 +1,8 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-spinner
+    [mode]="percentComplete === 0 ? 'indeterminate' : 'determinate'"
+    [value]="percentComplete"
+    [diameter]="50"
+  ></mat-spinner>
+  <h4 class="loading-message">{{ loadingMessage }}</h4>
+</div>

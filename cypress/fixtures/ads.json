@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": [
+    {
+      "created": 1565293626000,
+      "dynamic": null,
+      "editable": true,
+      "id": "uvga8k",
+      "images": [
+        {
+          "changes": {
+            "format": "JPEG",
+            "brightness": 765
+          },
+          "height": 540,
+          "id": "bxegej",
+          "processed": "2019-08-08T19:47:09Z",
+          "purpose": "STANDARD",
+          "t1_approved": true,
+          "t1_status": "APPROVED",
+          "t2_approved": {
+            "qbctvs": true
+          },
+          "t2_status": "APPROVED",
+          "thumbnail_url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-bxegej-960x540-4888a5cf-thumbnail.png",
+          "url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-bxegej-960x540-4888a5cf.png",
+          "verified": "2019-08-08T19:47:30Z",
+          "width": 960,
+          "video": false
+        },
+        {
+          "changes": {
+            "resized": {
+              "height": 540,
+              "width": 960
+            }
+          },
+          "height": 200,
+          "id": "xfddq6",
+          "processed": "2019-09-13T16:16:03.536Z",
+          "purpose": "STANDARD",
+          "t1_approved": false,
+          "t1_status": "REQUESTED",
+          "t2_approved": {},
+          "t2_status": "UNUSED",
+          "thumbnail_url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-xfddq6-704x200-78572822-thumbnail.png",
+          "url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-xfddq6-704x200-78572822.png",
+          "verified": "2019-09-16T16:21:00.716Z",
+          "width": 704,
+          "video": false
+        },
+        {
+          "changes": {
+            "resized": {
+              "height": 540,
+              "width": 960
+            }
+          },
+          "height": 208,
+          "id": "jx54je",
+          "processed": "2019-09-11T17:56:39.022Z",
+          "purpose": "STANDARD",
+          "t1_approved": false,
+          "t1_status": "REQUESTED",
+          "t2_approved": {},
+          "t2_status": "UNUSED",
+          "thumbnail_url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-jx54je-704x208-edcafded-thumbnail.png",
+          "url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-jx54je-704x208-edcafded.png",
+          "verified": "2019-09-16T16:21:00.716Z",
+          "width": 704,
+          "video": false
+        },
+        {
+          "changes": {
+            "resized": {
+              "height": 540,
+              "width": 960
+            }
+          },
+          "height": 204,
+          "id": "yatbvk",
+          "processed": "2019-09-11T17:56:43.848Z",
+          "purpose": "STANDARD",
+          "t1_approved": false,
+          "t1_status": "REQUESTED",
+          "t2_approved": {},
+          "t2_status": "UNUSED",
+          "thumbnail_url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-yatbvk-700x204-d45f2eef-thumbnail.png",
+          "url": "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-yatbvk-700x204-d45f2eef.png",
+          "verified": "2019-09-16T16:21:00.716Z",
+          "width": 700,
+          "video": false
+        }
+      ],
+      "modified": 1565293626000,
+      "name": "Car2",
+      "organization": "vcgatn",
+      "quality_score": null,
+      "resolutions": [
+        {
+          "width": 704,
+          "height": 208
+        },
+        {
+          "width": 704,
+          "height": 200
+        },
+        {
+          "width": 700,
+          "height": 204
+        },
+        {
+          "width": 960,
+          "height": 540
+        }
+      ]
+    }
+  ]
+}

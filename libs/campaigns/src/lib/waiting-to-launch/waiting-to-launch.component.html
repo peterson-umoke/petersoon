@@ -1,0 +1,150 @@
+<h3 data-cy="waiting-to-launch">
+  {{ 'WAITING_TO_LAUNCH.WAITING' | translate }}
+</h3>
+
+<p class="title">{{ campaign.name }}</p>
+<div class="artwork" fxLayout="column">
+  <div
+    class="thumbnails"
+    [ngClass]="{ 'less-than-two': campaign.thumbnails.length < 2 }"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <mat-icon
+      (click)="changeImage(imageIndex - 1)"
+      *ngIf="campaign.thumbnails.length > 1"
+      >arrow_left</mat-icon
+    >
+    <img
+      [src]="
+        campaign.thumbnails[imageIndex] ||
+        'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+      "
+      [alt]="campaign.name"
+      appImageViewer
+      [images]="campaign.thumbnails"
+      [imageIndex]="imageIndex"
+      [ngClass]="{ 'no-carousel': campaign.thumbnails.length < 2 }"
+    />
+    <mat-icon
+      (click)="changeImage(imageIndex + 1)"
+      *ngIf="campaign.thumbnails.length > 1"
+      >arrow_right</mat-icon
+    >
+  </div>
+  <div
+    class="dots"
+    *ngIf="campaign.thumbnails.length > 1"
+    fxFlexAlign="center"
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+  >
+    <mat-icon
+      [ngClass]="{ 'selected-image': i === imageIndex }"
+      *ngFor="let img of campaign.thumbnails; index as i"
+      (click)="changeImage(i)"
+      >lens
+    </mat-icon>
+  </div>
+</div>
+<div class="launch-steps">
+  <table>
+    <tr>
+      <th colspan="2">{{ 'WAITING_TO_LAUNCH.USER_STEPS' | translate }}</th>
+    </tr>
+    <tr>
+      <td class="complete">{{ 'WAITING_TO_LAUNCH.DONE' | translate }}</td>
+      <td>{{ 'WAITING_TO_LAUNCH.CREATE_CAMPAIGN' | translate }}</td>
+    </tr>
+    <tr *ngIf="campaign.thumbnails.length > 0">
+      <td
+        class="in-progress verify"
+        *ngIf="
+          campaign.checklist && campaign.checklist.pending_verifications;
+          else verified
+        "
+      >
+        <a
+          data-cy="verify-link"
+          (click)="
+            verifyLink(campaign.notifications, 'verify');
+            $event.stopPropagation()
+          "
+          >{{ 'WAITING_TO_LAUNCH.VIEW' | translate }}</a
+        >
+      </td>
+      <ng-template #verified>
+        <td class="complete">{{ 'WAITING_TO_LAUNCH.DONE' | translate }}</td>
+      </ng-template>
+      <td>{{ 'WAITING_TO_LAUNCH.VERIFY' | translate }}</td>
+    </tr>
+    <tr>
+      <td class="complete">{{ 'WAITING_TO_LAUNCH.DONE' | translate }}</td>
+      <td>{{ 'WAITING_TO_LAUNCH.PAYMENT_INFO' | translate }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="progress" *ngIf="!campaign.allAdsRejected; else rejected">
+  <img
+    class="submitted-icon step"
+    [src]="campaign.userStepsComplete ? complete : incomplete"
+  />
+  <div
+    class="submit-to-review horizontal-line"
+    [ngClass]="{ 'complete-bar': campaign.userStepsComplete }"
+  ></div>
+  <img
+    data-cy="review-icon"
+    class="review-icon step"
+    [src]="
+      campaign.underModeration &&
+      campaign.checklist &&
+      !campaign.checklist.pending_verifications
+        ? inProgress
+        : incomplete
+    "
+  />
+  <div
+    class="review-to-approved horizontal-line"
+    [ngClass]="{
+      'in-progress-bar':
+        campaign.underModeration &&
+        campaign.checklist &&
+        !campaign.checklist.pending_verifications
+    }"
+  ></div>
+  <img class="approved-icon step" [src]="incomplete" />
+  <div class="submitted progress-text">
+    <p>{{ 'WAITING_TO_LAUNCH.ARTWORK' | translate }}</p>
+    <p>{{ 'WAITING_TO_LAUNCH.SUBMITTED' | translate }}</p>
+  </div>
+  <div class="review progress-text">
+    <p>{{ 'WAITING_TO_LAUNCH.BLIP_IS' | translate }}</p>
+    <p>{{ 'WAITING_TO_LAUNCH.REVIEWING' | translate }}</p>
+  </div>
+  <div class="approved progress-text">
+    <p>{{ 'WAITING_TO_LAUNCH.ARTWORK' | translate }}</p>
+    <p>{{ 'WAITING_TO_LAUNCH.APPROVED' | translate }}</p>
+  </div>
+</div>
+
+<ng-template #rejected>
+  <table class="rejected-ads">
+    <tr>
+      <th colspan="2">{{ 'WAITING_TO_LAUNCH.APPROVAL_STATUS' | translate }}</th>
+    </tr>
+    <tr>
+      <td class="rejected">
+        <a data-cy="replace-artwork" [routerLink]="artworkLink">{{
+          'WAITING_TO_LAUNCH.REPLACE' | translate
+        }}</a>
+      </td>
+      <td>{{ 'WAITING_TO_LAUNCH.REPLACE_REJECTED' | translate }}</td>
+    </tr>
+  </table>
+</ng-template>
+
+<p class="business-days" *ngIf="!campaign.allAdsRejected">
+  {{ 'WAITING_TO_LAUNCH.BUSINESS_DAYS' | translate }}
+</p>

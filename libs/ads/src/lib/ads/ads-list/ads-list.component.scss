@@ -1,0 +1,158 @@
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.table,
+.paginator {
+  background: inherit;
+}
+
+.menu {
+  margin-right: 5px;
+}
+
+.menu-sm {
+  position: relative;
+  top: -3px;
+  left: -8px;
+}
+
+.num-ads {
+  mat-icon {
+    color: $light-gray;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  span {
+    color: $dark-gray;
+    font-size: $fifteen;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    line-height: 18px;
+  }
+}
+
+.sort-header {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.cell-text {
+  color: $dark-gray;
+  font-size: $fifteen;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 18px;
+}
+
+.ad-name {
+  font-weight: bold !important;
+
+  span {
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /*! autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+  }
+}
+
+.mat-row {
+  height: 60px;
+}
+
+.art {
+  padding: 8px 0px;
+
+  div {
+    padding-right: 8px !important;
+  }
+
+  .artwork {
+    max-height: 50px;
+    max-width: 118px;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+  }
+}
+
+.list {
+  .mat-card {
+    padding: 16px;
+    margin-bottom: 16px;
+
+    .menu {
+      position: relative;
+      left: -3px;
+      top: -3px;
+    }
+
+    .name {
+      color: $dark-gray;
+      font-size: $sixteen;
+      font-weight: bold;
+      padding-right: 8px;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      /*! autoprefixer: ignore next */
+      -webkit-box-orient: vertical;
+    }
+
+    .sizes {
+      margin-top: 5px;
+
+      .icon {
+        position: relative;
+        height: 18px;
+        width: 18px;
+        color: $light-gray;
+        font-size: 18px;
+        position: relative;
+        margin-right: 10px;
+      }
+
+      span {
+        color: $dark-gray;
+        font-size: $fourteen;
+        font-weight: 500;
+      }
+    }
+
+    .dates {
+      .text {
+        color: $light-gray;
+        font-size: $thirteen;
+        font-weight: 600;
+      }
+
+      .created {
+        color: $light-gray;
+        font-size: $fourteen;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+mat-header-cell:first-child {
+  padding-left: 32px;
+}
+
+mat-cell:nth-child(2),
+mat-footer-cell:nth-child(2),
+mat-header-cell:nth-child(2) {
+  padding: 0 8px;
+}

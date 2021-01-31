@@ -1,0 +1,63 @@
+/* 
+  !IMPORTANT!
+  Any changes to this file need to be reflected in the corresponding assets/generator-styles file
+  In order to do that you can just compile this file using sass like so:
+  sass --no-source-map libs/ads/src/lib/artwork-generator/generator-template/split.scss apps/Marketplace/src/assets/generator-styles/split.css
+*/
+
+@import './generator-template.component.scss';
+
+/* Template 3 SPLIT */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 3fr) minmax(0, 1fr);
+
+  .primary-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .headline-container {
+      height: 90%;
+      width: 89%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .headline {
+        text-align: center;
+      }
+    }
+
+    .subhead-container {
+      max-height: 25%;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      .subhead {
+      }
+    }
+  }
+
+  .secondary-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .third-container {
+      height: 95%;
+      display: flex;
+      width: 90%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .third {
+        text-align: center;
+      }
+    }
+  }
+}

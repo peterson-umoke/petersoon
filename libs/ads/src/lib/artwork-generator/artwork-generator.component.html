@@ -1,0 +1,328 @@
+<div
+  *ngIf="generatorInfo$ | async as generatorInfo"
+  class="generator-container"
+  [ngClass]="{ 'prevent-overflow': rendering$ | async }"
+>
+  <img #hiddenLogo class="hidden-logo" />
+  <div class="hiddenTemplate" *ngFor="let size of genAdSizes; let i = index">
+    <ads-generator-template
+      *ngIf="(showSizes$ | async)[i]"
+      [genTemplate]="selectedTemplate$ | async"
+      [gameTime]="true"
+      [height]="size.height"
+      [width]="size.width"
+      [ngStyle]="{
+        display: 'block',
+        height: size.height + 'px',
+        width: size.width + 'px'
+      }"
+      (loaded)="receiveReadyFromTemplate($event)"
+    >
+    </ads-generator-template>
+  </div>
+  <h1 ngClass.lt-sm="header-mobile">
+    {{ 'CAMPAIGN.CREATION.GENERATOR.CHOOSE_TEMPLATE' | translate }}
+  </h1>
+  <ads-template-carousel> </ads-template-carousel>
+  <div fxLayout="row">
+    <form
+      fxLayout="column"
+      class="form-column"
+      ngClass.lt-md="form-column-mobile"
+      (keydown.enter)="$event.preventDefault()"
+      [formGroup]="generatorForm"
+    >
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <h1 ngClass.lt-sm="header-mobile">
+          {{ 'CAMPAIGN.CREATION.GENERATOR.WRITE_MESSAGE' | translate }}
+        </h1>
+        <p
+          *ngIf="
+            generatorInfo.headline != null ||
+            generatorInfo.subhead != null ||
+            generatorInfo.third != null
+          "
+          class="character-counter"
+          [ngClass]="{
+            'too-many': (charCount$ | async) < 0,
+            'getting-close':
+              (charCount$ | async) < 11 && (charCount$ | async) >= 0
+          }"
+        >
+          {{ charCount$ | async }}
+        </p>
+      </div>
+      <mat-form-field
+        class="text-input"
+        ngClass.gt-xs="left-align"
+        appearance="outline"
+      >
+        <input
+          class="textarea"
+          matInput
+          type="text"
+          [attr.maxlength]="headlineMax"
+          autocomplete="off"
+          placeholder="Headline"
+          (click)="$event.target.select()"
+          [formControl]="generatorForm.controls['headline']"
+        />
+      </mat-form-field>
+      <mat-form-field
+        class="text-input"
+        ngClass.gt-xs="left-align"
+        appearance="outline"
+      >
+        <input
+          class="textarea"
+          matInput
+          type="text"
+          [attr.maxlength]="subheadMax"
+          autocomplete="off"
+          placeholder="Subhead"
+          (click)="$event.target.select()"
+          [formControl]="generatorForm.controls['subhead']"
+        />
+      </mat-form-field>
+      <div
+        class="logo-or-third"
+        ngClass.gt-xs="left-align"
+        fxLayout.gt-xs="row"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-between center"
+      >
+        <input
+          hidden
+          type="file"
+          accept="image/*"
+          #uploader
+          (click)="uploader.value = null"
+          (change)="uploadImage($event.target.files[0])"
+        />
+        <button
+          class="blue-outlined-button add-logo-btn"
+          ngClass.xs="add-logo-btn-mobile"
+          mat-flat-button
+          *ngIf="!generatorInfo.imageURL"
+          (click)="uploader.click()"
+        >
+          {{ 'CAMPAIGN.CREATION.GENERATOR.ADD_IMAGE' | translate }}
+        </button>
+        <button
+          class="blue-outlined-button remove-logo-btn"
+          mat-flat-button
+          *ngIf="generatorInfo.imageURL"
+          (click)="removeImage()"
+        >
+          {{ 'CAMPAIGN.CREATION.GENERATOR.REMOVE_IMAGE' | translate }}
+        </button>
+        <h3 class="or" *ngIf="!generatorInfo.imageURL">
+          {{ 'CAMPAIGN.CREATION.GENERATOR.OR' | translate }}
+        </h3>
+        <mat-form-field
+          class="text-input third-field"
+          ngClass.xs="third-field-mobile"
+          appearance="outline"
+          *ngIf="!generatorInfo.imageURL"
+        >
+          <div class="head-line">
+            <input
+              class="textarea"
+              matInput
+              type="text"
+              [attr.maxlength]="thirdMax"
+              autocomplete="off"
+              placeholder="{{
+                'CAMPAIGN.CREATION.GENERATOR.THIRD' | translate
+              }}"
+              (click)="$event.target.select()"
+              [formControl]="generatorForm.controls['third']"
+            />
+            <div class="tooltip" [class.headline-error]="isSubHeadError">
+              <span
+                class="tooltiptext"
+                [style.visibility]="isPhoneError ? 'visible' : 'hidden'"
+              >
+                <div class="top">
+                  <h6 class="title">
+                    {{ 'CAMPAIGN.VALIDATION.LOOKS_LIKE' | translate }}
+                    <mat-icon class="tool-icon"> phone</mat-icon>
+                    {{ 'CAMPAIGN.VALIDATION.PHONE_NUMBER' | translate }}
+                  </h6>
+                  <span (click)="cancelToolTip()" class="pointer">
+                    <mat-icon class="x-icon">cancel</mat-icon>
+                  </span>
+                </div>
+                <p class="desc">
+                  {{ 'CAMPAIGN.VALIDATION.PHONE_NUMBER_DIFFICULT' | translate }}
+                </p>
+              </span>
+              <span
+                class="tooltiptext"
+                [style.visibility]="isUrlError ? 'visible' : 'hidden'"
+              >
+                <div class="top">
+                  <h6 class="title">
+                    {{ 'CAMPAIGN.VALIDATION.WEBSITE' | translate }}
+                  </h6>
+                  <span (click)="cancelToolTip()" class="pointer">
+                    <mat-icon class="x-icon">cancel</mat-icon>
+                  </span>
+                </div>
+
+                <p class="desc">
+                  {{ 'CAMPAIGN.VALIDATION.TRY_USING' | translate }}
+                  {{ websiteUrl }}
+                  {{ 'CAMPAIGN.VALIDATION.BY_REMOVING' | translate }} “{{
+                    urlState
+                  }}”
+                  {{ 'CAMPAIGN.VALIDATION.YOUR_AUDIENCE' | translate }}
+                </p>
+              </span>
+              <span
+                class="tooltiptext"
+                [style.visibility]="isVulgarError ? 'visible' : 'hidden'"
+              >
+                <div class="top">
+                  <h6 class="title">
+                    😬 {{ 'CAMPAIGN.VALIDATION.TRY_SAYING' | translate }}
+                  </h6>
+                  <span (click)="cancelToolTip()" class="pointer">
+                    <mat-icon class="x-icon">cancel</mat-icon>
+                  </span>
+                </div>
+                <p class="desc">
+                  {{ 'CAMPAIGN.VALIDATION.KEEP_LANGUAGE' | translate }}
+                </p>
+              </span>
+            </div>
+          </div>
+        </mat-form-field>
+      </div>
+      <h1 ngClass.lt-sm="header-mobile">
+        {{ 'CAMPAIGN.CREATION.GENERATOR.FONT_AND_COLOR' | translate }}
+      </h1>
+      <div fxLayout="row" fxHide.gt-xs>
+        <button
+          class="mobile-round-btn"
+          fxLayoutAlign="center center"
+          (click)="openFontBottomSheet()"
+        >
+          <div class="mobile-font-select">Aa</div>
+        </button>
+        <button
+          class="mobile-round-btn"
+          fxLayoutAlign="center center"
+          (click)="openColorBottomSheet()"
+        >
+          <img
+            class="color-ball-mobile"
+            src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/color_wheel.svg"
+          />
+        </button>
+      </div>
+      <div
+        fxLayout="row"
+        fxHide.lt-sm
+        fxLayoutGap="8px"
+        fxLayoutAlign="space-between"
+        class="left-align"
+      >
+        <mat-form-field
+          fxFlex="1 1 100%"
+          appearance="outline"
+          class="font-select wrapper"
+        >
+          <mat-select
+            [value]="generatorInfo.font"
+            (selectionChange)="updateFont($event.value)"
+            #fontSelect
+          >
+            <mat-select-trigger>
+              <span
+                class="font-select-trigger"
+                fxLayout="row"
+                fxLayoutAlign="start end"
+              >
+                <div class="font-spacer"></div>
+                Font: {{ fontSelect.value }}
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let font of genFonts" [value]="font">
+              <span class="{{ font.replace(' ', '') }}">{{ font }}</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlex="1 1 100%">
+          <ads-color-picker-dropdown
+            [colors]="logoColors"
+            [selectedColor]="selectedColor$ | async"
+            (onUpdateColor)="updateColor($event)"
+          >
+          </ads-color-picker-dropdown>
+        </div>
+      </div>
+      <div fxHide.gt-sm>
+        <h3 class="mobile-billboard-header">
+          {{ 'CAMPAIGN.CREATION.GENERATOR.BILLBOARD_PREVIEW' | translate }}
+        </h3>
+        <div fxLayoutAlign="center center">
+          <div
+            class="mobile-preview-container"
+            #smallImage
+            appGoogleAnalytics
+            [googleCategory]="'Blip Templates'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Download Template Preview (Mobile)'"
+            (click)="downloadPreview(smallImage)"
+          >
+            <div class="mobile-overlay">
+              <ads-generator-template
+                [genTemplate]="selectedTemplate$ | async"
+                [width]="308"
+                [height]="82"
+                [preview]="true"
+              >
+              </ads-generator-template>
+            </div>
+            <img
+              class="preview-image-mobile"
+              src="assets/img/billboard_preview.png"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+    <div fxHide.lt-md fxLayout="column" class="preview-column">
+      <div class="preview-container" #largeImage>
+        <div class="overlay">
+          <ads-generator-template
+            [genTemplate]="selectedTemplate$ | async"
+            [width]="308"
+            [height]="82"
+            [preview]="true"
+          >
+          </ads-generator-template>
+        </div>
+        <img class="preview-image" src="assets/img/billboard_preview.png" />
+        <div
+          class="preview-save-btn-container"
+          id="save-overlay"
+          *ngIf="showPreviewOverlay && !browserIsSafari"
+        >
+          <button
+            class="preview-save-btn"
+            fxLayoutAlign="center center"
+            appGoogleAnalytics
+            [googleCategory]="'Blip Templates'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Download Template Preview'"
+            (click)="downloadPreview(largeImage)"
+          >
+            {{ 'CAMPAIGN.CREATION.GENERATOR.DOWNLOAD_PREVIEW' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+  <form (ngSubmit)="createPop()" [formGroup]="popForm">
+    <div
+      fxLayoutGap.gt-xs="16px"
+      fxLayout="row wrap"
+      fxLayoutAlign="start center"
+    >
+      <mat-form-field fxFlex.xs="100" fxFlex="48">
+        <input
+          matInput
+          [matDatepicker]="popDatepickerStart"
+          [placeholder]="'START_DATE' | translate"
+          [formControl]="popForm.controls['startDate']"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="popDatepickerStart"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #popDatepickerStart></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field fxFlex.xs="100" fxFlex="48">
+        <input
+          matInput
+          [matDatepicker]="popDatepickerEnd"
+          [placeholder]="'END_DATE' | translate"
+          [formControl]="popForm.controls['endDate']"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="popDatepickerEnd"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #popDatepickerEnd></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div
+      fxLayoutGap.gt-xs="16px"
+      fxLayout="row wrap"
+      fxLayoutAlign="start center"
+    >
+      <mat-form-field fxFlex.xs="100" fxFlex="48">
+        <mat-select
+          placeholder="{{ 'REPORTS.POP.SELECT.TEXT' | translate }}"
+          [formControl]="popForm.controls['ads']"
+          multiple
+        >
+          <mat-select-trigger>
+            {{
+              popForm.controls['ads'].value?.length
+                ? popForm.controls['ads'].value[0].name
+                : ''
+            }}
+            <span
+              *ngIf="popForm.controls['ads'].value?.length > 1"
+              class="additional-selection"
+            >
+              (+
+              {{ popForm.controls['ads'].value.length - 1 }}
+              {{
+                (popForm.controls['ads'].value?.length === 2
+                  ? 'OTHER'
+                  : 'OTHERS') | translate
+              }}
+              )
+            </span>
+          </mat-select-trigger>
+
+          <mat-option *ngFor="let ad of ads" [value]="ad">{{
+            ad.name
+          }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="popForm.controls['ads'].hasError('required')"
+          [innerHTML]="'REPORTS.POP.SELECT.REQUIRED' | translate"
+        >
+        </mat-error>
+      </mat-form-field>
+
+      <div
+        fxFlex.xs="100"
+        fxFlex="48"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <div class="detailed">
+          <span>{{ 'REPORTS.POP.DETAILED' | translate }}</span>
+          <mat-slide-toggle
+            color="primary"
+            formControlName="detailed"
+          ></mat-slide-toggle>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="popForm.invalid"
+          class="open-button"
+          type="submit"
+          (click)="$event.stopPropagation()"
+        >
+          {{ 'OPEN' | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

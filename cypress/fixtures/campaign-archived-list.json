@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": [
+    {
+      "id": "68w78x",
+      "campaign_type": "STANDARD",
+      "daily_budget": 20.0,
+      "deleted": true,
+      "description": "",
+      "enabled": false,
+      "end_date": null,
+      "max_price": null,
+      "name": "New Campaign",
+      "start_date": null,
+      "timezone": "America/Denver",
+      "thumbnails": [
+        "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-gkp4wn-960x480-b5dd0eab-thumbnail.png"
+      ]
+    }
+  ]
+}

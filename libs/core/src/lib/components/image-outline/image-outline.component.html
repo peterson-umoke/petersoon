@@ -1,0 +1,11 @@
+<div
+  [ngClass]="{ example: example }"
+  class="image-outline"
+  (click)="openExample()"
+  [matTooltipDisabled]="!example"
+  matTooltip="{{ 'VIEW_EXAMPLE' | translate }}"
+  matTooltipPosition="below"
+>
+  <mat-icon [ngClass]="orientationIcon" [svgIcon]="orientationIcon"></mat-icon>
+  <span>{{ width }} &times; {{ height }}</span>
+</div>

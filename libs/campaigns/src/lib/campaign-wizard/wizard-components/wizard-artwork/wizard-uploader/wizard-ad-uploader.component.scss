@@ -1,0 +1,104 @@
+@import '../../../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+#adName {
+  font-size: 27px;
+  font-weight: 700;
+  color: #4d4d4d;
+}
+
+h2 {
+  color: $black;
+  font-size: 27px;
+  &.design-fit {
+    margin: 20px 0 40px 0;
+  }
+}
+
+h3 {
+  font-size: 16px;
+  color: $black;
+  &.missing {
+    color: $red;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.row-header {
+  font-size: 14px;
+  font-weight: 500;
+
+  .dimensions {
+    text-align: center;
+  }
+  .locations {
+    text-align: center;
+  }
+}
+
+.good-sizes {
+  margin-top: 2em;
+  .header {
+    font-size: 16px;
+    font-weight: 500;
+    color: $gray;
+    margin-bottom: 10px;
+
+    .done {
+      color: $green;
+    }
+  }
+}
+
+.uploader-row {
+  padding: 0.25em;
+  border: 1px solid $lightest-gray;
+  margin-bottom: 1em;
+
+  .dimensions {
+    padding-top: 0.5em;
+    padding-left: 2em;
+    text-align: center;
+    color: $gray;
+    border-right: 1px solid $lightest-gray;
+
+    a {
+      color: $light-blue;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+
+  .locations {
+    padding-top: 0.5em;
+    padding-left: 2em;
+    margin-bottom: 1em;
+
+    .sign {
+      margin-bottom: 1em;
+      margin-right: 2em;
+    }
+
+    mat-icon {
+      font-size: 0.75em;
+      margin-right: 0.75em;
+      margin-top: 0.25em;
+      color: #959595;
+    }
+
+    .name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .city {
+      font-size: 14px;
+      font-weight: 350;
+      color: $black;
+    }
+  }
+}

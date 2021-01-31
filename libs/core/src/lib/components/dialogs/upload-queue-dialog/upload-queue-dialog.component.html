@@ -1,0 +1,152 @@
+<mat-progress-bar
+  *ngIf="data.uploader.isUploading && data.uploader.progress > 0"
+  class="overall-upload"
+  mode="determinate"
+  [value]="data.uploader.progress"
+></mat-progress-bar>
+<mat-progress-bar
+  *ngIf="data.uploader.isUploading && data.uploader.progress === 0"
+  class="overall-upload"
+  mode="indeterminate"
+>
+</mat-progress-bar>
+
+<div fxLayout="column">
+  <div fxFlex (click)="editAdName()" class="input-container">
+    <mat-form-field appearance="outline" appUpdateOutlineGap class="form-field">
+      <mat-label
+        >{{ 'AD' | translate }} {{ 'NAME.TEXT' | translate }}</mat-label
+      >
+      <input
+        matInput
+        required
+        type="text"
+        #adName
+        [formControl]="adForm.controls['name']"
+        [attr.maxlength]="adNameMax"
+        disabled
+      />
+
+      <mat-error
+        *ngIf="adForm.controls['name'].hasError('required')"
+        [innerHTML]="'NAME.REQUIRED' | translate"
+      >
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxFlex
+    *ngIf="data.uploader.files.length > 1 && generatorTemplate == null"
+  >
+    <span class="ad-size-note">{{ 'ADD_SIZES_NOTE' | translate }}</span>
+  </div>
+
+  <mat-dialog-content *ngIf="generatorTemplate == null">
+    <table class="upload-table" fxFlex="100">
+      <thead>
+        <tr>
+          <th fxLayout="row" fxLayoutAlign="start center" class="width-70">
+            {{ 'SIZE' | translate
+            }}{{ data.uploader.files.length > 1 ? 's' : '' }}
+          </th>
+          <!-- Temporarily hidden by request of design team bc progress bar doesn't function 100% as intended -->
+          <!-- <th class="width-30">{{ 'PROGRESS' | translate }}</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let file of data.uploader.files">
+          <tr
+            ngClass.xs="xs"
+            fxHide="true"
+            fxShow.xs
+            class="row"
+            style="height: 15px;"
+          ></tr>
+          <tr
+            ngClass.sm="sm"
+            fxHide="true"
+            fxShow.sm
+            class="row"
+            style="height: 8px;"
+          ></tr>
+          <tr class="row">
+            <td fxLayout="row" fxLayoutAlign="start center" class="row">
+              <span class="size"
+                >{{ file.width }} &times; {{ file.height }}</span
+              >
+              <button
+                mat-icon-button
+                class="remove"
+                *ngIf="!uploading && generatorTemplate == null"
+                (click)="remove(file)"
+                matTooltip="{{ 'REMOVE' | translate }}"
+                matTooltipPosition="above"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                *ngIf="file.duplicateSize && !data.replacing"
+                matTooltip="{{ 'DUPLICATE_SIZE_DETECTED' | translate }}"
+                matTooltipPosition="above"
+              >
+                <button mat-icon-button class="warning" disabled>
+                  <mat-icon>warning</mat-icon>
+                </button>
+                <button
+                  mat-raised-button
+                  (click)="replace(file)"
+                  class="replace"
+                >
+                  {{ 'REPLACE' | translate }}
+                </button>
+              </div>
+            </td>
+            <td class="width-30">
+              <!-- Temporarily hidden by request of design team bc progress bar doesn't function 100% as intended -->
+              <!-- <mat-progress-bar mode="determinate" [value]="file.progress"></mat-progress-bar> -->
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </mat-dialog-content>
+
+  <mat-dialog-actions
+    class="buttons"
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    fxLayoutGap="8px"
+    *ngIf="!data.replacing"
+  >
+    <button mat-raised-button (click)="close()" [disabled]="uploading">
+      {{ 'CANCEL' | translate }}
+    </button>
+    <button
+      mat-raised-button
+      class="save"
+      (click)="save()"
+      [ngClass]="{
+        'save-disabled':
+          data.conflicts > 0 ||
+          !adForm.controls['name'].value.length ||
+          uploading
+      }"
+      [disabled]="
+        data.conflicts > 0 || !adForm.controls['name'].value.length || uploading
+      "
+    >
+      {{
+        (newAd
+          ? 'CREATE'
+          : data.uploader.files.length > 1
+          ? 'ADD_SIZES'
+          : 'ADD_SIZE'
+        ) | translate
+      }}
+    </button>
+  </mat-dialog-actions>
+</div>

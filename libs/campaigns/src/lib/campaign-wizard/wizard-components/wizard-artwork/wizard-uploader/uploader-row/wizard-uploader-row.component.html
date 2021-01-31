@@ -1,0 +1,191 @@
+<div>
+  <div
+    *ngIf="showHeader && !media.isActive('xs')"
+    class="row-header"
+    gdColumns="16rem 14rem 1fr"
+  >
+    <div class="artwork" translate="">ARTWORK</div>
+    <div class="dimensions" translate>
+      CAMPAIGN.CREATION.UPLOADER.DIMENSIONS
+    </div>
+    <div class="locations" translate>
+      CAMPAIGN.CREATION.UPLOADER.LOCATIONS_DIMENSIONS_USED
+    </div>
+  </div>
+
+  <div
+    *ngIf="media.isActive('gt-xs')"
+    class="uploader-row"
+    gdColumns="16rem 14rem 1fr"
+    gdAuto="row"
+    gdGap="1px"
+  >
+    <div>
+      <div class="upload-box">
+        <app-ad-upload
+          *ngIf="!image"
+          [restrictResolutionTo]="{ width: size.width, height: size.height }"
+          [fullHeight]="true"
+          [ad]="ad"
+          [uploaderRow]="true"
+        ></app-ad-upload>
+      </div>
+      <div *ngIf="image" fxLayout="column" fxLayoutAlign="center center">
+        <img [src]="image.url" />
+        <app-ad-upload
+          [replaceImageId]="image.id"
+          [restrictResolutionTo]="{ width: size.width, height: size.height }"
+          [fullHeight]="true"
+          [custom]="true"
+          [ad]="ad"
+          [uploaderRow]="true"
+        >
+          <button class="replace" mat-stroked-button translate>REPLACE</button>
+        </app-ad-upload>
+      </div>
+    </div>
+
+    <div class="dimensions">
+      <span>{{ size.width }} &times; {{ size.height }}</span>
+      <!--<div *ngIf="!image"><a href="#">Download Template</a></div>-->
+    </div>
+    <ng-container *ngTemplateOutlet="locations"></ng-container>
+  </div>
+
+  <ng-template #locations>
+    <div
+      class="locations"
+      gdColumns.gt-lg="1fr 1fr 1fr"
+      gdColumns.gt-sm="1fr 1fr"
+      gdColumns.xs="1fr 1fr"
+      gdAuto="row"
+    >
+      <div
+        *ngIf="media.isActive('xs')"
+        gdColumn="1 / span 2"
+        class="expansion-title"
+        translate
+      >
+        CAMPAIGN.CREATION.UPLOADER.LOCATIONS_DIMENSIONS_USED
+      </div>
+      <div class="sign" *ngFor="let sign of signsToShow" fxLayout="row">
+        <mat-icon
+          fxHide.xs
+          [ngClass]="iconClass"
+          class="match-icon"
+          inline="true"
+          >{{ signIcon }}</mat-icon
+        >
+        <div>
+          <div class="name">
+            {{ sign.display_name ? sign.display_name : sign.name }}
+          </div>
+          <div class="city">
+            {{ sign.city }}, {{ sign.province | abbreviateState }}
+          </div>
+        </div>
+      </div>
+      <div
+        class="sign-expander"
+        *ngIf="tooManySigns"
+        gdGridAlign="center center"
+        gdColumn.gt-lg="1 / span 3"
+        gdColumn.gt-sm="1 / span 2"
+        gdColumn.xs="1 / span 2"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        (click)="toggleAllSigns()"
+      >
+        <ng-container *ngIf="!showAllSigns">
+          <span translate>CAMPAIGN.CREATION.UPLOADER.SHOW_ALL_LOCATIONS</span>
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </ng-container>
+        <ng-container *ngIf="showAllSigns">
+          <span translate>CAMPAIGN.CREATION.UPLOADER.HIDE_ALL_LOCATIONS</span>
+          <mat-icon>keyboard_arrow_up</mat-icon>
+        </ng-container>
+      </div>
+      <div
+        gdColumn.gt-lg="1 / span 3"
+        gdColumn.gt-sm="1 / span 2"
+        gdColumn.xs="1 / span 2"
+        *ngIf="signs.length === 0"
+        translate
+      >
+        CAMPAIGN.CREATION.UPLOADER.UNUSED_DIMENSIONS
+      </div>
+    </div>
+  </ng-template>
+
+  <div
+    class="uploader-row"
+    *ngIf="media.isActive('xs')"
+    ngStyle.lt-sm="border: 'none'"
+  >
+    <mat-expansion-panel togglePosition="before">
+      <mat-expansion-panel-header>
+        <div
+          *ngIf="!image"
+          fxFlex
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
+          <div>
+            {{ 'CAMPAIGN.CREATION.UPLOADER.MISSING_SIZE' | translate }}:
+            {{ size.width }} &times; {{ size.height }}
+          </div>
+          <div>
+            <app-ad-upload
+              *ngIf="!image"
+              [restrictResolutionTo]="{
+                width: size.width,
+                height: size.height
+              }"
+              [fullHeight]="false"
+              [custom]="true"
+              [ad]="ad"
+            >
+              <button mat-raised-button color="primary" translate>
+                UPLOAD
+              </button>
+            </app-ad-upload>
+          </div>
+        </div>
+        <div
+          *ngIf="image"
+          fxFlex
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
+          <div>
+            {{ 'SIZE' | translate }}: {{ size.width }} &times; {{ size.height }}
+          </div>
+          <div>
+            <app-ad-upload
+              [replaceImageId]="image.id"
+              [restrictResolutionTo]="{
+                width: size.width,
+                height: size.height
+              }"
+              [custom]="true"
+              [ad]="ad"
+            >
+              <button
+                mat-stroked-button
+                translate
+                class="replace"
+                [style.margin]="'0'"
+              >
+                REPLACE
+              </button>
+            </app-ad-upload>
+          </div>
+        </div>
+      </mat-expansion-panel-header>
+      <img ngClass.xs="xs" *ngIf="image" height="500" [src]="image.url" />
+      <ng-container *ngTemplateOutlet="locations"></ng-container>
+    </mat-expansion-panel>
+  </div>
+</div>
+
+<!-- MOBILE TEMPLATE -->

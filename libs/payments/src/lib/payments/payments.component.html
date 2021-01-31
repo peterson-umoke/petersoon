@@ -1,0 +1,51 @@
+<div
+  fxLayout="column"
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="payments-container"
+>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="payments">{{ 'PAYMENT.PLURAL' | translate }}</span>
+    <div>
+      <span
+        matTooltip="{{ 'PAYMENT.PAYMENT_LIMIT' | translate }}"
+        [matTooltipDisabled]="canAddPayment"
+      >
+        <button
+          mat-raised-button
+          [ngClass]="{
+            'blue-filled-button': canAddPayment,
+            'disabled-button': !canAddPayment
+          }"
+          (click)="newPayment()"
+          [disabled]="!canAddPayment"
+        >
+          <mat-icon fxHide.lt-md>add</mat-icon>
+          {{ 'PAYMENT.TEXT' | translate }}
+        </button>
+      </span>
+
+      <!-- Shows if create_payment is allowed -->
+      <button
+        *ngIf="canAddCredit"
+        data-test="add-credit-button"
+        mat-raised-button
+        class="blue-filled-button credit"
+        (click)="newCredit()"
+      >
+        <mat-icon fxHide.lt-md>add</mat-icon>
+        {{ 'PAYMENT.CREDIT' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="payments.length">
+    <app-payment-details [payments]="payments"></app-payment-details>
+  </div>
+
+  <div *ngIf="!payments.length" fxLayoutAlign="center center" class="payments">
+    {{ 'PAYMENT.NONE' | translate }}
+  </div>
+</div>

@@ -1,0 +1,58 @@
+@import '../../styles/sizes.scss';
+@import '../../styles/colors.scss';
+
+footer {
+  height: 72px;
+
+  .toolbar {
+    background-color: $white !important;
+    border-top: 1px solid $darker-gray;
+    color: $darker-gray;
+    font-size: $twelve;
+    font-weight: $medium;
+    padding: 8px;
+
+    .margin-top {
+      margin-top: 8px;
+    }
+
+    div,
+    span,
+    a {
+      line-height: $twelve;
+    }
+
+    a {
+      color: $darker-gray;
+      text-decoration: none;
+    }
+
+    span:hover,
+    a:hover {
+      color: darken($color: $darker-gray, $amount: 10);
+      cursor: pointer;
+    }
+
+    mat-icon {
+      font-size: $eighteen;
+      height: $eighteen;
+      width: $eighteen;
+    }
+  }
+}
+
+footer:not(mobile) {
+  .toolbar {
+    padding-top: 8px;
+  }
+}
+
+.mobile {
+  .toolbar {
+    height: 100%;
+  }
+
+  .language {
+    margin-top: 8px;
+  }
+}

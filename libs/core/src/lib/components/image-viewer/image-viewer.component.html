@@ -1,0 +1,32 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  class="image-viewer"
+  (click)="closeModal($event)"
+>
+  <div fxLayout="row" fxLayoutAlign="center center" class="image-large">
+    <img
+      [src]="
+        images[imageIndex]?.url ||
+        images[imageIndex] ||
+        'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+      "
+      [alt]="images[imageIndex]?.name"
+    />
+    <mat-icon
+      *ngIf="images?.length > 1"
+      class="left"
+      ngClass.xs="arrow"
+      (click)="goToImage(-1)"
+      >arrow_left</mat-icon
+    >
+    <mat-icon
+      *ngIf="images?.length > 1"
+      class="right"
+      ngClass.xs="arrow"
+      (click)="goToImage(1)"
+      >arrow_right</mat-icon
+    >
+    <mat-icon class="close" (click)="close()">close</mat-icon>
+  </div>
+</div>

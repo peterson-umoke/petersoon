@@ -1,0 +1,94 @@
+<button
+  data-cy="open-campaign-menu"
+  mat-icon-button
+  class="more"
+  [matMenuTriggerFor]="campaignMenu"
+  appGoogleAnalytics
+  [googleCategory]="'Campaign Menu'"
+  [googleAction]="'Click'"
+  [googleLabel]="'Open'"
+>
+  <mat-icon>{{ iconType }}</mat-icon>
+</button>
+
+<mat-menu #campaignMenu="matMenu">
+  <button
+    data-cy="edit-campaign-button"
+    mat-menu-item
+    *ngIf="!campaign.deleted"
+    (click)="edit()"
+    appGoogleAnalytics
+    [googleCategory]="'Campaign Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Edit'"
+  >
+    {{ 'EDIT' | translate }}
+  </button>
+  <button
+    mat-menu-item
+    (click)="analytics()"
+    appGoogleAnalytics
+    [googleCategory]="'Campaign Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Go To Campaign Analytics'"
+  >
+    {{ 'CAMPAIGN.ANALYTICS' | translate }}
+  </button>
+  <button
+    mat-menu-item
+    (click)="details()"
+    appGoogleAnalytics
+    [googleCategory]="'Campaign Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Go To Campaign Details'"
+  >
+    {{ 'CAMPAIGN.DETAILS' | translate }}
+  </button>
+  <button
+    data-cy="duplicate-campaign-button"
+    mat-menu-item
+    (click)="duplicate()"
+    appGoogleAnalytics
+    [googleCategory]="'Campaign Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Duplicate'"
+  >
+    {{ 'DUPLICATE_CAMPAIGN' | translate }}
+  </button>
+  <button
+    data-cy="archive-campaign-button"
+    mat-menu-item
+    *ngIf="!campaign.deleted"
+    (click)="archive()"
+    appGoogleAnalytics
+    [googleCategory]="'Campaign Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Archive'"
+  >
+    {{ 'ARCHIVE' | translate }}
+  </button>
+  <button
+    data-cy="unarchive-campaign-button"
+    mat-menu-item
+    *ngIf="campaign.deleted"
+    (click)="unarchive()"
+    appGoogleAnalytics
+    [googleCategory]="'Campaign Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Unarchive'"
+  >
+    {{ 'UNARCHIVE' | translate }}
+  </button>
+  <button
+    data-cy="delete-campaign-button"
+    mat-menu-item
+    *ngIf="campaign.deleted"
+    (click)="delete()"
+    appGoogleAnalytics
+    [googleCategory]="'Campaign Menu'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Delete Campaign'"
+  >
+    {{ 'DELETE.TEXT' | translate }}
+  </button>
+</mat-menu>

@@ -1,0 +1,336 @@
+<div
+  *ngIf="render | async"
+  class="list-container"
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutGap.gt-sm="8px"
+  fxLayoutGap.lt-md="16px"
+  [ngClass]="{
+    selected: signSelected,
+    'marker-clicked': markerClicked
+  }"
+>
+  <div
+    fxLayout="column"
+    fxLayoutGap="2px"
+    fxHide.lt-md
+    fxLayoutAlign="start center"
+  >
+    <div class="image-container">
+      <mat-icon
+        class="left-image-arrow"
+        (click)="changeImage(imageIndex - 1)"
+        *ngIf="sign.photos.length > 1"
+        >arrow_left
+      </mat-icon>
+      <img
+        #signImage
+        class="item"
+        [src]="
+          sign.photos[imageIndex]?.url ||
+          'https://blipbillboards-marketplace.s3.amazonaws.com/images/new-image-soon.png'
+        "
+        appImageViewer
+        [images]="sign.photos"
+        [imageIndex]="imageIndex"
+      />
+      <mat-icon
+        class="right-image-arrow"
+        (click)="changeImage(imageIndex + 1)"
+        *ngIf="sign.photos.length > 1"
+      >
+        arrow_right
+      </mat-icon>
+      <div class="overlay" (click)="signImage.click()"></div>
+    </div>
+
+    <div
+      class="dots"
+      *ngIf="sign.photos.length > 1"
+      fxFlexAlign="center"
+      fxLayout="row"
+      fxLayoutAlign="space-around center"
+    >
+      <mat-icon
+        [ngClass]="{ 'selected-image': i === imageIndex }"
+        *ngFor="let img of sign.photos; index as i"
+        (click)="changeImage(i)"
+        >lens
+      </mat-icon>
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div
+    class="mobile-image-container"
+    fxHide.gt-sm
+    fxLayout="row"
+    fxLayoutGap="4px"
+  >
+    <img
+      *ngFor="let signPhoto of sign.photos; let i = index"
+      [src]="signPhoto.url"
+      appImageViewer
+      [images]="sign.photos"
+      [imageIndex]="i"
+    />
+    <img
+      *ngIf="sign.photos.length < 1"
+      src="https://blipbillboards-marketplace.s3.amazonaws.com/images/new-image-soon.png"
+    />
+  </div>
+
+  <div
+    class="sign-detail-container"
+    ngClass.lt-md="sign-detail-container-mobile"
+    fxLayout="row"
+    fxLayoutGap="4px"
+    fxLayout.lt-md="column"
+    fxLayoutGap.lt-md="16px"
+    fxLayoutAlign="space-between"
+  >
+    <div class="sign-info item" fxLayout="column">
+      <div class="child-column" fxLayout="column">
+        <div
+          class="unique-sign"
+          *ngIf="sign.unique_sign"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
+          <img
+            class="detail-icon"
+            src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/unique.svg"
+          />
+          {{ 'UNIQUE.REQUIRES_INDEPENDENT_CAMPAIGN' | translate | uppercase }}
+        </div>
+        <p #name class="sign-name">
+          {{ sign.display_name ? sign.display_name : sign.name }}
+        </p>
+        <p #description class="description">
+          {{ sign.description }}
+        </p>
+        <div #collapsible class="collapsible-content">
+          <a
+            fxHide.gt-sm
+            *ngIf="sign.booked"
+            class="temp-unavailable-mobile"
+            href="https://intercom.help/blip-support/en/articles/2890119-what-is-temporarily-unavailable"
+            target="_blank"
+            >{{ 'CAMPAIGN.CREATION.TEMPORARILY_UNAVAILABLE' | translate }}</a
+          >
+          <div class="show-default">
+            <span
+              *ngIf="sign.daily_impressions"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              class="details-items"
+            >
+              <img
+                class="detail-icon"
+                src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-impressions.svg"
+              />{{
+                'CAMPAIGN.CREATION.SIGN_LIST.AVERAGE_DAILY_VIEWS'
+                  | translate
+                    : {
+                        dailyImpressions:
+                          sign.daily_impressions | number: '1.0-0'
+                      }
+              }}
+            </span>
+            <span
+              *ngIf="sign.facing"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              class="details-items"
+            >
+              <img
+                class="detail-icon"
+                src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-traffic.svg"
+              />{{
+                'CAMPAIGN.CREATION.SIGN_LIST.TRAFFIC_DIRECTION'
+                  | translate: { direction: trafficDirection(sign.facing) }
+              }}
+            </span>
+          </div>
+
+          <span
+            *ngIf="sign.average_cost_per_flip"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            class="details-items"
+          >
+            <img
+              class="detail-icon"
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-dollar.svg"
+            />
+            {{
+              'CAMPAIGN.CREATION.SIGN_LIST.AVERAGE_COST_PER_BLIP'
+                | translate
+                  : {
+                      averageBlipPrice:
+                        sign.average_cost_per_flip | number: '0.2-2'
+                    }
+            }}
+          </span>
+          <span
+            *ngIf="sign.flip_duration"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            class="details-items"
+          >
+            <img
+              class="detail-icon"
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-flips.svg"
+            />{{
+              'CAMPAIGN.CREATION.SIGN_LIST.BLIP_SECONDS'
+                | translate: { blipDuration: sign.flip_duration }
+            }}
+          </span>
+          <span
+            *ngIf="sign.read && sign.read !== 'C'"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            class="details-items"
+          >
+            <img
+              class="detail-icon"
+              [src]="
+                sign.read === 'R'
+                  ? 'https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-roadside-right.svg'
+                  : 'https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-roadside-left.svg'
+              "
+            />{{
+              'CAMPAIGN.CREATION.SIGN_LIST.ROAD_PLACEMENT'
+                | translate: { read: translate(sign.read) }
+            }}
+          </span>
+          <!-- <span *ngIf="sign.facing" fxLayout="row" fxLayoutAlign="start center">
+            <img
+              class="detail-icon"
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-traffic.svg"
+            />{{
+              'CAMPAIGN.CREATION.SIGN_LIST.TRAFFIC_DIRECTION'
+                | translate: { direction: trafficDirection(sign.facing) }
+            }}
+          </span> -->
+          <span
+            *ngIf="sign.width && sign.height"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            class="details-items"
+          >
+            <img
+              class="detail-icon"
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-size.svg"
+            />{{
+              'CAMPAIGN.CREATION.SIGN_LIST.DIMENSIONS'
+                | translate: { width: sign.width, height: sign.height }
+            }}
+          </span>
+
+          <agm-map
+            class="map"
+            #map
+            *ngIf="renderCardMap && expanded"
+            [latitude]="sign.lat"
+            [longitude]="sign.lon"
+            [keyboardShortcuts]="false"
+            [mapTypeControl]="false"
+            [zoom]="10"
+            [styles]="googleMapStyles"
+            [fullscreenControl]="false"
+            [streetViewControl]="false"
+            [scrollwheel]="false"
+            [mapDraggable]="false"
+          >
+            <agm-marker
+              [latitude]="sign.lat"
+              [longitude]="sign.lon"
+              [iconUrl]="signSelected ? selectedMarker : deselectedMarker"
+            ></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+      <div
+        class="details"
+        (click)="toggleCollapsible()"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        *ngIf="!expanded"
+      >
+        <mat-icon>keyboard_arrow_down</mat-icon
+        >{{ 'CAMPAIGN.CREATION.VIEW_DETAILS' | translate }}
+      </div>
+      <div
+        class="details"
+        (click)="toggleCollapsible()"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        *ngIf="expanded"
+      >
+        <mat-icon>keyboard_arrow_up</mat-icon
+        >{{ 'CAMPAIGN.CREATION.VIEW_DETAILS' | translate }}
+      </div>
+    </div>
+    <div fxLayout="row">
+      <!--- TODO need to add province to sign interface and endpoint --->
+      <p
+        *ngIf="sign.city && sign.province"
+        class="city-state item"
+        fxHide.lt-md
+      >
+        {{ sign.city }},
+        {{ sign.province | abbreviateState }}
+      </p>
+      <div fxLayout="column" fxLayoutGap="18px" fxFlex.lt-md="1 1 100%">
+        <!--Add/Remove/Unavailable Button-->
+        <button
+          id="toggleButton"
+          [disabled]="
+            (!allowAddingSigns ||
+              (!allowAddingUniqueSign && sign.unique_sign)) &&
+            ((!signSelected && !sign.booked) || (!signSelected && sign.booked))
+          "
+          [ngClass]="{
+            'add-button': !signSelected && !sign.booked,
+            'remove-button': signSelected,
+            'unavailable-button': !signSelected && sign.booked,
+            'btn-mobile': ltMd,
+            btn: !ltMd
+          }"
+          (click)="toggleSelected()"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <img
+            *ngIf="ltMd"
+            class="detail-icon"
+            [src]="
+              !signSelected && !sign.booked
+                ? 'https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-add.svg'
+                : signSelected
+                ? 'https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-minus.svg'
+                : 'https://blipbillboards-marketplace.s3.amazonaws.com/svg/sign-unavailable-add.svg'
+            "
+          /><span>{{
+            (!signSelected && !sign.booked
+              ? 'CAMPAIGN.CREATION.ADD_SIGN'
+              : signSelected
+              ? 'CAMPAIGN.CREATION.REMOVE_SIGN'
+              : 'CAMPAIGN.CREATION.USE_WHEN_POSSIBLE'
+            ) | translate
+          }}</span>
+        </button>
+        <a
+          fxHide.lt-md
+          *ngIf="sign.booked"
+          class="temp-unavailable"
+          href="https://intercom.help/blip-support/en/articles/2890119-what-is-temporarily-unavailable"
+          target="_blank"
+        >
+          {{ 'CAMPAIGN.CREATION.TEMPORARILY_UNAVAILABLE' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

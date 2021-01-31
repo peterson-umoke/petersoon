@@ -1,0 +1,129 @@
+<div
+  fxLayout="column"
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+  class="cards-container"
+>
+  <div *ngIf="dataSource.data.length">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>{{ 'NAME.TEXT' | translate }}</th>
+        <td
+          mat-cell
+          *matCellDef="let card"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          (click)="viewDetails(card.id)"
+        >
+          <span *ngIf="!card['edit']">{{ card.name }}</span>
+          <mat-form-field *ngIf="card['edit']" fxFlex="30">
+            <input
+              matInput
+              required
+              type="text"
+              #newName
+              (click)="$event.stopPropagation()"
+              [maxLength]="cardNameMax"
+              [(ngModel)]="card['newName']"
+              (keydown.enter)="editSave(card)"
+            />
+          </mat-form-field>
+
+          <div class="icons" fxLayoutGap="8px" *ngIf="!card['edit']">
+            <button
+              mat-icon-button
+              (click)="charge(card.id); $event.stopPropagation()"
+              matTooltip="{{ 'CREDIT_CARD.CHARGE.CARD' | translate }}"
+              matTooltipPosition="above"
+            >
+              <mat-icon>credit_card</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              (click)="edit(card); $event.stopPropagation()"
+              matTooltip="{{ 'EDIT' | translate }}"
+              matTooltipPosition="above"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              (click)="delete(card.id); $event.stopPropagation()"
+              matTooltip="{{ 'DELETE.TEXT' | translate }}"
+              matTooltipPosition="above"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div class="icons" fxLayoutGap="8px" *ngIf="card['edit']">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="editSave(card); $event.stopPropagation()"
+              matTooltip="{{ 'SAVE' | translate }}"
+              matTooltipPosition="above"
+            >
+              <mat-icon>check</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="editClose(card); $event.stopPropagation()"
+              matTooltip="{{ 'CANCEL' | translate }}"
+              matTooltipPosition="above"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div
+    *ngIf="!dataSource.data.length"
+    fxLayoutAlign="center center"
+    class="no-cards"
+  >
+    {{ 'CREDIT_CARD.NONE' | translate }}
+  </div>
+
+  <div
+    *ngIf="
+      isSuperUser || dataSource.data.length < cardLimit;
+      else cardLimitReached
+    "
+  >
+    <div class="add-card">
+      <span>{{ 'CREDIT_CARD.ADD' | translate }}</span>
+    </div>
+    <div fxLayout="row">
+      <div
+        class="card-input"
+        fxFlex.xs="100"
+        fxFlex.sm="50"
+        fxFlex.md="45"
+        fxFlex.gt-md="30"
+      >
+        <app-credit-card
+          fxFlex="100"
+          (cardAdded)="checkForChanges()"
+        ></app-credit-card>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #cardLimitReached>
+    <div fxLayoutAlign="center center" class="no-cards">
+      <span>{{
+        'CREDIT_CARD.LIMIT_REACHED' | translate: { limit: cardLimit }
+      }}</span>
+    </div>
+  </ng-template>
+</div>

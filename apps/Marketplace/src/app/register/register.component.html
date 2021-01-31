@@ -1,0 +1,208 @@
+<div fxLayout="row" fxLayoutAlign="center start" class="register-holder">
+  <div
+    fxLayout="column"
+    fxFlex="33"
+    fxFlex.sm="50"
+    fxFlex.xs="100"
+    ngClass.gt-xs="margin-top-65"
+    ngClass.xs="margin-top-16"
+  >
+    <div *ngIf="loadingService.$loadingRedirect | async" class="login-to-blip">
+      <span>{{ 'CHECKING_CREDENTIALS' | translate }}</span>
+    </div>
+
+    <mat-card
+      fxLayout="column"
+      fxLayoutAlign="center"
+      *ngIf="(loadingService.$loadingRedirect | async) !== true"
+    >
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div fxLayout="column" class="register-header">
+          <span class="create-account">{{
+            'AUTH.CREATE_ACCOUNT' | translate
+          }}</span>
+          <span class="registration">{{
+            'REGISTRATION_EASY' | translate
+          }}</span>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label [translate]="'NAME.TEXT'"></mat-label>
+            <input
+              data-test="register-name"
+              matInput
+              #name
+              required
+              type="text"
+              [formControl]="registerForm.controls['name']"
+            />
+            <mat-error
+              *ngIf="registerForm.controls['name'].hasError('required')"
+              [innerHTML]="'NAME.REQUIRED' | translate"
+            >
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label [translate]="'WORK.EMAIL'"></mat-label>
+            <input
+              matInput
+              required
+              type="email"
+              [formControl]="registerForm.controls['email']"
+            />
+            <mat-error
+              *ngIf="registerForm.controls['email'].hasError('required')"
+              [innerHTML]="'EMAIL.ADDRESS.REQUIRED' | translate"
+            ></mat-error>
+            <mat-error
+              *ngIf="registerForm.controls['email'].hasError('email')"
+              [innerHTML]="'EMAIL.ADDRESS.INVALID' | translate"
+            ></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label [translate]="'WORK.PHONE'"></mat-label>
+            <input
+              matInput
+              required
+              type="tel"
+              appPhoneNumber
+              [formControl]="registerForm.controls['phone']"
+            />
+            <mat-error
+              *ngIf="registerForm.controls['phone'].hasError('pattern')"
+              [innerHTML]="'PHONE_NUMBER.HINT' | translate"
+            ></mat-error>
+            <mat-error
+              *ngIf="registerForm.controls['phone'].hasError('required')"
+              [innerHTML]="'PHONE_NUMBER.REQUIRED' | translate"
+            ></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label [translate]="'PASSWORD.TEXT'"></mat-label>
+            <input
+              matInput
+              required
+              type="password"
+              [formControl]="registerForm.controls['password']"
+            />
+            <mat-error
+              *ngIf="registerForm.controls['password'].hasError('required')"
+              [innerHTML]="'PASSWORD.REQUIRED' | translate"
+            ></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" class="text-link">
+          <span
+            >{{ 'TERMS.AGREE' | translate }}
+            <span
+              (click)="openTerms()"
+              class="terms"
+              appGoogleAnalytics
+              [googleCategory]="'Register'"
+              [googleAction]="'Click'"
+              [googleLabel]="'View Terms of Service'"
+            >
+              {{ 'TERMS.TEXT' | translate }}
+            </span></span
+          >
+        </div>
+
+        <div fxLayout="row" class="signup">
+          <button
+            data-test="register-submit"
+            mat-raised-button
+            type="submit"
+            class="blue-filled-button"
+            fxFlex="100"
+            appGoogleAnalytics
+            [googleCategory]="'Register'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Register'"
+          >
+            {{ 'SIGNUP' | translate }}
+          </button>
+        </div>
+
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="text-link has-account"
+        >
+          <span>{{ 'AUTH.HAS_ACCOUNT' | translate }} </span>
+          <a
+            class="back-to-login"
+            [routerLink]="loginRoute"
+            queryParamsHandling="preserve"
+            fxLayoutAlign="start center"
+            appGoogleAnalytics
+            [googleCategory]="'Register'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Back to Login'"
+          >
+            {{ 'AUTH.LOG_IN_HERE' | translate }}
+          </a>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" class="seperator">
+          <div class="line" fxFlex="40"></div>
+          <span fxFlex="20" fxLayoutAlign="center">{{ 'OR' | translate }}</span>
+          <div class="line" fxFlex="40"></div>
+        </div>
+
+        <div fxLayout="row" class="social-auth">
+          <button
+            mat-raised-button
+            class="gray-outlined-button"
+            type="button"
+            (click)="google()"
+            fxFlex="100"
+            appGoogleAnalytics
+            [googleCategory]="'Login'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Login With Google'"
+          >
+            <img
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/images/google.png"
+              alt="Google"
+              class="icon"
+            />
+            <span>{{ 'LOGIN.WITH_GOOGLE' | translate }}</span>
+          </button>
+        </div>
+
+        <div fxLayout="row" class="social-auth facebook">
+          <button
+            mat-raised-button
+            class="gray-outlined-button"
+            type="button"
+            (click)="facebook()"
+            fxFlex="100"
+            fxLayoutAlign="center center"
+            appGoogleAnalytics
+            [googleCategory]="'Login'"
+            [googleAction]="'Click'"
+            [googleLabel]="'Login With Facebook'"
+          >
+            <img
+              src="https://blipbillboards-marketplace.s3.amazonaws.com/images/facebook.png"
+              alt="Facebook"
+              class="icon"
+            />
+            <span>{{ 'LOGIN.WITH_FACEBOOK' | translate }}</span>
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

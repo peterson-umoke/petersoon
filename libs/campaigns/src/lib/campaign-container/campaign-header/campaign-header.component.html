@@ -1,0 +1,59 @@
+<div
+  ngClass.xs="xs"
+  ngClass.sm="margin-top sm"
+  ngClass.md="margin-top md"
+  ngClass.gt-md="margin-top gt-md"
+  fxLayout="column"
+  class="container"
+>
+  <div fxHide.xs class="campaign-name" fxFlex="30" *ngIf="campaign">
+    {{ campaign?.name }}
+  </div>
+
+  <!-- Extra Small Header -->
+  <mat-toolbar
+    class="toolbar"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    fxShow.xs
+    fxHide
+    *ngIf="campaign"
+  >
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <a mat-icon-button class="back" [routerLink]="appRoutes.CAMPAIGNS">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </a>
+      <div class="campaign-name" fxFlex="75">{{ campaign.name }}</div>
+    </div>
+  </mat-toolbar>
+
+  <!-- Greater than Extra Small Header -->
+  <mat-toolbar
+    class="toolbar"
+    fxLayoutAlign="space-between center"
+    fxHide
+    fxShow.gt-xs
+  >
+    <nav mat-tab-nav-bar>
+      <a
+        mat-tab-link
+        [routerLink]="analyticsRoute"
+        [active]="activeLinkIndex === 0"
+        (click)="activeLinkIndex = 0"
+        >{{ 'ANALYTICS' | translate }}</a
+      >
+    </nav>
+  </mat-toolbar>
+</div>
+
+<div fxLayoutAlign="center center" fxHide fxShow.xs class="xs-routes">
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      [routerLink]="analyticsRoute"
+      [active]="activeLinkIndex === 0"
+      (click)="activeLinkIndex = 0"
+      >{{ 'ANALYTICS' | translate }}</a
+    >
+  </nav>
+</div>

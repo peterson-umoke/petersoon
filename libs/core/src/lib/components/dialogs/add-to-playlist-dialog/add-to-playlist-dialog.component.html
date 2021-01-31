@@ -1,0 +1,62 @@
+<mat-progress-bar
+  *ngIf="loading"
+  class="loader"
+  mode="indeterminate"
+></mat-progress-bar>
+
+<span mat-dialog-title>{{ 'PLAYLISTS.ADD_TO' | translate }}</span>
+
+<div mat-dialog-content fxLayout="column" fxLayoutGap="16px">
+  <span *ngIf="playlists.length">{{
+    'PLAYLISTS.SELECT_TO_ADD' | translate
+  }}</span>
+
+  <div *ngIf="playlists.length" fxLayout="row">
+    <mat-form-field fxFlex.xs="100" fxFlex.sm="75" fxFlex.gt-sm="75">
+      <mat-select
+        [placeholder]="'PLAYLISTS.TEXT' | translate"
+        [formControl]="selectedPlaylists"
+        multiple
+      >
+        <mat-select-trigger>
+          {{ selectedPlaylists.value ? selectedPlaylists.value[0].name : '' }}
+          <span
+            *ngIf="selectedPlaylists.value?.length > 1"
+            class="additional-selection"
+          >
+            (+
+            {{ selectedPlaylists.value.length - 1 }}
+            {{
+              (selectedPlaylists.value?.length === 2 ? 'OTHER' : 'OTHERS')
+                | translate
+            }}
+            )
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let playlist of playlists" [value]="playlist">{{
+          playlist.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <span *ngIf="!playlists.length" class="link-to-playlists">
+    <a [routerLink]="newPlaylistRoute" (click)="close()">{{
+      'PLAYLISTS.NONE' | translate
+    }}</a>
+  </span>
+</div>
+
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button (click)="close()" cdkFocusInitial>
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button
+    mat-raised-button
+    *ngIf="playlists.length"
+    class="add"
+    (click)="add()"
+  >
+    {{ 'ADD' | translate }}
+  </button>
+</div>

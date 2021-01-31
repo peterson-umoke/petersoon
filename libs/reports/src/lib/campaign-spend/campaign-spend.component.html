@@ -1,0 +1,77 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+  <form (ngSubmit)="createCampaignSpend()" [formGroup]="campaignSpendForm">
+    <div
+      fxLayoutGap.gt-xs="16px"
+      fxLayout="row wrap"
+      fxLayoutAlign="start center"
+    >
+      <mat-form-field fxFlex.xs="100" fxFlex="48">
+        <input
+          matInput
+          [matDatepicker]="campaignSpendDatepickerStart"
+          [placeholder]="'START_DATE' | translate"
+          [formControl]="campaignSpendForm.controls['startDate']"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="campaignSpendDatepickerStart"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #campaignSpendDatepickerStart></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field fxFlex.xs="100" fxFlex="48">
+        <input
+          matInput
+          [matDatepicker]="campaignSpendDatepickerEnd"
+          [placeholder]="'END_DATE' | translate"
+          [formControl]="campaignSpendForm.controls['endDate']"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="campaignSpendDatepickerEnd"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #campaignSpendDatepickerEnd></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div
+      fxLayoutGap.gt-xs="16px"
+      fxLayout="row wrap"
+      fxLayoutAlign="start center"
+    >
+      <mat-form-field fxFlex.xs="100" fxFlex="48">
+        <mat-select
+          placeholder="{{ 'REPORTS.CAMPAIGN_SPEND.SELECT.TEXT' | translate }}"
+          [formControl]="campaignSpendForm.controls['campaigns']"
+        >
+          <mat-option *ngFor="let campaign of campaigns" [value]="campaign">{{
+            campaign.name
+          }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="campaignSpendForm.controls['campaigns'].hasError('required')"
+          [innerHTML]="'REPORTS.CAMPAIGN_SPEND.SELECT.REQUIRED' | translate"
+        >
+        </mat-error>
+      </mat-form-field>
+
+      <div
+        fxFlex.xs="100"
+        fxFlex="48"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="campaignSpendForm.invalid"
+          class="open-button"
+          type="submit"
+          (click)="$event.stopPropagation()"
+        >
+          {{ 'OPEN' | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,100 @@
+@import '../../styles/sizes.scss';
+@import '../../styles/colors.scss';
+
+.login-holder {
+  background: $background-gray;
+  // Header (50px) + Footer (76px) = 126px
+  min-height: calc(100vh - (126px));
+  padding: 0px 16px 32px;
+}
+
+.login-header {
+  margin: 12px 0;
+
+  span {
+    color: $dark-gray;
+    font-weight: 500;
+    letter-spacing: -0.36px;
+    margin-bottom: 6px;
+  }
+
+  span.login {
+    font-size: $twenty-four;
+  }
+}
+
+.logo-holder {
+  margin-bottom: 16px;
+  padding-left: 16px;
+
+  img.blip-logo {
+    width: 100px;
+  }
+}
+
+.forgot-password {
+  color: $dark-gray;
+  font-weight: semi-bold;
+  text-decoration: none;
+  text-transform: capitalize;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.login-to-blip {
+  margin-top: 16px;
+
+  span {
+    color: $dark-gray;
+    font-size: $eighteen;
+    font-weight: 500;
+    letter-spacing: -0.36px;
+  }
+}
+
+.login-button {
+  margin-top: 25px;
+}
+
+.social-auth {
+  margin-top: 20px;
+  padding: 2px 0px;
+
+  img.icon {
+    height: 20px;
+    margin-right: 15px;
+  }
+}
+
+.seperator {
+  height: 40px;
+  margin: 20px 0 10px 0;
+
+  .line {
+    height: 1px;
+    border-bottom: solid 2px $light-gray;
+  }
+
+  span {
+    color: $dark-gray;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.new-to-blip {
+  span {
+    color: $dark-gray;
+    font-size: $eighteen;
+    font-weight: 500;
+    letter-spacing: -0.36px;
+  }
+}
+
+.register {
+  margin-top: 10px;
+}

@@ -1,0 +1,176 @@
+<div class="container" ngClass.gt-xs="min-width" *ngIf="ad">
+  <span class="name">{{ ad.name }}</span>
+
+  <div class="image" fxLayout="row">
+    <div class="art">
+      <img
+        [src]="
+          ad.thumbnail_url ||
+          'https://blipbillboards-marketplace.s3.amazonaws.com/images/no-image.png'
+        "
+        [alt]="ad.name"
+      />
+    </div>
+    <!-- TODO: Get the number of sizes added to the ad group serializer -->
+    <!-- <div fxLayout="row" fxLayoutAlign="start start" class="sizes">
+      <mat-icon>collections</mat-icon>
+      <span>x3 Sizes</span>
+    </div> -->
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="custom">
+    <span>{{ 'CUSTOM_SCHEDULE' | translate }}</span>
+    <mat-slide-toggle
+      color="primary"
+      (change)="hasScheduleChange($event)"
+      [checked]="hasSchedule"
+    ></mat-slide-toggle>
+  </div>
+
+  <button
+    class="reset"
+    [disabled]="!hasSchedule"
+    mat-button
+    color="primary"
+    (click)="reset()"
+  >
+    {{ 'RESET_CUSTOM_SCHEDULE' | translate }}
+  </button>
+
+  <div class="schedules">
+    <mat-divider></mat-divider>
+    <mat-accordion #accordion="matAccordion" displayMode="flat" multi="true">
+      <mat-expansion-panel
+        [disabled]="!hasSchedule"
+        [expanded]="openPanels.includes('DateTimeRange')"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ 'DATE' | translate }} {{ 'RANGE' | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <div
+            fxlayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="16px"
+          >
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="startDate"
+                [placeholder]="
+                  ('START' | translate) + ' ' + ('DATE' | translate)
+                "
+                (dateChange)="changeDateRange('start', $event)"
+                [formControl]="dateRangeForm.controls['startDate']"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="startDate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #startDate disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                matInput
+                type="time"
+                [placeholder]="
+                  ('START' | translate) + ' ' + ('TIME' | translate)
+                "
+                [formControl]="dateRangeForm.controls['startTime']"
+              />
+            </mat-form-field>
+          </div>
+
+          <div
+            fxlayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="16px"
+          >
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="endDate"
+                [placeholder]="('END' | translate) + ' ' + ('DATE' | translate)"
+                (dateChange)="changeDateRange('end', $event)"
+                [formControl]="dateRangeForm.controls['endDate']"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="endDate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #endDate disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                matInput
+                type="time"
+                [placeholder]="('END' | translate) + ' ' + ('TIME' | translate)"
+                [formControl]="dateRangeForm.controls['endTime']"
+              />
+            </mat-form-field>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <mat-divider></mat-divider>
+
+      <mat-expansion-panel
+        [disabled]="!hasSchedule"
+        [expanded]="openPanels.includes('WeeklyOnTimes')"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ 'WEEKLY_DAILY' | translate }} {{ 'SCHEDULE' | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+      <mat-divider></mat-divider>
+
+      <mat-expansion-panel
+        [disabled]="!hasSchedule"
+        [expanded]="openPanels.includes('UrlBoolean')"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ 'WEB_TRIGGERS.TEXT' | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <app-web-triggers
+            [model]="webTriggerModel"
+            (modelChange)="webTriggerChange($event)"
+          ></app-web-triggers>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-divider></mat-divider>
+
+    <div
+      class="priority"
+      [ngClass]="{ disabled: !hasSchedule }"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <span fxFlex="fill" fxLayoutAlign="start center">{{
+        'PRIORITY' | translate
+      }}</span>
+      <mat-slide-toggle
+        color="primary"
+        [disabled]="!hasSchedule"
+        (change)="zindexChange($event)"
+        [checked]="zindex"
+      ></mat-slide-toggle>
+    </div>
+
+    <button mat-raised-button class="orange-outlined-button" (click)="remove()">
+      {{ 'PLAYLISTS.REMOVE_FROM' | translate }}
+    </button>
+  </div>
+</div>

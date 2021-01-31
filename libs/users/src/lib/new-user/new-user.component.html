@@ -1,0 +1,210 @@
+<div
+  fxLayout="column"
+  ngClass.xs="xs"
+  ngClass.sm="sm"
+  ngClass.md="md"
+  ngClass.gt-md="gt-md"
+>
+  <div
+    fxLayout="row"
+    class="header"
+    fxLayoutAlign="space-between center"
+    ngClass.gt-xs="fifty-width"
+  >
+    <span *ngIf="!userId" class="users-text">{{
+      'USERS.NEW' | translate
+    }}</span>
+    <span *ngIf="userId" class="users-text"
+      >{{ 'EDIT' | translate }} {{ 'USER' | translate }}</span
+    >
+    <button
+      *ngIf="userId && canDeleteUser"
+      mat-raised-button
+      data-test="delete-button"
+      class="blue-outlined-button button-width"
+      (click)="deleteUserFromOrg()"
+    >
+      {{ 'DELETE.TEXT' | translate }}
+    </button>
+  </div>
+
+  <form
+    [formGroup]="newUserForm"
+    (ngSubmit)="addorUpdateUser()"
+    class="margin-top"
+    ngClass.gt-sm="fifty-width"
+  >
+    <div fxLayout="row" [fxHide]="userId">
+      <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+        <mat-label [translate]="'NAME.FIRST'"></mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="newUserForm.controls['first_name']"
+        />
+        <mat-error
+          *ngIf="newUserForm.controls['first_name'].hasError('required')"
+          [innerHTML]="'NAME.FIRST_REQUIRED' | translate"
+        >
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" [fxHide]="userId">
+      <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+        <mat-label [translate]="'NAME.LAST'"></mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="newUserForm.controls['last_name']"
+        />
+        <mat-error
+          *ngIf="newUserForm.controls['last_name'].hasError('required')"
+          [innerHTML]="'NAME.LAST_REQUIRED' | translate"
+        >
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" [fxHide]="userId">
+      <mat-form-field appearance="outline" appUpdateOutlineGap fxFlex="100">
+        <mat-label [translate]="'EMAIL.ADDRESS.TEXT'"></mat-label>
+        <input
+          matInput
+          type="text"
+          [formControl]="newUserForm.controls['email']"
+        />
+        <mat-error
+          *ngIf="newUserForm.controls['email'].hasError('required')"
+          [innerHTML]="'EMAIL.ADDRESS.REQUIRED' | translate"
+        ></mat-error>
+        <mat-error
+          *ngIf="newUserForm.controls['email'].hasError('email')"
+          [innerHTML]="'EMAIL.ADDRESS.INVALID' | translate"
+        >
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="userId" class="users" fxLayout="column" fxLayoutAlign="start">
+      <div
+        *ngIf="user"
+        class="info-text"
+        fxLayout="row"
+        fxFlex="100"
+        fxLayoutAlign="space-between center"
+      >
+        <span class="name cell-text"
+          >{{ user.first_name }} {{ user.last_name }}</span
+        >
+      </div>
+
+      <div
+        *ngIf="user"
+        class="info-text info-row"
+        fxLayout="row"
+        fxFlex="100"
+        fxLayoutAlign="start center"
+      >
+        <span class="cell-text">{{ user.email }}</span>
+      </div>
+    </div>
+
+    <div fxLayout="column" class="roles" *ngIf="userId">
+      <div fxLayout="column">
+        <span class="text">{{ 'USERS.ROLES.TEXT' | translate }}</span>
+        <span
+          class="warn"
+          *ngIf="
+            newUserForm.controls['roles'].hasError('required') && submitted
+          "
+          >{{ 'USERS.ROLES.DESCRIPTION' | translate }}</span
+        >
+      </div>
+      <div>
+        <mat-selection-list
+          [formControl]="newUserForm.controls['roles']"
+          (selectionChange)="disableRoles()"
+        >
+          <mat-list-option
+            checkboxPosition="before"
+            *ngFor="let role of userRoles"
+            [value]="role"
+            [disabled]="rolesDisabled"
+          >
+            <div
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutAlign="start center"
+              fxLayoutAlign.xs="start start"
+              fxLayoutGap="8px"
+            >
+              <span
+                fxFlex.gt-md="30"
+                fxFlex.gt-xs="20"
+                class="text role-text"
+                >{{ 'USERS.ROLES.' + role + '.TEXT' | translate }}</span
+              >
+              <span class="text">{{
+                'USERS.ROLES.' + role + '.DESCRIPTION' | translate
+              }}</span>
+            </div>
+          </mat-list-option>
+          <mat-divider class="owner-div"></mat-divider>
+          <mat-list-option
+            *ngIf="userId && canChangeOwner"
+            checkboxPosition="before"
+            value="OWNER"
+          >
+            <div
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutAlign="start center"
+              fxLayoutAlign.xs="start start"
+              fxLayoutGap="8px"
+            >
+              <span
+                fxFlex.gt-md="30"
+                fxFlex.gt-xs="20"
+                class="text role-text"
+                >{{ 'USERS.ROLES.OWNER.TEXT' | translate }}</span
+              >
+              <span class="text">{{
+                'USERS.ROLES.OWNER.DESCRIPTION' | translate
+              }}</span>
+            </div>
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+    </div>
+
+    <div fxLayout="row" class="margin-top">
+      <button
+        mat-raised-button
+        type="reset"
+        class="blue-outlined-button cancelBtn"
+        (click)="goBack()"
+      >
+        {{ 'CANCEL' | translate }}
+      </button>
+      <button
+        *ngIf="!userId"
+        mat-raised-button
+        data-test="save-button"
+        class="blue-filled-button save button-width"
+        type="submit"
+      >
+        {{ 'SAVE' | translate }}
+      </button>
+      <button
+        *ngIf="userId"
+        mat-raised-button
+        data-test="save-button"
+        class="blue-filled-button save button-width"
+        type="submit"
+      >
+        {{ 'UPDATE' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

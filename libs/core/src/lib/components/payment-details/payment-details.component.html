@@ -1,0 +1,42 @@
+<div class="list" *ngIf="dataSource.data.length">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Created Column -->
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef>{{ 'CREATED' | translate }}</th>
+      <td mat-cell *matCellDef="let payment">
+        <span>{{ payment.created | date: 'MM/d/yyyy' }}</span>
+      </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'CREDIT_CARD.AMOUNT.TEXT' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let payment">
+        <span>{{
+          payment.amount
+            | currency: (translationService.$currency | async):'symbol':'1.2-2'
+        }}</span>
+      </td>
+    </ng-container>
+
+    <!-- Message Column -->
+    <ng-container matColumnDef="processing_code">
+      <th mat-header-cell *matHeaderCellDef>{{ 'MESSAGE' | translate }}</th>
+      <td mat-cell *matCellDef="let payment">
+        <span>{{
+          payment.processing_code | paymentCodeString | translate
+        }}</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      class="row"
+      (click)="payment(row)"
+    ></tr>
+  </table>
+</div>

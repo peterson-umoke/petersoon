@@ -1,0 +1,114 @@
+@import '../../../../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+h2,
+div {
+  color: $black;
+}
+
+mat-expansion-panel {
+  margin-bottom: 10px;
+  min-height: 54px;
+}
+
+mat-expansion-panel-header {
+  padding: 0 10px 0 24px;
+}
+
+.row-header {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 10px;
+
+  .dimensions {
+    text-align: center;
+  }
+  .locations {
+    text-align: center;
+  }
+}
+
+.uploader-row {
+  padding: 0.25em;
+  border: 1px solid $lightest-gray;
+
+  .upload-box {
+    padding: 5px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+
+    &.xs {
+      width: auto;
+      height: 150px;
+      padding-left: 2em;
+    }
+  }
+
+  button.replace {
+    margin-top: 0.5em;
+    color: $light-blue;
+  }
+
+  .dimensions {
+    padding-top: 0.5em;
+    text-align: center;
+    color: $gray;
+    border-right: 1px solid $lightest-gray;
+
+    a {
+      color: $light-blue;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+
+  .locations {
+    padding-top: 0.5em;
+    padding-left: 2em;
+    margin-bottom: 1em;
+
+    .expansion-title {
+      margin-bottom: 1em;
+      border-bottom: 1px solid $lightest-gray;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .sign {
+      margin-bottom: 1em;
+      margin-right: 2em;
+    }
+
+    .match-icon {
+      font-size: 0.5em;
+      margin-right: 0.75em;
+      margin-top: 0.2em;
+      &.no-match {
+        color: #959595;
+      }
+      &.match {
+        color: $green;
+      }
+    }
+
+    .name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .city {
+      font-size: 14px;
+      font-weight: 350;
+      color: $black;
+    }
+
+    .sign-expander {
+      color: $light-blue;
+      cursor: pointer;
+    }
+  }
+}

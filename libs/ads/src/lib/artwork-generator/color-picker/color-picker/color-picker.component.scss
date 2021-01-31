@@ -1,0 +1,60 @@
+@import '../../../../../../../apps/Marketplace/src/styles/sizes.scss';
+@import '../../../../../../../apps/Marketplace/src/styles/colors.scss';
+
+:host {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.selected-border {
+  border: 2px solid $light-blue;
+}
+
+.colors {
+  border: 1px solid $light-gray;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 25px;
+  width: 25px;
+}
+
+.colors-mobile {
+  border-radius: 6px;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+
+.hex-picker {
+  border: 1px solid $light-gray;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 25px;
+  padding-left: 4px;
+}
+
+.hex-picker-mobile {
+  border-radius: 6px;
+  height: 50px;
+  font-size: $twenty-four;
+  padding-left: 8px;
+}
+
+.selected-color {
+  border: 2px solid $light-blue;
+}
+
+.intercom-avoidance {
+  height: 50px;
+  width: 50px;
+}
+
+button:focus,
+input[type='button']:focus {
+  outline: none;
+}
+.spacer {
+  min-height: 80px;
+}

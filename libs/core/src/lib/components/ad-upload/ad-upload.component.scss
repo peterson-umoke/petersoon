@@ -1,0 +1,83 @@
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.over-drop-zone {
+  border-color: $green !important;
+  animation: dot-expander 2s infinite;
+}
+
+@keyframes dot-expander {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.xs {
+  padding: 0px !important;
+
+  button {
+    width: 100% !important;
+    height: 80px !important;
+    font-weight: normal !important;
+    font-size: $eighteen !important;
+  }
+}
+
+.upload-images:not(.xs) {
+  border: 1px dashed $blue-gray;
+  background-color: $white;
+  box-shadow: 0 3px 4px 0 rgba(19, 72, 84, 0.12);
+
+  mat-icon {
+    color: $light-blue;
+  }
+
+  .drag-drop {
+    color: $dark-gray;
+    font-size: $eighteen;
+    line-height: 18px;
+  }
+}
+
+.full-height {
+  height: 100%;
+}
+
+.upload-images {
+  padding: 60px;
+
+  button {
+    color: $white;
+    height: 40px;
+    font-size: $sixteen;
+    font-weight: normal !important;
+    letter-spacing: -0.3px;
+    line-height: 18px;
+    margin-top: 8px;
+    min-width: 250px;
+  }
+}
+
+.blue-outlined-button {
+  height: 50px !important;
+}
+
+.uploader-row-text {
+  font-size: 18px;
+  color: $light-blue;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}

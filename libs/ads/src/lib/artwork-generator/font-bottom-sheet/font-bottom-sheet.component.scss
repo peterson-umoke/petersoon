@@ -1,0 +1,24 @@
+@import '../../../../../../apps/Marketplace/src/styles/colors.scss';
+
+h1,
+h2 {
+  font-weight: 500;
+  color: $black;
+  margin: 20px 0 20px 0;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.option {
+  border-bottom: 1px solid $light-gray;
+}
+
+.selected {
+  color: $light-blue;
+}

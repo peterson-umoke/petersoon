@@ -1,0 +1,45 @@
+<div
+  fxLayout="column"
+  ngClass.xs="xs-container"
+  ngClass.lt-lg="container"
+  ngStyle.gt-lg="padding: '0'"
+>
+  <ng-container *ngIf="subComponent$ | async as subComponent">
+    <nav mat-tab-nav-bar *ngIf="subComponent !== 'upload'">
+      <a
+        mat-tab-link
+        [active]="subComponent === 'generator'"
+        routerLink="../generator"
+        class="artwork-link"
+      >
+        <span class="tab-img-span"
+          ><img
+            src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/art-icon.svg"
+        /></span>
+        {{ 'BLIP_TEMPLATES' | translate }}</a
+      >
+      <a
+        mat-tab-link
+        [active]="subComponent === 'das'"
+        routerLink="../das"
+        class="artwork-link"
+      >
+        <span class="tab-img-span"
+          ><img
+            src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/upload-icon.svg"
+        /></span>
+        {{ 'UPLOADS' | translate }}</a
+      >
+    </nav>
+
+    <div [ngSwitch]="subComponent">
+      <campaigns-wizard-ads *ngSwitchCase="'das'"></campaigns-wizard-ads>
+      <ads-artwork-generator
+        *ngSwitchCase="'generator'"
+      ></ads-artwork-generator>
+      <campaigns-wizard-ad-uploader
+        *ngSwitchCase="'upload'"
+      ></campaigns-wizard-ad-uploader>
+    </div>
+  </ng-container>
+</div>

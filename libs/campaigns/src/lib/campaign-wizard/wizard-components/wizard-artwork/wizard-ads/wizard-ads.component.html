@@ -1,0 +1,47 @@
+<div fxLayout="column">
+  <div gdArea="uploader" class="uploader" ngStyle.lt-lg="padding: '0 12px'">
+    <app-ad-upload
+      fxHide.gt-xs
+      [autoCreateAd]="false"
+      (adOutput)="toggleAd($event)"
+    ></app-ad-upload>
+    <app-ad-upload
+      fxHide.xs
+      [fullHeight]="true"
+      [autoCreateAd]="false"
+      (adOutput)="toggleAd($event)"
+    ></app-ad-upload>
+  </div>
+
+  <campaigns-wizard-artwork-sizes></campaigns-wizard-artwork-sizes>
+
+  <div class="title" ngStyle.lt-lg="padding: '0 12px'">
+    {{ 'MY_BILLBOARD_DESIGNS' | translate }}
+  </div>
+
+  <div
+    fxLayout.xs="column"
+    fxLayoutAlign.xs="start center"
+    fxLayoutGap.xs="5px"
+    fxLayout="row wrap"
+    fxLayoutGap="16px"
+    ngStyle.lt-lg="padding: '0 12px'"
+  >
+    <app-ads-card
+      *ngFor="let ad of ads"
+      [ad]="ad"
+      [selectedAds]="selectedAdIds"
+      (adClicked)="goToUpload($event)"
+      (campaignToggled)="toggleAd($event)"
+      [creatingCampaign]="true"
+    ></app-ads-card>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    class="design-link-container"
+  >
+    <app-design-link></app-design-link>
+  </div>
+</div>

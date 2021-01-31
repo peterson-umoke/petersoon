@@ -1,0 +1,548 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "Marketplace": {
+      "root": "apps/Marketplace",
+      "sourceRoot": "apps/Marketplace/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "moment-timezone",
+              "file-saver",
+              "blueimp-load-image",
+              "big-integer",
+              "firebase/app",
+              "@firebase/app",
+              "@firebase/functions",
+              "@firebase/firestore",
+              "crypto-js"
+            ],
+            "aot": true,
+            "outputPath": "dist/apps/Marketplace",
+            "index": "apps/Marketplace/src/index.html",
+            "main": "apps/Marketplace/src/main.ts",
+            "polyfills": "apps/Marketplace/src/polyfills.ts",
+            "tsConfig": "apps/Marketplace/tsconfig.app.json",
+            "assets": [
+              "apps/Marketplace/src/favicon.ico",
+              "apps/Marketplace/src/assets",
+              "apps/Marketplace/src/manifest.json",
+              "apps/Marketplace/src/i18n"
+            ],
+            "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "apps/Marketplace/src/styles/styles.scss",
+              "apps/Marketplace/src/styles/theme.scss"
+            ],
+            "scripts": ["node_modules/moment/min/moment.min.js"],
+            "preserveSymlinks": true
+          },
+          "configurations": {
+            "production": {
+              "assets": [
+                "apps/Marketplace/src/favicon.ico",
+                "apps/Marketplace/src/assets",
+                "apps/Marketplace/src/manifest.json"
+              ],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/Marketplace/src/environments/environment.ts",
+                  "with": "apps/Marketplace/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "serviceWorker": false,
+              "commonChunk": true,
+              "deleteOutputPath": true
+            },
+            "production-ca": {
+              "assets": [
+                "apps/Marketplace/src/favicon.ico",
+                "apps/Marketplace/src/assets",
+                "apps/Marketplace/src/manifest.json"
+              ],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/Marketplace/src/environments/environment.ts",
+                  "with": "apps/Marketplace/src/environments/environment.prod-ca.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "serviceWorker": false,
+              "commonChunk": true,
+              "deleteOutputPath": true
+            },
+            "staging": {
+              "assets": [
+                "apps/Marketplace/src/favicon.ico",
+                "apps/Marketplace/src/assets",
+                "apps/Marketplace/src/manifest.json"
+              ],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/Marketplace/src/environments/environment.ts",
+                  "with": "apps/Marketplace/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "serviceWorker": false,
+              "commonChunk": true,
+              "deleteOutputPath": true
+            },
+            "office": {
+              "assets": [
+                "apps/Marketplace/src/favicon.ico",
+                "apps/Marketplace/src/assets",
+                "apps/Marketplace/src/manifest.json"
+              ],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/Marketplace/src/environments/environment.ts",
+                  "with": "apps/Marketplace/src/environments/environment.office.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "serviceWorker": false,
+              "commonChunk": true,
+              "deleteOutputPath": true
+            },
+            "qa": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/Marketplace/src/environments/environment.ts",
+                  "with": "apps/Marketplace/src/environments/environment.qa.ts"
+                }
+              ],
+              "aot": true
+            },
+            "dev": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/Marketplace/src/environments/environment.ts",
+                  "with": "apps/Marketplace/src/environments/environment.dev.ts"
+                }
+              ],
+              "aot": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "Marketplace:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Marketplace:build:production"
+            },
+            "dev": {
+              "browserTarget": "Marketplace:build:dev"
+            },
+            "qa": {
+              "browserTarget": "Marketplace:build:qa"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Marketplace:build"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "tsConfig": "apps/Marketplace/tsconfig.spec.json",
+            "jestConfig": "apps/Marketplace/jest.config.js",
+            "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "apps/Marketplace/src/styles/styles.scss",
+              "apps/Marketplace/src/styles/theme.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/Marketplace/src/favicon.ico",
+              "apps/Marketplace/src/assets",
+              "apps/Marketplace/src/manifest.json"
+            ],
+            "setupFile": "apps/Marketplace/src/test-setup.ts"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/Marketplace/tsconfig.app.json",
+              "apps/Marketplace/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "prefix": "core",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "setupFile": "libs/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "ads": {
+      "root": "libs/ads",
+      "sourceRoot": "libs/ads/src",
+      "projectType": "library",
+      "prefix": "ads",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ads/tsconfig.lib.json",
+              "libs/ads/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ads/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ads/jest.config.js",
+            "tsConfig": "libs/ads/tsconfig.spec.json",
+            "setupFile": "libs/ads/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "campaigns": {
+      "root": "libs/campaigns",
+      "sourceRoot": "libs/campaigns/src",
+      "projectType": "library",
+      "prefix": "campaigns",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/campaigns/tsconfig.lib.json",
+              "libs/campaigns/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/campaigns/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/campaigns/jest.config.js",
+            "tsConfig": "libs/campaigns/tsconfig.spec.json",
+            "setupFile": "libs/campaigns/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "cards": {
+      "root": "libs/cards",
+      "sourceRoot": "libs/cards/src",
+      "projectType": "library",
+      "prefix": "cards",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/cards/tsconfig.lib.json",
+              "libs/cards/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/cards/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/cards/jest.config.js",
+            "tsConfig": "libs/cards/tsconfig.spec.json",
+            "setupFile": "libs/cards/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "preferences": {
+      "root": "libs/preferences",
+      "sourceRoot": "libs/preferences/src",
+      "projectType": "library",
+      "prefix": "preferences",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/preferences/tsconfig.lib.json",
+              "libs/preferences/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/preferences/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/preferences/jest.config.js",
+            "tsConfig": "libs/preferences/tsconfig.spec.json",
+            "setupFile": "libs/preferences/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "organizations": {
+      "root": "libs/organizations",
+      "sourceRoot": "libs/organizations/src",
+      "projectType": "library",
+      "prefix": "organizations",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/organizations/tsconfig.lib.json",
+              "libs/organizations/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/organizations/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/organizations/jest.config.js",
+            "tsConfig": "libs/organizations/tsconfig.spec.json",
+            "setupFile": "libs/organizations/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "payments": {
+      "root": "libs/payments",
+      "sourceRoot": "libs/payments/src",
+      "projectType": "library",
+      "prefix": "payments",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/payments/tsconfig.lib.json",
+              "libs/payments/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/payments/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/payments/jest.config.js",
+            "tsConfig": "libs/payments/tsconfig.spec.json",
+            "setupFile": "libs/payments/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "reports": {
+      "root": "libs/reports",
+      "sourceRoot": "libs/reports/src",
+      "projectType": "library",
+      "prefix": "reports",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/reports/tsconfig.lib.json",
+              "libs/reports/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/reports/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/reports/jest.config.js",
+            "tsConfig": "libs/reports/tsconfig.spec.json",
+            "setupFile": "libs/reports/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "users": {
+      "root": "libs/users",
+      "sourceRoot": "libs/users/src",
+      "projectType": "library",
+      "prefix": "users",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/users/tsconfig.lib.json",
+              "libs/users/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/users/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/users/jest.config.js",
+            "tsConfig": "libs/users/tsconfig.spec.json",
+            "setupFile": "libs/users/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
+  "defaultProject": "Marketplace"
+}

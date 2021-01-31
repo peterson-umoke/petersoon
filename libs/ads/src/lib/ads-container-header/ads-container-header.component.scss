@@ -1,0 +1,166 @@
+@import '../../../../../apps/Marketplace/src/styles/colors.scss';
+@import '../../../../../apps/Marketplace/src/styles/sizes.scss';
+
+.margin-top {
+  padding-top: 26px;
+}
+
+.xs {
+  padding: 0px;
+
+  .toolbar {
+    background-color: $white !important;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.sm {
+  padding-left: 8px;
+  padding-right: 8px;
+
+  .search-form-field {
+    width: 120px;
+  }
+
+  .search-container {
+    margin-right: 8px;
+  }
+}
+
+.md {
+  padding-left: 64px;
+  padding-right: 64px;
+
+  .search-form-field {
+    width: 150px;
+  }
+}
+
+.gt-md {
+  padding-left: 164px;
+  padding-right: 164px;
+
+  .search-form-field {
+    width: 175px;
+  }
+}
+
+.container,
+.toolbar {
+  background-color: $background-gray !important;
+}
+
+.margin-left {
+  margin-left: 8px;
+}
+
+.adjust {
+  position: relative;
+  top: 5px;
+}
+
+.blue-filled-button {
+  font-size: $fifteen;
+  font-weight: 500;
+  height: 32px;
+  line-height: 32px !important;
+
+  mat-icon {
+    font-size: $fifteen;
+    font-weight: 500;
+    position: relative;
+    top: 4px;
+    left: -2px;
+  }
+
+  .text {
+    position: relative;
+    left: -2px;
+  }
+}
+
+.view-type {
+  height: 32px;
+  line-height: 32px !important;
+  margin-right: 15px;
+
+  mat-icon {
+    color: $gray;
+  }
+
+  .text {
+    color: $gray;
+    font-size: $twelve;
+    font-weight: bold;
+    line-height: 15px;
+    margin-left: 4px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .toolbar ::ng-deep {
+    .mat-badge-medium .mat-badge-content {
+      top: 0px;
+      right: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .toolbar ::ng-deep {
+    .mat-badge-medium .mat-badge-content {
+      top: 2px;
+      right: 0px;
+    }
+  }
+}
+
+.toolbar ::ng-deep {
+  height: 45px;
+  padding: 0;
+
+  .mat-tab-nav-bar {
+    border-bottom: none;
+  }
+
+  .mat-tab-label-active {
+    background-color: transparent !important;
+    color: $gray !important;
+  }
+
+  .mat-tab-link {
+    color: $light-blue;
+    font-size: $fifteen;
+    font-weight: 600;
+    letter-spacing: -0.24px;
+    line-height: 15px;
+    min-width: 80px !important;
+    opacity: initial;
+    padding: 0 16px !important;
+  }
+
+  .search-container {
+    position: relative;
+    top: -5px;
+
+    .search-form-field {
+      width: 175px;
+    }
+  }
+}
+
+.xs-bottom-toolbar {
+  height: 50px;
+
+  .search-container ::ng-deep {
+    margin-right: 8px;
+
+    .search-form-field {
+      width: 140px;
+    }
+
+    .mat-form-field-wrapper {
+      height: 54px !important;
+    }
+  }
+}

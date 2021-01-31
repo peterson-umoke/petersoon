@@ -1,0 +1,71 @@
+<span mat-dialog-title
+  >{{ 'ADD' | translate }} {{ 'PAYMENT.TEXT' | translate }}</span
+>
+
+<div mat-dialog-content class="add-payment">
+  <a
+    class="go-to-cards"
+    fxLayout="row"
+    [routerLink]="cardRoute"
+    (click)="close()"
+    fxLayoutAlign="center start"
+    *ngIf="!cards.length"
+  >
+    {{ 'CREDIT_CARD.NONE' | translate }}
+  </a>
+
+  <div *ngIf="cards.length">
+    <mat-form-field
+      appearance="outline"
+      appUpdateOutlineGap
+      [floatLabel]="'always'"
+      class="input"
+    >
+      <mat-label [translate]="'CREDIT_CARD.AMOUNT.TEXT'"></mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        cdkFocusInitial
+        appCurrency
+        [maxDigits]="10"
+        [formControl]="paymentForm.controls['amount']"
+      />
+      <span matPrefix class="prefix">$&nbsp;</span>
+      <mat-error
+        *ngIf="paymentForm.controls['amount'].hasError('required')"
+        [innerHTML]="'CREDIT_CARD.AMOUNT.REQUIRED' | translate"
+      ></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-select
+        [placeholder]="'CREDIT_CARD.CARDS' | translate"
+        [formControl]="paymentForm.controls['cardId']"
+      >
+        <mat-option *ngFor="let card of cards" [value]="card.id">
+          <span>{{ card.name }}</span>
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="paymentForm.controls['cardId'].hasError('required')"
+        [innerHTML]="'CREDIT_CARD.REQUIRED' | translate"
+      ></mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button (click)="close()">
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button
+    mat-raised-button
+    class="charge"
+    color="primary"
+    [disabled]="paymentForm.invalid"
+    [mat-dialog-close]="paymentForm.value"
+  >
+    {{ 'ADD' | translate }} {{ 'PAYMENT.TEXT' | translate }}
+  </button>
+</div>

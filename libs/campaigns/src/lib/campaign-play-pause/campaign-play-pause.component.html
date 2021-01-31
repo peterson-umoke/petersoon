@@ -1,0 +1,48 @@
+<mat-button-toggle-group
+  *ngIf="!requestApproval; else requestButton"
+  name="playPause"
+  aria-label="Play and Pause"
+  class="toggle-group"
+  [ngClass]="{ live: campaign.enabled, paused: !campaign.enabled }"
+>
+  <mat-button-toggle
+    value="true"
+    [checked]="campaign.enabled"
+    (change)="changeStatus(true)"
+    matTooltip="{{ 'ENABLE' | translate }}"
+    matTooltipPosition="below"
+    appGoogleAnalytics
+    [googleCategory]="'Campaigns'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Play Pause Button'"
+    [googleValue]="'True'"
+    data-cy="enabled"
+  >
+    <mat-icon class="more">play_arrow</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle
+    value="false"
+    [checked]="!campaign.enabled"
+    (change)="changeStatus(false)"
+    matTooltip="{{ 'DISABLE' | translate }}"
+    matTooltipPosition="below"
+    appGoogleAnalytics
+    [googleCategory]="'Campaigns'"
+    [googleAction]="'Click'"
+    [googleLabel]="'Play Pause Button'"
+    [googleValue]="'False'"
+  >
+    <mat-icon class="more">pause</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
+<ng-template #requestButton>
+  <div fxLayoutAlign="center center">
+    <button
+      mat-raised-button
+      class="request-approval blue-outlined-button"
+      (click)="changeStatus(true)"
+    >
+      {{ 'REQUEST_APPROVAL' | translate }}
+    </button>
+  </div>
+</ng-template>

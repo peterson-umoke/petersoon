@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "status": 200,
+  "message": "OK",
+  "result": [
+    {
+      "id": "a9rzyv",
+      "campaign_type": "STANDARD",
+      "daily_budget": 20.0,
+      "deleted": null,
+      "description": "",
+      "enabled": false,
+      "end_date": null,
+      "max_price": null,
+      "name": "My Inactive Campaign",
+      "start_date": null,
+      "timezone": "America/Denver",
+      "thumbnails": [
+        "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-3ak4x2-288x96-cb0480c1.png",
+        "https://bbh-stage3-bbh-storage.s3.amazonaws.com/da-images/AdImage-d9f5ar-288x96-1ea156b7.png"
+      ],
+      "rule_group": {
+        "rules": [
+          {
+            "type": "DailyCalendar",
+            "data": [
+              {
+                "days": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ],
+                "price_times": [
+                  [
+                    0,
+                    0.0
+                  ],
+                  [
+                    1020,
+                    0.0
+                  ],
+                  [
+                    1020,
+                    0.5
+                  ],
+                  [
+                    1080,
+                    0.5
+                  ],
+                  [
+                    1080,
+                    0.0
+                  ],
+                  [
+                    1440,
+                    0.0
+                  ]
+                ]
+              }
+            ],
+            "prices": {
+              "low": "0.10",
+              "medium": "0.25",
+              "high": "0.50"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

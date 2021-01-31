@@ -1,0 +1,179 @@
+<a
+  class="menu"
+  mat-button
+  *ngIf="userService?.$profile | async"
+  (click)="openIntercom()"
+  target="_blank"
+  rel="noopener"
+  appGoogleAnalytics
+  [googleCategory]="'Header'"
+  [googleAction]="'Click'"
+  [googleLabel]="'Open Intercom'"
+>
+  <mat-icon class="help">help</mat-icon>
+  <span class="text">{{ 'MENU.HELP' | translate }}</span>
+</a>
+
+<button
+  class="menu"
+  mat-button
+  *ngIf="userService.$profile | async"
+  [matMenuTriggerFor]="headerMenu"
+>
+  <mat-icon class="account">account_circle</mat-icon>
+  <span class="text">{{ userService.organization?.name }}</span>
+  <mat-icon>arrow_drop_down</mat-icon>
+</button>
+
+<mat-menu #headerMenu="matMenu">
+  <!-- Show only in XS -->
+  <a
+    mat-menu-item
+    fxHide.gt-xs
+    [routerLink]="appRoutes.CAMPAIGNS"
+    *ngIf="showLinks"
+  >
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/campaigns.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text"> {{ 'CAMPAIGNS.TEXT' | translate }}</span>
+  </a>
+  <a
+    mat-menu-item
+    fxHide.gt-xs
+    [routerLink]="appRoutes.ADS"
+    *ngIf="showLinks"
+    matBadge="{{ verificationsNeeded }}"
+    matBadgeColor="warn"
+    matBadgeHidden="{{ verificationsNeeded === 0 }}"
+  >
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/ads.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text"> {{ 'ADS.TEXT' | translate }} </span>
+  </a>
+  <!-- Show only in XS -->
+
+  <!-- Organization Focused -->
+  <a mat-menu-item *ngIf="showLinks" [routerLink]="appRoutes.ORGANIZATIONS">
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/org.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text"> {{ 'ORGANIZATION.PLURAL' | translate }} </span>
+  </a>
+  <a mat-menu-item *ngIf="showLinks" [routerLink]="appRoutes.PREFERENCES">
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/profile.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text"> {{ 'PROFILE_PREFERENCES' | translate }}</span>
+  </a>
+  <a
+    mat-menu-item
+    *ngIf="showLinks && canAddUsers"
+    [routerLink]="appRoutes.USERS"
+  >
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/user.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text"> {{ 'USERS.TEXT' | translate }}</span>
+  </a>
+  <a mat-menu-item *ngIf="showLinks" [routerLink]="appRoutes.REPORTS">
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/report.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text"> {{ 'REPORTS.TEXT' | translate }} </span>
+  </a>
+
+  <mat-divider></mat-divider>
+  <!-- $ Focused-->
+  <a
+    mat-menu-item
+    *ngIf="
+      ['MARKETPLACE', 'AGENCY'].includes(
+        (userService.$selectedOrganization | async)?.type
+      ) && showLinks
+    "
+    [routerLink]="appRoutes.CARDS"
+  >
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/pay.svg"
+        alt="header-icon"
+        class="header-icon payment"
+    /></span>
+    <span class="header-text col2">{{ 'PAYMENT.METHODS' | translate }} </span>
+  </a>
+  <a
+    mat-menu-item
+    *ngIf="
+      ['MARKETPLACE', 'AGENCY'].includes(
+        (userService.$selectedOrganization | async)?.type
+      ) && showLinks
+    "
+    [routerLink]="appRoutes.PAYMENTS"
+  >
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/org.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text col2">{{
+      'CREDIT_CARD.CREDITS' | translate
+    }}</span>
+  </a>
+  <a
+    mat-menu-item
+    *ngIf="
+      ['MARKETPLACE'].includes(
+        (userService.$selectedOrganization | async)?.type
+      ) && showLinks
+    "
+    [routerLink]="appRoutes.REWARDS"
+  >
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/rewards.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text col2"> {{ 'REWARDS.TEXT' | translate }}</span>
+  </a>
+
+  <mat-divider></mat-divider>
+  <!-- Logout and other -->
+  <a
+    mat-menu-item
+    [routerLink]="appRoutes.AD_TEMPLATES"
+    *ngIf="userService.isTemplateManager"
+  >
+    {{ 'ADS.TEMPLATES.TEXT' | translate }}
+  </a>
+  <button mat-menu-item (click)="logout()">
+    <span
+      ><img
+        src="https://blipbillboards-marketplace.s3.amazonaws.com/svg/logout.svg"
+        alt="header-icon"
+        class="header-icon"
+    /></span>
+    <span class="header-text"> {{ 'LOGOUT' | translate }} </span>
+  </button>
+</mat-menu>
